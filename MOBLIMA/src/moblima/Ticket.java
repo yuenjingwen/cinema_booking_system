@@ -2,7 +2,6 @@ package moblima;
 
 public class Ticket {
 	
-	private int test;
 	
 	private float price;
 	private String discount = "None";
