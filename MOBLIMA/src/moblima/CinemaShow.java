@@ -1,6 +1,6 @@
 package moblima;
 
-import java.io.Serializable; //yo
+import java.io.Serializable; 
 import java.time.LocalDateTime;
 
 public class CinemaShow implements Serializable, Comparable<CinemaShow>{
