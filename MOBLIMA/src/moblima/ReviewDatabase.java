@@ -2,23 +2,20 @@ package moblima;
 
 import java.util.ArrayList;
 
-public class ReviewDatabase implements IStorage {
+public class ReviewDatabase{
 
 	
-	private static ArrayList<Cineplex> RDB;
+	private static ArrayList<MovieReview> RDB;
 	
-	@Override
 	public void add() {
 		// TODO Auto-generated method stub
 	}
 
-	@Override
 	public void remove() {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void edit() {
 		// TODO Auto-generated method stub
 
