@@ -10,18 +10,19 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.time.LocalDateTime;
 
 public class MainMenuManager {
 	
-	private static ArrayList<Movie> movieList;
+
 	private static ArrayList<Cineplex> cineplexList;
 	
 
 	private static File cineplexFile = new File("Cineplex.dat");
-	private static File movieFile = new File("Movie.dat");
+
 	
 	private static int choice = 0;
 
@@ -35,11 +36,17 @@ public class MainMenuManager {
 		
 		PublicHolidaysEditor.fetchHolidays();
 		fetchCineplexes(cineplexFile);
-		fetchMovies(movieFile);
+		MovieDatabase.fetchMovies();
 		
 		choice = 0;
-		while(choice != 3){
-			printMainMenu(scanner);
+		try {
+			while(choice != 3){
+				printMainMenu(scanner);
+			}
+		}
+		catch (InputMismatchException e) {
+			e.printStackTrace();
+			scanner.nextLine();
 		}
 		System.out.println("Scanner closed. Program properly terminated.");
 		scanner.close();
@@ -85,46 +92,6 @@ public class MainMenuManager {
 		}
 	}	
 	
-	private static void fetchMovies(File file){
-		movieList = new ArrayList<Movie>();
-		try{
-			FileInputStream fi = new FileInputStream(file);
-			ObjectInputStream input = new ObjectInputStream(fi);
-			
-			try{
-				while(true){
-					Movie m = (Movie)input.readObject();
-					movieList.add(m);
-				}
-			} catch (EOFException e){
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			
-			fi.close();
-			input.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private static void updateMovies(File file){
-		try{
-			FileOutputStream fo = new FileOutputStream(file);
-			ObjectOutputStream output = new ObjectOutputStream(fo);
-			for(Movie m: movieList){
-				output.writeObject(m);
-			}
-			fo.close();
-			output.close();
-		} catch (FileNotFoundException e){
-			e.printStackTrace();
-		} catch (IOException e){
-			e.printStackTrace();
-		}
-	}	
 	
 	private static void printMainMenu(Scanner scanner){
 		System.out.print("1. Admin\n"
@@ -166,17 +133,17 @@ public class MainMenuManager {
 		if(!inputUser.equals(AdminModule.getUser()) || !inputPass.equals(AdminModule.getPassword())){
 			System.out.println("\n============================\n"
 					+ "Invalid Username or Password\n"
-					+ "============================\n");
-			break;																	// If invalid, break
-		}
-		System.out.println("\n================");
-		System.out.println("Successful Login");										// Successful login
-		System.out.println("================\n");
-		
-		
-		choice = 0;
-		while(choice != 4){
-			printAdminMenu(scanner);												// Opens Admin menu
+					+ "============================\n");							// If invalid, won't execute printAdminMenu
+		} else {
+			System.out.println("\n================");
+			System.out.println("Successful Login");										// Successful login
+			System.out.println("================\n");
+			
+			
+			choice = 0;
+			while(choice != 4){
+				printAdminMenu(scanner);												// Opens Admin menu
+			}
 		}
 	}
 	
@@ -227,7 +194,7 @@ public class MainMenuManager {
 		System.out.print("                     Movies Listed                     ");
 		System.out.print("\n=======================================================\n");
 		int i = 1;
-		for(Movie m : movieList){
+		for(Movie m : MovieDatabase.getArraylist()){
 			System.out.println("=======================================================");
 			System.out.println("Index: " + i + "\t" + m.getMovieType() + "\n");
 			System.out.println("Title:\t\t" + m.getTitle());
@@ -252,13 +219,13 @@ public class MainMenuManager {
 			scanner.nextLine();
 			switch (choice) {
 			case 1:
-				addMovie(scanner);
+				MovieDatabase.addMovie(scanner);
 				break;
 			case 2:
-				editMovie(scanner);
+				MovieDatabase.editMovie(scanner);
 				break;
 			case 3:
-				removeMovie(scanner);
+				MovieDatabase.removeMovie(scanner);
 				break;
 			case 4:
 				break;
@@ -274,143 +241,7 @@ public class MainMenuManager {
 		}
 	}
 	
-	private static void editMovie(Scanner scanner) {
-		String temp = null;
-		System.out.print("Select movie to edit: ");
-		int index = scanner.nextInt();
-		System.out.println(""
-				+ "1. Title\n"
-				+ "2. Director\n"
-				+ "3. Synopsis\n"
-				+ "4. Movie Type\n"
-				+ "5. Cast\n"
-				+ "Enter movie type: ");
-		try{
-			int select = scanner.nextInt();
-			scanner.nextLine();
-			switch (select) {
-			case 1:
-				System.out.print("Enter title: ");
-				temp = scanner.nextLine();
-				movieList.get(index - 1).setTitle(temp);
-				break;
-			case 2:
-				System.out.print("Enter director: ");
-				temp = scanner.nextLine();
-				movieList.get(index - 1).setDirector(temp);
-				break;
-			case 3:
-				System.out.print("Enter synopsis: ");
-				temp = scanner.nextLine();
-				movieList.get(index - 1).setSynopsis(temp);
-				break;
-			case 4:
-				System.out.print("\nMovie types:\n"
-						+ "1. Normal"
-						+ "2. Blockbuster"
-						+ "3. 3D"
-						+ "Enter movie type: ");
-				try{
-					int mType = scanner.nextInt();
-					scanner.nextLine();
-					switch (mType) {
-					case 1:
-						movieList.get(index-1).setMovieType(MovieType.NORMAL);
-						break;
-					case 2:
-						movieList.get(index-1).setMovieType(MovieType.BLOCKBUSTER);
-						break;
-					case 3:
-						movieList.get(index-1).setMovieType(MovieType.THREE_D);
-						break;
-					default:
-						movieList.get(index-1).setMovieType(MovieType.NORMAL);
-						break;
-					}
-				}catch(Exception e){
-					System.out.println("Invalid input.");
-					scanner.nextLine();
-					return;
-				}
-				break;
-			case 5:
-				System.out.print("Enter cast: ");
-				temp = scanner.nextLine();
-				movieList.get(index - 1).setCast(temp);
-				break;
-			default:
-				System.out.println("\n===========");
-				System.out.println("Invalid Selection");
-				System.out.println("===========\n");
-				break;
-			}
-		}catch(Exception e){
-			System.out.println("Invalid input.");
-			scanner.nextLine();
-			return;
-		}
-		updateMovies(movieFile);
-	}
-
-	private static void addMovie(Scanner scanner){
-		String title;
-		String synopsis = null;
-		String director = null;
-		String cast = null;
-		MovieType movietype = null;
-		System.out.print("Enter title: ");
-		title = scanner.nextLine();
-		System.out.print("Enter director: ");
-		director = scanner.nextLine();
-		System.out.print("Enter sypnosis: ");
-		synopsis = scanner.nextLine();
-		System.out.print("\nMovie types:\n"
-				+ "1. Normal\n"
-				+ "2. Blockbuster\n"
-				+ "3. 3D\n"
-				+ "Enter movie type: ");
-		try{
-			int mType = scanner.nextInt();
-			scanner.nextLine();
-			switch (mType) {
-			case 1:
-				movietype = MovieType.NORMAL;
-				break;
-			case 2:
-				movietype = MovieType.BLOCKBUSTER;
-				break;
-			case 3:
-				movietype = MovieType.THREE_D;
-				break;
-			default:
-				movietype = MovieType.NORMAL;
-				break;
-			}
-		}catch(Exception e){
-			System.out.println("Invalid input.");
-			scanner.nextLine();
-			return;
-		}
-		
-		System.out.print("Enter cast: ");
-		cast = scanner.nextLine();
-
-		movieList.add(new Movie(title, synopsis, director, cast, movietype));
-		updateMovies(movieFile);
-	}
-
-	private static void removeMovie(Scanner scanner){
-		int index;
-		System.out.println("=============================");
-		System.out.print("Enter movie index to remove: ");
-		index = scanner.nextInt();
-		scanner.nextLine();
-		movieList.remove(index-1);
-		updateMovies(movieFile);
-		System.out.println("=============================");
-		System.out.println("Movie removed");
-		System.out.println("=============================\n");
-	}
+	
 	
 	private static void printAdminShowtimeMenu(Scanner scanner){
 		System.out.println("=======================================================");
@@ -496,7 +327,7 @@ public class MainMenuManager {
 		
 		i = 1;
 		System.out.println("\n===============================");
-		for(Movie m : movieList){
+		for(Movie m : MovieDatabase.getArraylist()){
 			System.out.println(i + ".\t" + m.getTitle());
 			System.out.println("===============================");
 			i++;
@@ -527,7 +358,7 @@ public class MainMenuManager {
 		LocalDateTime tempDateTime = LocalDateTime.of(2017, month, dayOfMonth, hour, minute);
 		
 		cineplexList.get(cineplexIndex - 1).getCinemaList().get(cinemaIndex-1)
-		.getCinemaShowList().add(new CinemaShow(movieList.get(movieIndex-1), tempDateTime));
+		.getCinemaShowList().add(new CinemaShow(MovieDatabase.getArraylist().get(movieIndex-1), tempDateTime));
 		
 		Collections.sort(cineplexList.get(cineplexIndex-1).getCinemaList().get(cinemaIndex-1).getCinemaShowList());
 		
