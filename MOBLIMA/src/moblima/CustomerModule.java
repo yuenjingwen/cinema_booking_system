@@ -111,21 +111,20 @@ public class CustomerModule {
 		movieIndex = scanner.nextInt();
 		scanner.nextLine();
 		ticket.movie=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).getMovie().getTitle();
-		
-		i = 1;
+		CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(index);
+		/*i = 1;
 		System.out.println("\n===============================");
-		for(Cinema c : CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).getShowtime().toString){
+		for(Cinema c : CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).getShowtime()){
 			System.out.println(i + ".\t" + c.getCinemaID());
 			System.out.println("===============================");
 			i++;
-		}
+		}*/
 		
 		System.out.print("Select time: ");
 		timeIndex = scanner.nextInt();
 		scanner.nextLine();
 		ticket.time=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).getShowtime().toString();
 		//implement seat
-		CineplexDatabase.getArrayList().get(0).getCinemaList().get(1).getCinemaShowList().get(0).printSeating();
 		CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(cinemaIndex-1).printSeating();
 		//ticket.seat=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).getMovie().getTitle();
 		
@@ -163,23 +162,36 @@ public class CustomerModule {
 			ticket.printTicket();
 			
 			//need Edit this
-			TicketDatabase.add(ticket);
+			TicketDatabase ticketDB = new TicketDatabase();
+			ticketDB.add(ticket);
 	
 	}
 	
 	private static void addReview(Scanner scanner) {
-		System.out.println("Enter review below");
+		ReviewDatabase reviewDB = new ReviewDatabase();
+		System.out.println("===================================================");
+		System.out.println("Enter review below:");
 		String tempReview = scanner.nextLine();
-		System.out.println("Give ratings between 1(Bad) to 5(Worth Watching!)");
+		System.out.println("===================================================");
+		System.out.println("Give ratings between 1(Bad) to 5(Worth Watching!):");
 		int tempRating = scanner.nextInt();
 		scanner.nextLine();
-		ReviewDatabase.add(tempReview, tempRating);
-		
+		reviewDB.add(tempReview, tempRating);
 	}
+	
+	//need a way to read review
 	private static void readReview(Scanner scanner) {
-		// TODO Auto-generated method stub
+			ReviewDatabase reviewDB = new ReviewDatabase();
+			for(ReviewDatabase review : cinemaShowList){
+			
+			System.out.println("Rating		" + );
+			System.out.println("Review:		" + );
+			System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+		}
 		
 	}
+	
+	//need a way to read Ticket history
 	private static void showHistory(Scanner scanner) {
 		// TODO Auto-generated method stub
 		
