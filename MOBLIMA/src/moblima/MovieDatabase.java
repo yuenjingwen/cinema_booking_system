@@ -17,20 +17,6 @@ public class MovieDatabase{
 	private static ArrayList<MovieReview> RDB;
 	private static File movieFile = new File("Movie.dat");
 	
-	public void add() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void remove() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void edit() {
-		// TODO Auto-generated method stub
-
-	}
 	
 	public static ArrayList<Movie> getArrayList() {
 		return movieList;
