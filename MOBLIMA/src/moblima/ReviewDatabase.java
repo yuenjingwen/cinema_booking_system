@@ -13,7 +13,7 @@ public class ReviewDatabase{
 	private static ArrayList<MovieReview> RDB;
 	
 
-	public void add(String reviewText, int rating) {
+	public static void addReview(String reviewText, int rating) {
 		MovieReview temp = new MovieReview(reviewText, rating);
 		RDB.add(temp);
 		
@@ -72,6 +72,10 @@ public class ReviewDatabase{
 		} catch (IOException e){
 			e.printStackTrace();
 		}
+	}
+	
+	public MovieReview fetchReview() {
+		
 	}
 
 	

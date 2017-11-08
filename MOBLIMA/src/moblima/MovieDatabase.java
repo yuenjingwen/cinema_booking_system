@@ -31,7 +31,7 @@ public class MovieDatabase{
 
 	}
 	
-	public static ArrayList<Movie> getArraylist() {
+	public static ArrayList<Movie> getArrayList() {
 		return movieList;
 	}
 	
@@ -219,7 +219,7 @@ public class MovieDatabase{
 		System.out.print("                     Movies Listed                     ");
 		System.out.print("\n=======================================================\n");
 		int i = 1;
-		for(Movie m : getArraylist()){
+		for(Movie m : getArrayList()){
 			System.out.println("=======================================================");
 			System.out.println("Index: " + i + "\t" + m.getMovieType() + "\n");
 			System.out.println("Title:\t\t" + m.getTitle());

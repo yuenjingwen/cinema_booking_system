@@ -12,7 +12,7 @@ public class TicketDatabase{
 	private static ArrayList<Ticket> TDB;
 
 	
-	public void add(Ticket temp) {
+	public static void add(Ticket temp) {
 		TDB.add(temp);	
 		
 		File file = new File("Ticket.dat");
@@ -31,6 +31,9 @@ public class TicketDatabase{
 		}
 	}
 
+	public static ArrayList<Ticket> getArrayList() {
+		return 0;
+	}
 
 	
 }

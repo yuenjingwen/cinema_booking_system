@@ -161,13 +161,11 @@ public class CustomerModule {
 			ticket.printTicket();
 			
 			//need Edit this
-			TicketDatabase ticketDB = new TicketDatabase();
-			ticketDB.add(ticket);
+			TicketDatabase.add(ticket);
 	
 	}
 	
 	private static void addReview(Scanner scanner) {
-		ReviewDatabase reviewDB = new ReviewDatabase();
 		System.out.println("===================================================");
 		System.out.println("Enter review below:");
 		String tempReview = scanner.nextLine();
@@ -175,13 +173,13 @@ public class CustomerModule {
 		System.out.println("Give ratings between 1(Bad) to 5(Worth Watching!):");
 		int tempRating = scanner.nextInt();
 		scanner.nextLine();
-		reviewDB.add(tempReview, tempRating);
+		ReviewDatabase.addReview(tempReview, tempRating);
 	}
 	
 	//need a way to read review
 	private static void readReview(Scanner scanner) {
 			ReviewDatabase reviewDB = new ReviewDatabase();
-			for(ReviewDatabase review : cinemaShowList){
+			for(Review r : MovieDatabase.getArrayList()){
 			
 			System.out.println("Rating		" + );
 			System.out.println("Review:		" + );
