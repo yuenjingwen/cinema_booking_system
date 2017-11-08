@@ -1,11 +1,15 @@
 package moblima;
 
+import java.util.ArrayList;
+
 public class TicketDatabase implements IStorage {
 
+	private ArrayList<Ticket> TDB;
+	
 	@Override
 	public void add() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override

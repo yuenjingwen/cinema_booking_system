@@ -1,10 +1,13 @@
 package moblima;
 
+import java.util.ArrayList;
+
 public class CineplexDatabase implements IStorage {
 
+	private ArrayList<Cineplex> CPDB;
+	
 	@Override
 	public void add() {
-		// TODO Auto-generated method stub
 
 	}
 

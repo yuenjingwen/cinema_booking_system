@@ -1,6 +1,10 @@
 package moblima;
 
+import java.util.ArrayList;
+
 public class PublicHolidayDatabase implements IStorage {
+	
+	private ArrayList<PublicHoliday> PHDB;
 
 	@Override
 	public void add() {
