@@ -105,7 +105,7 @@ public class CustomerModule {
 		
 		i = 1;
 		System.out.println("\n===============================");
-		for(Movie m : MovieDatabase.getArraylist()){
+		for(Movie m : MovieDatabase.getArrayList()){
 			System.out.println(i + ".\t" + m.getTitle());
 			System.out.println("===============================");
 			i++;
@@ -114,6 +114,8 @@ public class CustomerModule {
 		movieIndex = scanner.nextInt();
 		scanner.nextLine();
 		ticket.movie=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).getMovie().getTitle();
+		
+		
 		
 						
 		ticket.time=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).getShowtime().format(formatter);
@@ -140,6 +142,7 @@ public class CustomerModule {
 				System.out.println("Invalid input. Please re-enter choicee.");
 				scanner.nextLine();
 			}
+			CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).setSeat(column, row);;
 			String tempRow = Integer.toString(row);
 			String tempColumn = Integer.toString(column);
 			ticket.seat = tempRow+ tempColumn  ; 
@@ -149,13 +152,13 @@ public class CustomerModule {
 			ticket.printTicket();
 			
 			//need Edit this
-			TicketDatabase ticketDB = new TicketDatabase();
-			ticketDB.add(ticket);
+			TicketDatabase.add(ticket);
+
+	
 	}
 
 	
 	private static void addReview(Scanner scanner) {
-		ReviewDatabase reviewDB = new ReviewDatabase();
 		System.out.println("===================================================");
 		System.out.println("Enter review below:");
 		String tempReview = scanner.nextLine();
@@ -163,24 +166,26 @@ public class CustomerModule {
 		System.out.println("Give ratings between 1(Bad) to 5(Worth Watching!):");
 		int tempRating = scanner.nextInt();
 		scanner.nextLine();
-		reviewDB.add(tempReview, tempRating);
+		ReviewDatabase.addReview(tempReview, tempRating);
 	}
 	
 	//need a way to read review
 	private static void readReview(Scanner scanner) {
 		
+		
 		System.out.println("Select movie: ");
 		int movieIndex = scanner.nextInt();
 		scanner.nextLine();
 		
-			for(MovieReview review : MovieDatabase.){
+			for(Review r : MovieDatabase.getArrayList()){
+
 			
 			System.out.println("Rating		" + );
 			System.out.println("Review:		" + );
 			System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - -");
 		}
-		
 	}
+	
 	
 	
 	//need a way to read Ticket history

@@ -62,6 +62,10 @@ public class Movie implements Serializable{
 		}
 	}
 	
+	public ArrayList<MovieReview> getReviewList() {
+		return reviews;
+	}
+	
 	public String getMovieType(){
 		return movieType.toString();
 	}

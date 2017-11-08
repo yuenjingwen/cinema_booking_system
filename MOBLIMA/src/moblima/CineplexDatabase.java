@@ -110,7 +110,7 @@ public class CineplexDatabase{
 		
 		i = 1;
 		System.out.println("\n===============================");
-		for(Movie m : MovieDatabase.getArraylist()){
+		for(Movie m : MovieDatabase.getArrayList()){
 			System.out.println(i + ".\t" + m.getTitle());
 			System.out.println("===============================");
 			i++;
@@ -141,7 +141,7 @@ public class CineplexDatabase{
 		LocalDateTime tempDateTime = LocalDateTime.of(2017, month, dayOfMonth, hour, minute);
 		
 		cineplexList.get(cineplexIndex - 1).getCinemaList().get(cinemaIndex-1)
-		.getCinemaShowList().add(new CinemaShow(MovieDatabase.getArraylist().get(movieIndex-1), tempDateTime));
+		.getCinemaShowList().add(new CinemaShow(MovieDatabase.getArrayList().get(movieIndex-1), tempDateTime));
 		
 		Collections.sort(cineplexList.get(cineplexIndex-1).getCinemaList().get(cinemaIndex-1).getCinemaShowList());
 		
@@ -177,7 +177,7 @@ public class CineplexDatabase{
 
 
 	public static void updateShowTime(Scanner scanner){
-		int showtimeIndex, movieIndex, cineplexIndex, cinemaIndex, i;
+		int showtimeIndex, movieIndex, cineplexIndex, cinemaIndex, i=1;
 		int month, day, hour, minute;
 
 		System.out.println("===============================");
@@ -206,15 +206,12 @@ public class CineplexDatabase{
 		System.out.println();
 		System.out.println("===============================");
 		for (CinemaShow cs : cineplexList.get(cineplexIndex-1).getCinemaList().get(cinemaIndex=1).getCinemaShowList()) {
-			System.out.println(i + ".\t" + cs.);
+			System.out.println("	Date	Time	" );
+			System.out.println(i + ".\t" );
 			System.out.println("===============================");
 			i++;
 		}
 		MovieDatabase.printMovieList();
-		
-		System.out.print("Select movie to update to: ");
-		movieID = scanner.nextInt();
-		scanner.nextLine();
 		
 		
 
@@ -240,7 +237,7 @@ public class CineplexDatabase{
 		LocalDateTime tempDateTime = LocalDateTime.of(2017, month, day, hour, minute);
 		
 		cineplexList.get(cineplexIndex - 1).getCinemaList().get(cinemaIndex-1)
-		.getCinemaShowList().add(new CinemaShow(MovieDatabase.getArraylist().get(movieIndex-1), tempDateTime));
+		.getCinemaShowList().add(new CinemaShow(MovieDatabase.getArrayList().get(movieIndex-1), tempDateTime));
 		
 		Collections.sort(cineplexList.get(cineplexIndex-1).getCinemaList().get(cinemaIndex-1).getCinemaShowList());
 		

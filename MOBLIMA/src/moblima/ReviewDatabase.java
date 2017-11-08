@@ -13,10 +13,10 @@ public class ReviewDatabase{
 	private static ArrayList<MovieReview> RDB;
 	
 
-	public void add(String reviewText, int rating) {
+	public static void addReview(String reviewText, int rating) {
 		MovieReview temp = new MovieReview(reviewText, rating);
-		RDB.add(temp);
 		
+			
 		File file = new File("MovieReview.dat");
 		try{
 			FileOutputStream fo = new FileOutputStream(file);
@@ -71,6 +71,18 @@ public class ReviewDatabase{
 			e.printStackTrace();
 		} catch (IOException e){
 			e.printStackTrace();
+		}
+	}
+	
+	public MovieReview fetchReview(Scanner scanner) {
+		
+		//print movie list
+		//ask which movie you want to see review for
+		//print all reviews for that movie
+		
+		
+		for (MovieReview r : MovieDatabase.getArrayList().get(0).getReviewList()) {
+			//print into format
 		}
 	}
 
