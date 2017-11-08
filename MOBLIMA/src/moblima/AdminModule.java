@@ -155,21 +155,7 @@ public class AdminModule {
 		System.out.println("                    Cinema & Showtime                  ");
 		System.out.println("=======================================================");
 		
-		for(Cineplex cp : CineplexDatabase.getArrayList()){
-			System.out.println(cp.getName());
-			System.out.println("-------------------------------------------------------");
-			for(Cinema c : cp.getCinemaList()){
-				System.out.println("\n-------------------------------------------------------");
-				System.out.println(c.getCinemaID() + "\t" + c.getClassOfCinema());
-				System.out.println("-------------------------------------------------------");	
-				for(CinemaShow cs : c.getCinemaShowList()){
-					System.out.println("Movie:\t\t" + cs.getMovie().getTitle());
-					System.out.println("Showtime:\t" + cs.getShowtime());
-					System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - -");
-				}
-			}
-			System.out.println("=======================================================");
-		}
+		CineplexDatabase.printAllShowtimes();
 		
 		System.out.print("\n=====================\n"
 				+ "Movie Showtime Editor\n"

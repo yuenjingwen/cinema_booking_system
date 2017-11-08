@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -146,5 +148,25 @@ public class CineplexDatabase{
 		updateCineplexes(cineplexFile);
 	}
 	
+	public static void printAllShowtimes() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
+		
+		for(Cineplex cp : getArrayList()){
+			System.out.println(cp.getName());											//Cineplex Name
+			System.out.println(															"-------------------------------------------------------");
+			for(Cinema c : cp.getCinemaList()){									
+				System.out.println(														"\n-------------------------------------------------------");
+				System.out.println(c.getCinemaID() + "\t" + c.getClassOfCinema());		//Cinema Name				Cinema Type
+				System.out.println(														"-------------------------------------------------------");	
+				for(CinemaShow cs : c.getCinemaShowList()){
+					System.out.println("["+(1+c.getCinemaShowList().indexOf(cs)) +"]"+	"	Movie:		" + cs.getMovie().getTitle());
+					System.out.println(													"	Date:		" + cs.getShowtime().format(formatter));
+					System.out.println(													"	Time:		" + cs.getShowtime().toLocalTime());
+					System.out.println(													"- - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+				}
+			}
+			System.out.println(															"=======================================================");
+		}
+	}
 		
 }
