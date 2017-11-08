@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class PublicHolidayDatabase implements IStorage {
 	
-	private ArrayList<PublicHoliday> PHDB;
+	private static ArrayList<PublicHoliday> PHDB;
 
 	@Override
 	public void add() {

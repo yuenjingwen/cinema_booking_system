@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TicketDatabase implements IStorage {
 
-	private ArrayList<Ticket> TDB;
+	private static ArrayList<Ticket> TDB;
 	
 	@Override
 	public void add() {

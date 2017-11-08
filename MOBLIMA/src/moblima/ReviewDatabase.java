@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class ReviewDatabase implements IStorage {
 
 	
-	private ArrayList<Cineplex> RDB;
+	private static ArrayList<Cineplex> RDB;
 	
 	@Override
 	public void add() {
