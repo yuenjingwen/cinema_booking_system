@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class PublicHolidaysDatabase {
+public class PublicHolidaysDatabase{
 	
 	public static ArrayList<PublicHoliday> phList = new ArrayList<PublicHoliday>();
 	
