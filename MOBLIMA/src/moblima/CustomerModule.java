@@ -111,7 +111,6 @@ public class CustomerModule {
 		movieIndex = scanner.nextInt();
 		scanner.nextLine();
 		ticket.movie=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).getMovie().getTitle();
-		CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(index);
 		/*i = 1;
 		System.out.println("\n===============================");
 		for(Cinema c : CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).getShowtime()){
