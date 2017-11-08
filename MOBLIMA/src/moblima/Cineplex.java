@@ -10,19 +10,23 @@ public class Cineplex implements Serializable{
 	private String name;
 	private ArrayList<Cinema> cinemaList;
 	
-	public String getName() {
-		return name;
-	}
-	
 	public Cineplex(String name, int num) {
 		this.name = name;
 		numOfCinema = num;
 		cinemaList = new ArrayList<Cinema>();
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 	public void setName(String name) {
 		this.name = name;
 		}
+	
+	public int getNumOfCinema() {
+		return numOfCinema;
+	}
 	
 	public void setNumOfCinema(int num) {
 		numOfCinema = num;
