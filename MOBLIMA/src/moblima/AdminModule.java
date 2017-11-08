@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class Admin {
+public class AdminModule {
 	
 	private final static String USER = "Admin";
 	private static String password;
@@ -34,7 +34,7 @@ public class Admin {
 			e.printStackTrace();
 		}
 		
-		Admin.password = password;
+		AdminModule.password = password;
 		
 		System.out.println("\n=============================");
 		System.out.println("Password successfully changed");

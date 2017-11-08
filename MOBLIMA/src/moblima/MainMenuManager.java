@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.time.LocalDateTime;
 
-public class Manager {
+public class MainMenuManager {
 	
 	private static ArrayList<Movie> movieList;
 	private static ArrayList<Cineplex> cineplexList;
@@ -142,7 +142,7 @@ public class Manager {
 				System.out.print("Enter Password: ");
 				inputPass = scanner.nextLine();
 																							// Login check
-				if(!inputUser.equals(Admin.getUser()) || !inputPass.equals(Admin.getPassword())){
+				if(!inputUser.equals(AdminModule.getUser()) || !inputPass.equals(AdminModule.getPassword())){
 					System.out.println("\n============================\n"
 							+ "Invalid Username or Password\n"
 							+ "============================\n");
@@ -547,9 +547,9 @@ public class Manager {
 			switch (choice) {
 			case 1:
 				System.out.print("Enter current password: ");
-				if(scanner.nextLine().equals(Admin.getPassword())){
+				if(scanner.nextLine().equals(AdminModule.getPassword())){
 					System.out.print("Enter new password: ");
-					Admin.setPassword(scanner.nextLine());
+					AdminModule.setPassword(scanner.nextLine());
 				}else{
 					System.out.println("\n================");
 					System.out.println("Invalid password");
