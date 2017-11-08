@@ -45,7 +45,7 @@ public class MainMenuManager {
 		scanner.close();
 	}
 	
-	// Fetching infomation of all cineplexes.
+	// Fetching infomation of al cineplexes.
 	private static void fetchCineplexes(File file){
 		cineplexList = new ArrayList<Cineplex>();
 		try{
