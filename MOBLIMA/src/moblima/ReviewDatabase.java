@@ -7,24 +7,19 @@ public class ReviewDatabase{
 	
 	private static ArrayList<MovieReview> RDB;
 	
-//yo
-
-	public static void add(String reviewText, int rating) {
-		MovieReview temp = new MovieReview(reviewText, rating);
-		RDB.add(temp);
+//test
+	public void add() {
+		// TODO Auto-generated method stub
 	}
 
-	public void delete(int reviewIndex) {
-		RDB.remove(reviewIndex);
-	}
-
-
-	public void edit(int reviewIndex, String reviewText, int rating) {
-		
-		MovieReview temp = new MovieReview(reviewText, rating);
-		RDB.set(reviewIndex, temp );
+	public void remove() {
+		// TODO Auto-generated method stub
 
 	}
 
+	public void edit() {
+		// TODO Auto-generated method stub
+
+	}
 
 }
