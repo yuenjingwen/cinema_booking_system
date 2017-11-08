@@ -136,27 +136,7 @@ public class MainMenuManager {
 			scanner.nextLine();
 			switch (choice) {
 			case 1:
-				System.out.print("Enter Username: ");										// Admin to login
-				inputUser = scanner.nextLine();
-				
-				System.out.print("Enter Password: ");
-				inputPass = scanner.nextLine();
-																							// Login check
-				if(!inputUser.equals(AdminModule.getUser()) || !inputPass.equals(AdminModule.getPassword())){
-					System.out.println("\n============================\n"
-							+ "Invalid Username or Password\n"
-							+ "============================\n");
-					break;																	// If invalid, break
-				}
-				System.out.println("\n================");
-				System.out.println("Successful Login");										// Successful login
-				System.out.println("================\n");
-				
-				
-				choice = 0;
-				while(choice != 4){
-					printAdminMenu(scanner);												// Opens Admin menu
-				}
+				Adminlogin(scanner);
 				break;
 			case 2:
 				cineplexList.get(0).getCinemaList().get(1).getCinemaShowList().get(0).printCinema();
@@ -173,6 +153,30 @@ public class MainMenuManager {
 		}catch(Exception e){
 		e.printStackTrace();
 		scanner.nextLine();
+		}
+	}
+	
+	private static void Adminlogin(Scanner scanner) {
+		System.out.print("Enter Username: ");										// Admin to login
+		inputUser = scanner.nextLine();
+		
+		System.out.print("Enter Password: ");
+		inputPass = scanner.nextLine();
+																					// Login check
+		if(!inputUser.equals(AdminModule.getUser()) || !inputPass.equals(AdminModule.getPassword())){
+			System.out.println("\n============================\n"
+					+ "Invalid Username or Password\n"
+					+ "============================\n");
+			break;																	// If invalid, break
+		}
+		System.out.println("\n================");
+		System.out.println("Successful Login");										// Successful login
+		System.out.println("================\n");
+		
+		
+		choice = 0;
+		while(choice != 4){
+			printAdminMenu(scanner);												// Opens Admin menu
 		}
 	}
 	
