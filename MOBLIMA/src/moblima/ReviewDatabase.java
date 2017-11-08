@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ReviewDatabase{
 
@@ -74,15 +75,17 @@ public class ReviewDatabase{
 		}
 	}
 	
-	public MovieReview fetchReview(Scanner scanner) {
+	public void fetchReview() {
 		
-		//print movie list
-		//ask which movie you want to see review for
-		//print all reviews for that movie
+		MovieDatabase.printMovieList();	//print movie list
+		System.out.print("Which movie review would you like to read?");	//ask which movie you want to see review for
+		Scanner sc = new Scanner(System.in);
+		int choice = sc.nextInt();
 		
-		
-		for (MovieReview r : MovieDatabase.getArrayList().get(0).getReviewList()) {
-			//print into format
+		//print all reviews for that movie 
+		for (MovieReview r : MovieDatabase.getArrayList().get(choice).getReviewList()) {	//print into format
+			System.out.println(r.getReview());
+			System.out.println(r.getRating());
 		}
 	}
 
