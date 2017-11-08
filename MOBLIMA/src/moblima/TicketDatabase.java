@@ -8,7 +8,7 @@ public class TicketDatabase{
 	
 
 	
-	public void add(Ticket temp) {
+	public static void add(Ticket temp) {
 		TDB.add(temp);		
 	}
 

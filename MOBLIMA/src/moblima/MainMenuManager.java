@@ -47,7 +47,7 @@ public class MainMenuManager {
 				AdminModule.Adminlogin(scanner);
 				break;
 			case 2:
-				CineplexDatabase.getArrayList().get(0).getCinemaList().get(1).getCinemaShowList().get(0).printSeating();
+				CustomerModule.customerMain(scanner);
 				break;
 			case 3:
 				System.out.println("Program Terminating...");								// Ends program

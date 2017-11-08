@@ -4,21 +4,35 @@ import java.time.LocalDateTime;
 
 public class Ticket {
 	
-	
 	private float price;
 	private String discount = "None";
-	private CinemaEnum cinemaTier;
-	private MovieType movieType;
-	private int ticketholderAge;
-	private LocalDateTime ticketDate;
+	public String cineplex; //new
+	public String cinema; //new
+	public String movie; //new
+	public String time; //new
+	public String seat;
 	
-public Ticket(CinemaEnum cEnum, MovieType mEnum, int age, LocalDateTime movieDate, boolean student){
-		
-		cinemaTier = cEnum;
-		movieType = mEnum;
-		ticketholderAge = age;
-		ticketDate = movieDate;
-		
+	public Ticket(){
+		price=0;
+		discount = "None";
+		cineplex= "None"; //new
+		cinema= "None"; //new
+		movie= "None"; //new
+		time= null; //new
+		seat = "None";
+	}
+	
+	public float getTicketPrice() {
+		return price;
+	}
+
+	public String getDiscount() {
+		return discount;
+	}
+
+
+
+	public void calculateTicketPrice(CinemaEnum cEnum, MovieType mEnum, int age, int movieDate, boolean student){
 		
 		float temp = 0;
 		
@@ -51,44 +65,42 @@ public Ticket(CinemaEnum cEnum, MovieType mEnum, int age, LocalDateTime movieDat
 		
 		if(age < 12){
 			discount = "Child Discount";
-			student = false;
 			temp -= 2;
 		}else if(age > 65){
 			discount = "Elderly Discount";
-			student = false;
 			temp -= 4;
 		}else if(student){
 			discount = "Student Discount";
-			student = true;
 			temp -= 2;
 		}
 		
-		price = temp;
 		
 	}
-
-	public float getTicketPrice() {
-		return price;
-	}
-
-	public String getDiscount() {
-		return discount;
-	}
-
-	public CinemaEnum getCinemaTier() {
-		return cinemaTier;
-	}
 	
-	public MovieType getMovieType() {
-		return movieType;
+	public void setCineplex(String cineplexName){
+		cineplex = cineplexName;
 	}
-	
-	public int getTicketholderAge() {
-		return ticketholderAge;
+	public void setCinema(String cinemaName){
+		cinema = cinemaName;
 	}
-	
-	public LocalDateTime getTicketDate() {
-		return ticketDate;
+	public void setMovie(String movie){
+		this.movie = movie;
 	}
-
+	public void setTime(String time){
+		this.time = time;
+	}
+	public void setSeat(String seat){
+		this.seat= seat;
+	}
+	public void printTicket(){
+		System.out.println("===========================================================================\n"+
+						   "                                   Ticket                                  \n"+
+				           "           "+cineplex+ "\n"+
+				           "           "+cinema+ "\n\n"+
+				           
+				           "                                "+movie+ "\n\n" +									
+				           "                                                        Time:"+time+ "\n" +
+				           "                                                        Seat:"+seat+ "\n" +  
+						   "===========================================================================\n");
+	}
 }
