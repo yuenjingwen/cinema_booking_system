@@ -7,6 +7,7 @@ public class ReviewDatabase{
 	
 	private static ArrayList<MovieReview> RDB;
 	
+//test
 	public void add() {
 		// TODO Auto-generated method stub
 	}
