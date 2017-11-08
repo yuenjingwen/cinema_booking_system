@@ -177,7 +177,7 @@ public class CineplexDatabase{
 
 
 	public static void updateShowTime(Scanner scanner){
-		int showtimeIndex, movieIndex, cineplexIndex, cinemaIndex, i;
+		int showtimeIndex, movieIndex, cineplexIndex, cinemaIndex, i=1;
 		int month, day, hour, minute;
 
 		System.out.println("===============================");
