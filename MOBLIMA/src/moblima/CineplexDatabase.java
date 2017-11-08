@@ -151,22 +151,75 @@ public class CineplexDatabase{
 	public static void printAllShowtimes() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
 		
+		int showtimeIndex =1;
+		
 		for(Cineplex cp : getArrayList()){
-			System.out.println(cp.getName());											//Cineplex Name
+			System.out.println("		"+cp.getName());											//Cineplex Name
+			System.out.println("Showtime ID");
 			System.out.println(															"-------------------------------------------------------");
 			for(Cinema c : cp.getCinemaList()){									
 				System.out.println(														"\n-------------------------------------------------------");
-				System.out.println(c.getCinemaID() + "\t" + c.getClassOfCinema());		//Cinema Name				Cinema Type
+				System.out.println("	" + c.getCinemaID() + "\t" + c.getClassOfCinema());		//Cinema Name				Cinema Type
 				System.out.println(														"-------------------------------------------------------");	
 				for(CinemaShow cs : c.getCinemaShowList()){
-					System.out.println("["+(1+c.getCinemaShowList().indexOf(cs)) +"]"+	"	Movie:		" + cs.getMovie().getTitle());
+					
+					System.out.println("["+(showtimeIndex) +"]"+	"	Movie:		" + cs.getMovie().getTitle());
 					System.out.println(													"	Date:		" + cs.getShowtime().format(formatter));
 					System.out.println(													"	Time:		" + cs.getShowtime().toLocalTime());
 					System.out.println(													"- - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+				 showtimeIndex++;
 				}
+				
 			}
 			System.out.println(															"=======================================================");
 		}
 	}
 		
+
+
+	public static void updateShowTime(Scanner scanner){
+		int showtimeID, movieID, cineplexID, cinemaID;
+		int month, day, hour, minute;
+
+		System.out.print("Select Showtime ID [ ] to update: ");
+		showtimeID = scanner.nextInt();
+		scanner.nextLine();
+		
+		MovieDatabase.printMovieList();
+		
+		System.out.print("Select movie to update to: ");
+		movieID = scanner.nextInt();
+		scanner.nextLine();
+		
+		
+
+	
+		
+		System.out.print("Enter month: ");
+		month = scanner.nextInt();
+		scanner.nextLine();
+		
+		System.out.print("Enter day of month: ");
+		day = scanner.nextInt();
+		scanner.nextLine(
+				);
+		
+		System.out.print("Enter hour: ");
+		hour = scanner.nextInt();
+		scanner.nextLine();
+		
+		System.out.print("Enter minute: ");
+		minute = scanner.nextInt();
+		scanner.nextLine();
+		
+		LocalDateTime tempDateTime = LocalDateTime.of(2017, month, day, hour, minute);
+		
+		cineplexList.get(cineplexIndex - 1).getCinemaList().get(cinemaIndex-1)
+		.getCinemaShowList().add(new CinemaShow(MovieDatabase.getArraylist().get(movieIndex-1), tempDateTime));
+		
+		Collections.sort(cineplexList.get(cineplexIndex-1).getCinemaList().get(cinemaIndex-1).getCinemaShowList());
+		
+		updateCineplexes(cineplexFile);
+		}
+
 }

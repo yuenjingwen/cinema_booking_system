@@ -39,7 +39,7 @@ public class CinemaShow implements Serializable, Comparable<CinemaShow>{
 		return movie;
 	}
 
-	public void printCinema(){
+	public void printSeating(){
 		System.out.println();
 		System.out.println("=          MOVIE SCREEN          =");
 		System.out.println("==================================");
@@ -114,4 +114,9 @@ public class CinemaShow implements Serializable, Comparable<CinemaShow>{
 		return getShowtime().compareTo(o.getShowtime());
 	}
 
+	public void setMovie(Movie movie) {
+		this.movie = movie;
+	}
 }
+
+	

@@ -173,10 +173,10 @@ public class AdminModule {
 				CineplexDatabase.addShowTime(scanner);
 				break;
 			case 2:
-				System.out.println("u showtime");
+				System.out.println("updated showtime");
 				break;
 			case 3:
-				System.out.println("r showtime");
+				System.out.println("removed showtime");
 				break;
 			case 4:
 				break;
