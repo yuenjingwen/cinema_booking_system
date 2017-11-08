@@ -63,6 +63,8 @@ public class TicketDatabase{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		return TDB;
 	}
 	
 	public static void updateTickets(File file){

@@ -18,7 +18,7 @@ public class ReviewDatabase{
 		MovieReview temp = new MovieReview(reviewText, rating);
 		
 			
-		File file = new File("MovieReview.dat");
+		File file = new File("MovieReview.dat"); //this dat file has yet to be created
 		try{
 			FileOutputStream fo = new FileOutputStream(file);
 			ObjectOutputStream output = new ObjectOutputStream(fo);
