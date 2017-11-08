@@ -39,15 +39,17 @@ public class MainMenuManager {
 		MovieDatabase.fetchMovies();
 		
 		choice = 0;
-		try {
+		
 			while(choice != 3){
+				try {
 				printMainMenu(scanner);
+				} catch (InputMismatchException e) {
+					System.out.println("Invalid Input! Please enter choice from 1-3.");
+					scanner.nextLine();
+				}
 			}
-		}
-		catch (InputMismatchException e) {
-			e.printStackTrace();
-			scanner.nextLine();
-		}
+		
+		
 		System.out.println("Scanner closed. Program properly terminated.");
 		scanner.close();
 	}
@@ -118,8 +120,8 @@ public class MainMenuManager {
 				break;
 			}
 		}catch(Exception e){
-		e.printStackTrace();
-		scanner.nextLine();
+			System.out.println("Invalid Input! Please enter choice from 1-3.");
+			scanner.nextLine();
 		}
 	}
 	
