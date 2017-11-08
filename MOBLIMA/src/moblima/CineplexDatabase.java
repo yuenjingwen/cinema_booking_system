@@ -155,17 +155,16 @@ public class CineplexDatabase{
 		
 		for(Cineplex cp : getArrayList()){
 			System.out.println("		"+cp.getName());											//Cineplex Name
-			System.out.println("Showtime ID");
 			System.out.println(															"-------------------------------------------------------");
 			for(Cinema c : cp.getCinemaList()){									
 				System.out.println(														"\n-------------------------------------------------------");
-				System.out.println("	" + c.getCinemaID() + "\t" + c.getClassOfCinema());		//Cinema Name				Cinema Type
+				System.out.println(c.getCinemaID() + "\t" + c.getClassOfCinema());		//Cinema Name				Cinema Type
 				System.out.println(														"-------------------------------------------------------");	
 				for(CinemaShow cs : c.getCinemaShowList()){
 					
-					System.out.println("["+(showtimeIndex) +"]"+	"	Movie:		" + cs.getMovie().getTitle());
-					System.out.println(													"	Date:		" + cs.getShowtime().format(formatter));
-					System.out.println(													"	Time:		" + cs.getShowtime().toLocalTime());
+					System.out.println("Movie:		" + cs.getMovie().getTitle());
+					System.out.println(													"Date:		" + cs.getShowtime().format(formatter));
+					System.out.println(													"Time:		" + cs.getShowtime().toLocalTime());
 					System.out.println(													"- - - - - - - - - - - - - - - - - - - - - - - - - - - -");
 				 showtimeIndex++;
 				}
@@ -178,13 +177,39 @@ public class CineplexDatabase{
 
 
 	public static void updateShowTime(Scanner scanner){
-		int showtimeID, movieID, cineplexID, cinemaID;
+		int showtimeIndex, movieIndex, cineplexIndex, cinemaIndex, i;
 		int month, day, hour, minute;
 
-		System.out.print("Select Showtime ID [ ] to update: ");
-		showtimeID = scanner.nextInt();
+		System.out.println("===============================");
+		for(Cineplex cp : cineplexList){
+			System.out.println(i + ".\t" + cp.getName());
+			System.out.println("===============================");
+			i++;
+		}
+		System.out.print("Select cineplex: ");
+		cineplexIndex = scanner.nextInt();
 		scanner.nextLine();
 		
+		i = 1;
+		System.out.println("\n===============================");
+		
+		for(Cinema c : cineplexList.get(cineplexIndex-1).getCinemaList()){
+			System.out.println(i + ".\t" + c.getCinemaID());
+			System.out.println("===============================");
+			i++;
+		}
+		System.out.print("Select cinema: ");
+		cinemaIndex = scanner.nextInt();
+		scanner.nextLine();
+		
+		i = 1;
+		System.out.println();
+		System.out.println("===============================");
+		for (CinemaShow cs : cineplexList.get(cineplexIndex-1).getCinemaList().get(cinemaIndex=1).getCinemaShowList()) {
+			System.out.println(i + ".\t" + cs.);
+			System.out.println("===============================");
+			i++;
+		}
 		MovieDatabase.printMovieList();
 		
 		System.out.print("Select movie to update to: ");
@@ -221,5 +246,15 @@ public class CineplexDatabase{
 		
 		updateCineplexes(cineplexFile);
 		}
+	
+	public void printShowtimeOfCinema(ArrayList<CinemaShow> cinemaShowList) {
+		for(CinemaShow cs : cinemaShowList){
+			
+			System.out.println("Movie:		" + cs.getMovie().getTitle());
+			System.out.println(													"Date:		" + cs.getShowtime().format(formatter));
+			System.out.println(													"Time:		" + cs.getShowtime().toLocalTime());
+			System.out.println(													"- - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+		}
+	}
 
 }
