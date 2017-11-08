@@ -5,23 +5,24 @@ import java.util.ArrayList;
 public class ReviewDatabase implements IStorage {
 
 	
-	private static ArrayList<Cineplex> RDB;
+	private static ArrayList<MovieReview> RDB;
 	
-	@Override
-	public void add() {
-		// TODO Auto-generated method stub
+
+	public static void add(String reviewText, int rating) {
+		MovieReview temp = new MovieReview(reviewText, rating);
+		RDB.add(temp);
+	}
+
+	public void delete(int reviewIndex) {
+		RDB.remove(reviewIndex);
 
 	}
 
-	@Override
-	public void remove() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void edit() {
-		// TODO Auto-generated method stub
+	public void edit(int reviewIndex, String reviewText, int rating) {
+		
+		MovieReview temp = new MovieReview(reviewText, rating);
+		RDB.set(reviewIndex, temp );
+		
 
 	}
 
