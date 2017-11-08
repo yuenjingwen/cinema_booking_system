@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class AdminModule {
 	
 	
-	//chiilek was here
+
 	private final static String USER = "Admin";
 	private static String password;
 	

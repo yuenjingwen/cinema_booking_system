@@ -244,7 +244,6 @@ public class MainMenuManager {
 	}
 	
 	
-	
 	private static void printAdminShowtimeMenu(Scanner scanner){
 		System.out.println("=======================================================");
 		System.out.println("                    Cinema & Showtime                  ");
