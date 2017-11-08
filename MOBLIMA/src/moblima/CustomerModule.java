@@ -8,10 +8,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CustomerModule {
+	DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
 	Scanner scanner;
 	public static Ticket ticket= new Ticket();
 	static int row, column;
@@ -102,7 +105,7 @@ public class CustomerModule {
 		
 		i = 1;
 		System.out.println("\n===============================");
-		for(Movie m : MovieDatabase.getArraylist()){
+		for(Movie m : MovieDatabase.getArrayList()){
 			System.out.println(i + ".\t" + m.getTitle());
 			System.out.println("===============================");
 			i++;
@@ -111,29 +114,16 @@ public class CustomerModule {
 		movieIndex = scanner.nextInt();
 		scanner.nextLine();
 		ticket.movie=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).getMovie().getTitle();
-		/*i = 1;
-		System.out.println("\n===============================");
-		for(Cinema c : CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).getShowtime()){
-			System.out.println(i + ".\t" + c.getCinemaID());
-			System.out.println("===============================");
-			i++;
-		}*/
 		
-		System.out.print("Select time: ");
-		timeIndex = scanner.nextInt();
-		scanner.nextLine();
-		ticket.time=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).getShowtime().toString();
+		
+		
+						
+		ticket.time=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).getShowtime().format(formatter);
 		//implement seat
-		CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(cinemaIndex-1).printSeating();
-		//ticket.seat=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).getMovie().getTitle();
-		
-		
-		
-
-		/*//Choose cineplex**************************	
+		CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).printSeating();
 
 			try{
-				System.out.println("Select row:")
+				System.out.println("Select row:");
 				row = scanner.nextInt();
 				scanner.nextLine();
 						
@@ -152,9 +142,10 @@ public class CustomerModule {
 				System.out.println("Invalid input. Please re-enter choicee.");
 				scanner.nextLine();
 			}
+			CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).setSeat(column, row);;
 			String tempRow = Integer.toString(row);
 			String tempColumn = Integer.toString(column);
-			ticket.seat = tempRow+ tempColumn  ; */
+			ticket.seat = tempRow+ tempColumn  ; 
 			
 			
 			System.out.println("You have paid for your ticket!");
@@ -162,8 +153,10 @@ public class CustomerModule {
 			
 			//need Edit this
 			TicketDatabase.add(ticket);
+
 	
 	}
+
 	
 	private static void addReview(Scanner scanner) {
 		System.out.println("===================================================");
@@ -178,15 +171,22 @@ public class CustomerModule {
 	
 	//need a way to read review
 	private static void readReview(Scanner scanner) {
-			ReviewDatabase reviewDB = new ReviewDatabase();
+		
+		
+		System.out.println("Select movie: ");
+		int movieIndex = scanner.nextInt();
+		scanner.nextLine();
+		
 			for(Review r : MovieDatabase.getArrayList()){
+
 			
 			System.out.println("Rating		" + );
 			System.out.println("Review:		" + );
 			System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - -");
 		}
-		
 	}
+	
+	
 	
 	//need a way to read Ticket history
 	private static void showHistory(Scanner scanner) {

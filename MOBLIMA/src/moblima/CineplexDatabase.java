@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class CineplexDatabase{
 	
-	public static ArrayList<Cineplex> cineplexList;
+	p static ArrayList<Cineplex> cineplexList;
 	
 
 	private static File cineplexFile = new File("Cineplex.dat");
