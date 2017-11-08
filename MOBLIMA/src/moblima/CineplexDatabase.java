@@ -40,10 +40,10 @@ public class CineplexDatabase{
 	}
 	
 	// Fetching infomation of al cineplexes.
-	public static void fetchCineplexes(File file){
+	public static void fetchCineplexes(){
 		cineplexList = new ArrayList<Cineplex>();
 		try{
-			FileInputStream fi = new FileInputStream(file);
+			FileInputStream fi = new FileInputStream(cineplexFile);
 			ObjectInputStream input = new ObjectInputStream(fi);
 				
 			try{

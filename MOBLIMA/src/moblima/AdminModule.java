@@ -47,7 +47,7 @@ public class AdminModule {
 		return USER;
 	}
 
-	private static void Adminlogin(Scanner scanner) {
+	public static void Adminlogin(Scanner scanner) {
 		System.out.print("Enter Username: ");										// Admin to login
 		inputUser = scanner.nextLine();
 		
@@ -232,7 +232,7 @@ public class AdminModule {
 				break;
 			case 2:
 				while(MainMenuManager.choice!=3){
-					printPublicHolidayMenu(scanner);
+					PublicHolidaysDatabase.printPublicHolidayMenu(scanner);
 				}
 				MainMenuManager.choice = 2;
 				break;
