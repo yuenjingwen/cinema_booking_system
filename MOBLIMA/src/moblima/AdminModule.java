@@ -114,22 +114,7 @@ public class AdminModule {
 	}
 
 	private static void printAdminMovieMenu(Scanner scanner){
-		System.out.print("\n=======================================================\n");
-		System.out.print("                     Movies Listed                     ");
-		System.out.print("\n=======================================================\n");
-		int i = 1;
-		for(Movie m : MovieDatabase.getArraylist()){
-			System.out.println("=======================================================");
-			System.out.println("Index: " + i + "\t" + m.getMovieType() + "\n");
-			System.out.println("Title:\t\t" + m.getTitle());
-			System.out.println("Director:\t" + m.getDirector());
-			System.out.println("Cast:\t\t" + m.getCast());
-			System.out.println("-------------------------------------------------------");
-			System.out.println("Synopsis: ");
-			System.out.println(MainMenuManager.breakLines(m.getSynopsis(), 50));
-			System.out.println("=======================================================");
-			i++;
-		}
+		MovieDatabase.printMovieList();
 		System.out.print("\n=====================\n"
 				+ "Movie Listing Editor\n"
 				+ "=====================\n"
@@ -267,6 +252,5 @@ public class AdminModule {
 		}
 	}
 
-
-
+	
 }
