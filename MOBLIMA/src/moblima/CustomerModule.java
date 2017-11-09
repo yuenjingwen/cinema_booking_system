@@ -105,8 +105,8 @@ public class CustomerModule {
 		
 		i = 1;
 		System.out.println("\n===============================");
-		for(Movie m : MovieDatabase.getArrayList()){
-			System.out.println(i + ".\t" + m.getTitle());
+		for(CinemaShow cs : CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList()){
+			System.out.println(i + ".\t" + cs.getMovie());
 			System.out.println("===============================");
 			i++;
 		}
@@ -115,7 +115,7 @@ public class CustomerModule {
 		scanner.nextLine();
 		ticket.movie=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).getMovie().getTitle();
 		
-		
+		DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
 		
 						
 		ticket.time=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).getShowtime().format(formatter);

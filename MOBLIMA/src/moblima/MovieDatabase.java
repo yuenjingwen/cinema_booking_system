@@ -281,7 +281,7 @@ public class MovieDatabase{
 		}
 	}
 	
-	public void fetchReview() {
+	public static void fetchReview() {
 		
 		MovieDatabase.printMovieList();	//print movie list
 		System.out.print("Which movie review would you like to read?");	//ask which movie you want to see review for
