@@ -22,21 +22,6 @@ public class CineplexDatabase{
 
 	private static File cineplexFile = new File("Cineplex.dat");
 	
-	public void add() {
-
-	}
-	
-	public void remove() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void edit() {
-		// TODO Auto-generated method stub
-
-	}
-
-	
 	public static ArrayList<Cineplex> getArrayList() {
 		return cineplexList;
 	}
@@ -158,12 +143,12 @@ public class CineplexDatabase{
 			System.out.println("		"+cp.getName());											//Cineplex Name
 			System.out.println(															"-------------------------------------------------------");
 			for(Cinema c : cp.getCinemaList()){									
-				System.out.println(														"\n-------------------------------------------------------");
-				System.out.println(c.getCinemaID() + "\t" + c.getClassOfCinema());		//Cinema Name				Cinema Type
+				System.out.println(													  "\n-------------------------------------------------------");
+				System.out.println(c.getCinemaID() + "\t" + c.getClassOfCinema());		//Cinema Name		Cinema Type
 				System.out.println(														"-------------------------------------------------------");	
 				for(CinemaShow cs : c.getCinemaShowList()){
-					
-					System.out.println("Movie:		" + cs.getMovie().getTitle());
+					System.out.println(                                                 "                                                    [" + showtimeIndex + "]");
+					System.out.println(													"Movie:		" + cs.getMovie().getTitle());
 					System.out.println(													"Date:		" + cs.getShowtime().format(formatter));
 					System.out.println(													"Time:		" + cs.getShowtime().toLocalTime());
 					System.out.println(													"- - - - - - - - - - - - - - - - - - - - - - - - - - - -");
@@ -175,109 +160,140 @@ public class CineplexDatabase{
 		}
 	}
 		
+	public static void removeShowTime(Scanner scanner){
+		int showtimeIndex = 1;
+		int showtimeChoice = 0;
+		
+		System.out.print("Enter showtime to remove: ");
+		try{
+			showtimeChoice = scanner.nextInt();
+			scanner.nextLine();
+			for(Cineplex cp : getArrayList()){
+				for(Cinema c : cp.getCinemaList()){									
+					for(CinemaShow cs : c.getCinemaShowList()){
+						if(showtimeIndex == showtimeChoice){
+							c.getCinemaShowList().remove(cs);
+							break;
+						}
+						showtimeIndex++;
+					}
+				}
+			}
 
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+	}
 
 	public static void editShowTime(Scanner scanner){
-		int showtimeIndex, movieIndex, cineplexIndex, cinemaIndex, i=1;
+		int showtimeIndex = 1;
 		int month, day, hour, minute;
+		int showtimeChoice = 0;
 		
-
-		System.out.println("===============================");
-		for(Cineplex cp : cineplexList){
-			System.out.println(i + ".\t" + cp.getName());
-			System.out.println("===============================");
-			i++;
-		}
-		System.out.print("Select cineplex: ");
-		cineplexIndex = scanner.nextInt();
-		scanner.nextLine();
-		
-		i = 1;
-		System.out.println("\n===============================");
-		
-		for(Cinema c : cineplexList.get(cineplexIndex-1).getCinemaList()){
-			System.out.println(i + ".\t" + c.getCinemaID());
-			System.out.println("===============================");
-			i++;
-		}
-		System.out.print("Select cinema: ");
-		cinemaIndex = scanner.nextInt();
-		scanner.nextLine();
-		
-		i = 1;
-		System.out.println();
-		System.out.println("===============================");
-		for (CinemaShow cs : cineplexList.get(cineplexIndex-1).getCinemaList().get(cinemaIndex=1).getCinemaShowList()) {
-			System.out.println("	Date	Time	" );
-			System.out.println(i + ".\t" );
-			System.out.println("===============================");
-			i++;
-		}
+		CinemaShow editShow = null;
 		
 		System.out.print("Select showtime: ");
-		showtimeIndex = scanner.nextInt();
-		scanner.nextLine();
-		
-		MovieDatabase.printMovieList();
-		
-		
-		
-		System.out.print("Select movie to change to: ");
-		movieIndex = scanner.nextInt();
-		scanner.nextLine();
-		
-		
-		System.out.print("Change to month: ");
-		month = scanner.nextInt();
-		scanner.nextLine();
-		
-		System.out.print("Change to day of month: ");
-		day = scanner.nextInt();
-		scanner.nextLine(
-				);
-		
-		System.out.print("Change to hour (24 hour format): ");
-		hour = scanner.nextInt();
-		scanner.nextLine();
-		
-		System.out.print("Change to minute: ");
-		minute = scanner.nextInt();
-		scanner.nextLine();
-		
-		LocalDateTime tempDateTime = LocalDateTime.of(2017, month, day, hour, minute);
-		
-		String keepSeatingPlan = "o";
-		
-		System.out.print("Do you want to keep the original seating plan? Y/N ");
-		keepSeatingPlan = scanner.next();
-		scanner.nextLine();
-		
-		
-		
-		
-		do {
-			switch(keepSeatingPlan) {
-			case "y":
-			case "Y":
-				cineplexList.get(cineplexIndex - 1).getCinemaList().get(cinemaIndex-1)
-				.getCinemaShowList().get(showtimeIndex-1).setShowtime(tempDateTime);
-			
-				cineplexList.get(cineplexIndex - 1).getCinemaList().get(cinemaIndex-1)
-				.getCinemaShowList().get(showtimeIndex-1).setMovie(MovieDatabase.getArrayList().get(movieIndex-1));
-				break;
-			case "n":
-			case "N": 
-				CinemaShow tempCinemaShow = new CinemaShow(MovieDatabase.getArrayList().get(movieIndex-1), tempDateTime);
-				cineplexList.get(cineplexIndex - 1).getCinemaList().get(cinemaIndex-1)
-				.getCinemaShowList().set(showtimeIndex-1, tempCinemaShow);
-				break;	
-			default: 
-				System.out.println("Invalid input entered.");
-				break;
+		try{
+			showtimeChoice = scanner.nextInt();
+			scanner.nextLine();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+
+		for(Cineplex cp : getArrayList()){
+			for(Cinema c : cp.getCinemaList()){									
+				for(CinemaShow cs : c.getCinemaShowList()){
+					if(showtimeIndex == showtimeChoice){
+						editShow = cs;
+					}
+				 showtimeIndex++;
+				}
 			}
-		} while (keepSeatingPlan.toUpperCase() != "Y" || keepSeatingPlan.toUpperCase() != "N");
+		}
 		
-		Collections.sort(cineplexList.get(cineplexIndex-1).getCinemaList().get(cinemaIndex-1).getCinemaShowList());
+		if(editShow != null){
+			int choice = 0;
+			while(choice < 1 || choice > 3){
+				System.out.print("Select parameter to edit: "
+						+ "\n1. Schedule"
+						+ "\n2. Movie"
+						+ "\n3. Back"
+						+ "Enter your choice: ");
+				choice = scanner.nextInt();
+				scanner.nextLine();
+				switch (choice) {
+				case 1:
+					System.out.print("Change to month: ");
+					month = scanner.nextInt();
+					scanner.nextLine();
+					
+					System.out.print("Change to day of month: ");
+					day = scanner.nextInt();
+					scanner.nextLine();
+					
+					System.out.print("Change to hour (24 hour format): ");
+					hour = scanner.nextInt();
+					scanner.nextLine();
+					
+					System.out.print("Change to minute: ");
+					minute = scanner.nextInt();
+					scanner.nextLine();
+					
+					editShow.setShowtime(LocalDateTime.of(2017, month, day, hour, minute));
+					break;
+				case 2:
+					MovieDatabase.printMovieList();
+					System.out.print("Select movie to change to: ");
+					int movieIndex = scanner.nextInt();
+					scanner.nextLine();
+					editShow.setMovie(MovieDatabase.getArrayList().get(movieIndex-1));
+					break;
+				case 3:
+					break;
+				default:
+					break;
+				}
+			}
+		} else {
+			System.out.println("Index out of bound.");
+		}
+//		Sorry i have no idea what these lines of codes are about. So i comment out temporarily.
+		
+		
+		
+//		String keepSeatingPlan = "o";
+//		
+//		System.out.print("Do you want to keep the original seating plan? Y/N ");
+//		keepSeatingPlan = scanner.next();
+//		scanner.nextLine();
+//			
+//		do {
+//			switch(keepSeatingPlan) {
+//			case "y":
+//			case "Y":
+//				cineplexList.get(cineplexIndex - 1).getCinemaList().get(cinemaIndex-1)
+//				.getCinemaShowList().get(showtimeIndex-1).setShowtime(tempDateTime);
+//			
+//				cineplexList.get(cineplexIndex - 1).getCinemaList().get(cinemaIndex-1)
+//				.getCinemaShowList().get(showtimeIndex-1).setMovie(MovieDatabase.getArrayList().get(movieIndex-1));
+//				break;
+//			case "n":
+//			case "N": 
+//				CinemaShow tempCinemaShow = new CinemaShow(MovieDatabase.getArrayList().get(movieIndex-1), tempDateTime);
+//				cineplexList.get(cineplexIndex - 1).getCinemaList().get(cinemaIndex-1)
+//				.getCinemaShowList().set(showtimeIndex-1, tempCinemaShow);
+//				break;	
+//			default: 
+//				System.out.println("Invalid input entered.");
+//				break;
+//			}
+//		} while (keepSeatingPlan.toUpperCase() != "Y" || keepSeatingPlan.toUpperCase() != "N");
+		
+		for(Cineplex cp : cineplexList){
+			for(Cinema c : cp.getCinemaList()){
+				Collections.sort(c.getCinemaShowList());
+			}
+		}
 		
 		updateCineplexes(cineplexFile);
 		}
