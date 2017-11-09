@@ -1,14 +1,15 @@
 package moblima;
 
 import java.io.Serializable;
+import java.time.MonthDay;
 
 public class PublicHoliday implements Serializable{
 
 	private static final long serialVersionUID = 7423582918178200639L;
 	private String description;
-	private String date;
+	private MonthDay date;
 	
-	public PublicHoliday(String description, String date) {
+	public PublicHoliday(String description, MonthDay date) {
 		this.description = description;
 		this.date = date;
 	}
@@ -21,11 +22,11 @@ public class PublicHoliday implements Serializable{
 		this.description = description;
 	}
 
-	public String getDate() {
+	public MonthDay getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(MonthDay date) {
 		this.date = date;
 	}
 }

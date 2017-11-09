@@ -148,6 +148,7 @@ public class CineplexDatabase{
 		updateCineplexes(cineplexFile);
 	}
 	
+	
 	public static void printAllShowtimes() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
 		
@@ -176,7 +177,7 @@ public class CineplexDatabase{
 		
 
 
-	public static void updateShowTime(Scanner scanner){
+	public static void editShowTime(Scanner scanner){
 		int showtimeIndex, movieIndex, cineplexIndex, cinemaIndex, i=1;
 		int month, day, hour, minute;
 		
@@ -286,9 +287,9 @@ public class CineplexDatabase{
 			DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
 			
 			System.out.println("Movie:		" + cs.getMovie().getTitle());
-			System.out.println(													"Date:		" + cs.getShowtime().format(formatter));
-			System.out.println(													"Time:		" + cs.getShowtime().toLocalTime());
-			System.out.println(													"- - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+			System.out.println("Date:		" + cs.getShowtime().format(formatter));
+			System.out.println("Time:		" + cs.getShowtime().toLocalTime());
+			System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - -");
 		}
 	}
 

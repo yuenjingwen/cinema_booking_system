@@ -8,71 +8,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.MonthDay;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PublicHolidaysDatabase{
 	
 	public static ArrayList<PublicHoliday> phList = new ArrayList<PublicHoliday>();
+	private static File file = new File ("PublicHolidays.dat");
 	
-	public static void fetchHolidays(){
-		File file = new File("PublicHolidays.dat");
-		try{
-			FileInputStream fi = new FileInputStream(file);
-			ObjectInputStream input = new ObjectInputStream(fi);
-			
-			try{
-				while(true){
-					PublicHoliday ph = (PublicHoliday)input.readObject();
-					phList.add(ph);
-				}
-			} catch (EOFException e){
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			
-			fi.close();
-			input.close();
-		} catch (FileNotFoundException e) {
-		} catch (IOException e) {
-		}
-	}
-	
-	public static void insertHoliday(String description, String date){
-		phList.add(new PublicHoliday(description, date));
-		File file = new File("PublicHolidays.dat");
-		try{
-			FileOutputStream fo = new FileOutputStream(file);
-			ObjectOutputStream output = new ObjectOutputStream(fo);
-			for(PublicHoliday ph: phList){
-				output.writeObject(ph);
-			}
-			fo.close();
-			output.close();
-		} catch (FileNotFoundException e){
-			e.printStackTrace();
-		} catch (IOException e){
-			e.printStackTrace();
-		}
-	}
-	
-	public static void removeHoliday(int index){
-		PublicHolidaysDatabase.phList.remove(index - 1);
-		File file = new File("PublicHolidays.dat");
-		try{
-			FileOutputStream fo = new FileOutputStream(file);
-			ObjectOutputStream output = new ObjectOutputStream(fo);
-			for(PublicHoliday ph: phList){
-				output.writeObject(ph);
-			}
-			fo.close();
-			output.close();
-		} catch (FileNotFoundException e){
-			e.printStackTrace();
-		} catch (IOException e){
-			e.printStackTrace();
-		}
-	}
+
 	
 
 	public static void printPublicHolidayMenu(Scanner scanner){
@@ -123,20 +68,22 @@ public class PublicHolidaysDatabase{
 	}
 	
 	public static void addPH(Scanner scanner){
-		String date = "";
+		int month = 0, dayOfMonth = 0;
 		String description;
-		while(String.valueOf(date).length() != 4){
-			System.out.print("Enter ph date in DDMM format: ");
-			try{
-				date = scanner.nextLine();
-			} catch (Exception e){
-				System.out.println("Please enter integers.");
-			}
+		try{
+			System.out.print("Enter the month of the holiday: ");
+			month = scanner.nextInt();
+			scanner.nextLine();
+			System.out.print("Enter the DayOfMonth of the holiday: ");
+			dayOfMonth = scanner.nextInt();
+			scanner.nextLine();
+		} catch (Exception e){
+			e.printStackTrace();
 		}
 		System.out.print("Enter description: ");
 		description = scanner.nextLine();
-		
-		insertHoliday(description, date);
+		MonthDay holiday = MonthDay.of(month, dayOfMonth);
+		phList.add(new PublicHoliday(description, holiday));
 	}
 
 	public static void removePH(Scanner scanner){
@@ -146,10 +93,48 @@ public class PublicHolidaysDatabase{
 		try{
 			index = scanner.nextInt();
 			scanner.nextLine();
-			removeHoliday(index);
+			PublicHolidaysDatabase.phList.remove(index - 1);
 		} catch (Exception e){
-			System.out.println("Invalid input");
+			e.printStackTrace();
+		}
+		updateHolidays();
+	}
+	
+	public static void updateHolidays(){
+		try{
+			FileOutputStream fo = new FileOutputStream(file);
+			ObjectOutputStream output = new ObjectOutputStream(fo);
+			for(PublicHoliday ph: phList){
+				output.writeObject(ph);
+			}
+			fo.close();
+			output.close();
+		} catch (FileNotFoundException e){
+			e.printStackTrace();
+		} catch (IOException e){
+			e.printStackTrace();
 		}
 	}
 
+	public static void fetchHolidays(){
+		try{
+			FileInputStream fi = new FileInputStream(file);
+			ObjectInputStream input = new ObjectInputStream(fi);
+			
+			try{
+				while(true){
+					PublicHoliday ph = (PublicHoliday)input.readObject();
+					phList.add(ph);
+				}
+			} catch (EOFException e){
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			
+			fi.close();
+			input.close();
+		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
+		}
+	}
 }
