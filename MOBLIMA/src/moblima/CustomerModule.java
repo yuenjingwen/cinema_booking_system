@@ -74,12 +74,14 @@ public class CustomerModule {
 	//Process of buying
 	public static void buyProcess(Scanner scanner){
 		
+		DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
+		
 		//printCineplex choices********************
 		CineplexDatabase.printAllShowtimes();
 		
 		//Choose
 		int i = 1;
-		int movieIndex;
+		int showtimeIndex;
 		int cineplexIndex;
 		int cinemaIndex;
 		int timeIndex;
@@ -104,23 +106,22 @@ public class CustomerModule {
 		ticket.cinema=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaID();
 		
 		i = 1;
-		System.out.println("\n===============================");
+		System.out.println("\n========Movie===================Movie Screening Time=======");
 		for(CinemaShow cs : CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList()){
-			System.out.println(i + ".\t" + cs.getMovie());
-			System.out.println("===============================");
+			System.out.println(i + ".\t" + cs.getMovie().getTitle() + "	" + cs.getShowtime().getHour() + ":" + cs.getShowtime().getMinute());
+			System.out.println("======================================================");
 			i++;
 		}
-		System.out.print("Select movie: ");
-		movieIndex = scanner.nextInt();
+		System.out.print("Select showtime: ");
+		showtimeIndex = scanner.nextInt();
 		scanner.nextLine();
-		ticket.movie=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).getMovie().getTitle();
+		ticket.movie=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getTitle();
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
-		
+
 						
-		ticket.time=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).getShowtime().format(formatter);
+		ticket.time=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime().format(formatter);
 		//implement seat
-		CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).printSeating();
+		CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).printSeating();
 
 			try{
 				System.out.println("Select row:");
@@ -142,7 +143,7 @@ public class CustomerModule {
 				System.out.println("Invalid input. Please re-enter choicee.");
 				scanner.nextLine();
 			}
-			CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(movieIndex-1).setSeat(column, row);;
+			CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).setSeat(column, row);;
 			String tempRow = Integer.toString(row);
 			String tempColumn = Integer.toString(column);
 			ticket.seat = tempRow+ tempColumn  ; 
