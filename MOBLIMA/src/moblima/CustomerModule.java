@@ -170,20 +170,8 @@ public class CustomerModule {
 	}
 	
 	//need a way to read review
-	private static void readReview(Scanner scanner) {
-		
-		
-		System.out.println("Select movie: ");
-		int movieIndex = scanner.nextInt();
-		scanner.nextLine();
-		
-			for(Review r : MovieDatabase.getArrayList()){
-
-			
-			System.out.println("Rating		" + );
-			System.out.println("Review:		" + );
-			System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - -");
-		}
+	private static void readReview(Scanner scanner) {	
+		ReviewDatabase.fetchReview();
 	}
 	
 	
