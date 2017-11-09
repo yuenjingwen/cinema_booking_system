@@ -14,7 +14,7 @@ public class ReviewDatabase{
 	private static ArrayList<MovieReview> RDB;
 	
 
-	public static void addReview(String reviewText, int rating) {
+	public static void add(String reviewText, int rating) {
 		MovieReview temp = new MovieReview(reviewText, rating);
 		
 			
@@ -75,7 +75,7 @@ public class ReviewDatabase{
 		}
 	}
 	
-	public void fetchReview() {
+	public void fetch() {
 		
 		MovieDatabase.printMovieList();	//print movie list
 		System.out.print("Which movie review would you like to read?");	//ask which movie you want to see review for

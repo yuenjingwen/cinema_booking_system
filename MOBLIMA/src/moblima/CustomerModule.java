@@ -166,19 +166,25 @@ public class CustomerModule {
 		System.out.println("Give ratings between 1(Bad) to 5(Worth Watching!):");
 		int tempRating = scanner.nextInt();
 		scanner.nextLine();
-		ReviewDatabase.addReview(tempReview, tempRating);
+		MovieDatabase.addReview(tempReview, tempRating);
 	}
 	
 	//need a way to read review
 	private static void readReview(Scanner scanner) {	
-		ReviewDatabase.fetchReview();
+		MovieDatabase.fetchReview();
 	}
 	
 	
 	
 	//need a way to read Ticket history
 	private static void showHistory(Scanner scanner) {
-		// TODO Auto-generated method stub
+		for(int i=0;  ; i++) {
+			while(TicketDatabase.getArrayList().get(i) != null)
+				TicketDatabase.getArrayList().get(i).printTicket();
+		}
+		
+		//use print method in Ticket class
+			
 		
 	}
 
