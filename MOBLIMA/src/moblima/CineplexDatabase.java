@@ -179,6 +179,7 @@ public class CineplexDatabase{
 	public static void updateShowTime(Scanner scanner){
 		int showtimeIndex, movieIndex, cineplexIndex, cinemaIndex, i=1;
 		int month, day, hour, minute;
+		
 
 		System.out.println("===============================");
 		for(Cineplex cp : cineplexList){
@@ -211,33 +212,69 @@ public class CineplexDatabase{
 			System.out.println("===============================");
 			i++;
 		}
+		
+		System.out.print("Select showtime: ");
+		showtimeIndex = scanner.nextInt();
+		scanner.nextLine();
+		
 		MovieDatabase.printMovieList();
 		
 		
-
-	
 		
-		System.out.print("Enter month: ");
+		System.out.print("Select movie to change to: ");
+		movieIndex = scanner.nextInt();
+		scanner.nextLine();
+		
+		
+		System.out.print("Change to month: ");
 		month = scanner.nextInt();
 		scanner.nextLine();
 		
-		System.out.print("Enter day of month: ");
+		System.out.print("Change to day of month: ");
 		day = scanner.nextInt();
 		scanner.nextLine(
 				);
 		
-		System.out.print("Enter hour: ");
+		System.out.print("Change to hour (24 hour format): ");
 		hour = scanner.nextInt();
 		scanner.nextLine();
 		
-		System.out.print("Enter minute: ");
+		System.out.print("Change to minute: ");
 		minute = scanner.nextInt();
 		scanner.nextLine();
 		
 		LocalDateTime tempDateTime = LocalDateTime.of(2017, month, day, hour, minute);
 		
-		cineplexList.get(cineplexIndex - 1).getCinemaList().get(cinemaIndex-1)
-		.getCinemaShowList().add(new CinemaShow(MovieDatabase.getArrayList().get(movieIndex-1), tempDateTime));
+		String keepSeatingPlan = "o";
+		
+		System.out.print("Do you want to keep the original seating plan? Y/N ");
+		keepSeatingPlan = scanner.next();
+		scanner.nextLine();
+		
+		
+		
+		
+		do {
+			switch(keepSeatingPlan) {
+			case "y":
+			case "Y":
+				cineplexList.get(cineplexIndex - 1).getCinemaList().get(cinemaIndex-1)
+				.getCinemaShowList().get(showtimeIndex-1).setShowtime(tempDateTime);
+			
+				cineplexList.get(cineplexIndex - 1).getCinemaList().get(cinemaIndex-1)
+				.getCinemaShowList().get(showtimeIndex-1).setMovie(MovieDatabase.getArrayList().get(movieIndex-1));
+				break;
+			case "n":
+			case "N": 
+				CinemaShow tempCinemaShow = new CinemaShow(MovieDatabase.getArrayList().get(movieIndex-1), tempDateTime);
+				cineplexList.get(cineplexIndex - 1).getCinemaList().get(cinemaIndex-1)
+				.getCinemaShowList().set(showtimeIndex-1, tempCinemaShow);
+				break;	
+			default: 
+				System.out.println("Invalid input entered.");
+				break;
+			}
+		} while (keepSeatingPlan.toUpperCase() != "Y" || keepSeatingPlan.toUpperCase() != "N");
 		
 		Collections.sort(cineplexList.get(cineplexIndex-1).getCinemaList().get(cinemaIndex-1).getCinemaShowList());
 		
@@ -246,6 +283,7 @@ public class CineplexDatabase{
 	
 	public void printShowtimeOfCinema(ArrayList<CinemaShow> cinemaShowList) {
 		for(CinemaShow cs : cinemaShowList){
+			DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
 			
 			System.out.println("Movie:		" + cs.getMovie().getTitle());
 			System.out.println(													"Date:		" + cs.getShowtime().format(formatter));
