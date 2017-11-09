@@ -34,6 +34,10 @@ public class CinemaShow implements Serializable, Comparable<CinemaShow>{
 	public LocalDateTime getShowtime() {
 		return showtime;
 	}
+	
+	public void setShowtime(LocalDateTime time) {
+		showtime = time;
+	}
 
 	public Movie getMovie() {
 		return movie;

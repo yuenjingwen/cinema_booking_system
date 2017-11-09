@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class TicketDatabase{
 
 	private static ArrayList<Ticket> TDB;
-	private static File ticketFile = new File("Ticket.dat") //dat file has yet to be created
+	private static File ticketFile = new File("Ticket.dat"); //dat file has yet to be created
 
 	
 	public static void add(Ticket temp) { 
