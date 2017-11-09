@@ -74,7 +74,7 @@ public class CustomerModule {
 	//Process of buying
 	public static void buyProcess(Scanner scanner){
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm"); 
 		
 		//printCineplex choices********************
 		CineplexDatabase.printAllShowtimes();
@@ -106,9 +106,9 @@ public class CustomerModule {
 		ticket.cinema=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaID();
 		
 		i = 1;
-		System.out.println("\n========Movie===================Movie Screening Time=======");
+		System.out.println("\n========Movie=================== Movie Screening Time=======");
 		for(CinemaShow cs : CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList()){
-			System.out.println(i + ".\t" + cs.getMovie().getTitle() + "	" + cs.getShowtime().getHour() + ":" + cs.getShowtime().getMinute());
+			System.out.println(i + ".\t" + cs.getMovie().getTitle() + "	" + cs.getShowtime().format(formatter));
 			System.out.println("======================================================");
 			i++;
 		}
@@ -123,30 +123,54 @@ public class CustomerModule {
 		//implement seat
 		CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).printSeating();
 
-			try{
-				System.out.println("Select row:");
-				row = scanner.nextInt();
-				scanner.nextLine();
-						
-				}catch(Exception e){
-				e.printStackTrace();
-				System.out.println("Invalid input. Please re-enter choicee.");
-				scanner.nextLine();
-			}
-			try{
-				System.out.println("Select column:");
-				column = scanner.nextInt();
-				scanner.nextLine();
-						
-				}catch(Exception e){
-				e.printStackTrace();
-				System.out.println("Invalid input. Please re-enter choicee.");
-				scanner.nextLine();
-			}
-			CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).setSeat(column, row);;
-			String tempRow = Integer.toString(row);
-			String tempColumn = Integer.toString(column);
-			ticket.seat = tempRow+ tempColumn  ; 
+		String rowString="";
+		
+		try{
+			System.out.println("Select row:");
+			rowString = scanner.nextLine();
+			switch(rowString){
+			case "A": row=1;
+				break;
+			case "B": row=2;
+			break;
+			case "C": row=3;
+			break;
+			case "D": row=4;
+			break;
+			case "E": row=5;
+			break;
+			case "F": row=6;
+			break;
+			case "G": row=7;
+			break;
+			case "H": row=8;
+			break;
+			default: System.out.println("Error input!");
+				throw new Exception();
+			}		
+			}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("Invalid input. Please re-enter choicee.");
+			scanner.nextLine();
+		}
+		try{
+			System.out.println("Select column:");
+			column = scanner.nextInt();
+			scanner.nextLine();
+					
+			}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("Invalid input. Please re-enter choicee.");
+			scanner.nextLine();
+		}
+
+		
+		
+		
+		CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).setSeat(column, row);
+		
+		String tempColumn = Integer.toString(column);
+		ticket.seat = rowString+ tempColumn  ;
 			
 			
 			System.out.println("You have paid for your ticket!");
