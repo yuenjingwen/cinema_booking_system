@@ -12,7 +12,7 @@ public class MainMenuManager {
 	public static void main(String[] args) {
 		
 		Scanner scanner = new Scanner(System.in);
-		
+		TicketDatabase.fetchTickets();
 		PublicHolidaysDatabase.fetchHolidays();
 		CineplexDatabase.fetchCineplexes();
 		MovieDatabase.fetchMovies();

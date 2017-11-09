@@ -26,12 +26,12 @@ public class CustomerModule {
 	
 	//Menu
 	public static void customerMain(Scanner scanner){
-			System.out.print("1. Select a Cineplex\n"
-					+ "2. Add review\n"
-					+ "3. Read reviews\n"
-					+ "4. See my movie history\n"
-					+ "5. Back\n"
-					+ "Please enter choice: ");
+			System.out.print("1. Buy a ticket\n"
+							+ "2. Add review\n"
+							+ "3. Read reviews\n"
+							+ "4. See my movie history\n"
+							+ "5. Back\n"
+							+ "Please enter choice: ");
 			try{
 				MainMenuManager.choice = scanner.nextInt();
 				scanner.nextLine();
@@ -54,6 +54,7 @@ public class CustomerModule {
 				case 4:
 					while(MainMenuManager.choice != 5){
 						showHistory(scanner);
+						
 					}
 					break;
 				case 5:
@@ -184,6 +185,13 @@ public class CustomerModule {
 
 	
 	private static void addReview(Scanner scanner) {
+		int movieIndex;
+		
+		MovieDatabase.printMovieList();
+		System.out.println("Select Movie to review");
+		movieIndex = scanner.nextInt();
+		scanner.nextLine();
+		
 		System.out.println("===================================================");
 		System.out.println("Enter review below:");
 		String tempReview = scanner.nextLine();
@@ -191,12 +199,14 @@ public class CustomerModule {
 		System.out.println("Give ratings between 1(Bad) to 5(Worth Watching!):");
 		int tempRating = scanner.nextInt();
 		scanner.nextLine();
-		MovieDatabase.addReview(tempReview, tempRating);
+		MovieDatabase.getArrayList().get(movieIndex-1).addReview(tempReview, tempRating);
+		
+		MovieDatabase.updateMovies();
 	}
 	
 	//need a way to read review
 	private static void readReview(Scanner scanner) {	
-		MovieDatabase.fetchReview();
+		MovieDatabase.printReviewList();
 	}
 	
 	

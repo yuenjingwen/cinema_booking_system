@@ -97,7 +97,7 @@ public class MovieDatabase{
 			scanner.nextLine();
 			return;
 		}
-		updateMovies(movieFile);
+		updateMovies();
 	}
 
 	public static void addMovie(Scanner scanner){
@@ -144,7 +144,7 @@ public class MovieDatabase{
 		cast = scanner.nextLine();
 
 		movieList.add(new Movie(title, synopsis, director, cast, movietype));
-		updateMovies(movieFile);
+		updateMovies();
 	}
 
 	public static void removeMovie(Scanner scanner){
@@ -154,7 +154,7 @@ public class MovieDatabase{
 		index = scanner.nextInt();
 		scanner.nextLine();
 		movieList.remove(index-1);
-		updateMovies(movieFile);
+		updateMovies();
 		System.out.println("=============================");
 		System.out.println("Movie removed");
 		System.out.println("=============================\n");
@@ -185,9 +185,9 @@ public class MovieDatabase{
 		}
 	}
 	
-	public static void updateMovies(File file){
+	public static void updateMovies(){
 		try{
-			FileOutputStream fo = new FileOutputStream(file);
+			FileOutputStream fo = new FileOutputStream(movieFile);
 			ObjectOutputStream output = new ObjectOutputStream(fo);
 			for(Movie m: movieList){
 				output.writeObject(m);
@@ -220,26 +220,8 @@ public class MovieDatabase{
 		}
 	
 	}
-	public static void addReview(String reviewText, int rating) {
-		MovieReview temp = new MovieReview(reviewText, rating);
-		RDB.add(temp);
-		
-		File file = new File("MovieReview.dat");
-		try{
-			FileOutputStream fo = new FileOutputStream(file);
-			ObjectOutputStream output = new ObjectOutputStream(fo);
-			for(MovieReview r: RDB){
-				output.writeObject(r);
-			}
-			fo.close();
-			output.close();
-		} catch (FileNotFoundException e){
-			e.printStackTrace();
-		} catch (IOException e){
-			e.printStackTrace();
-		}
-	}
 
+/*
 	public void removeReview(int reviewIndex) {
 		RDB.remove(reviewIndex-1);
 		
@@ -258,6 +240,7 @@ public class MovieDatabase{
 			e.printStackTrace();
 		}
 	}
+	*/
 
 	
 
@@ -281,7 +264,7 @@ public class MovieDatabase{
 		}
 	}
 	
-	public static void fetchReview() {
+	public static void printReviewList() {
 		
 		MovieDatabase.printMovieList();	//print movie list
 		System.out.print("Which movie review would you like to read?");	//ask which movie you want to see review for

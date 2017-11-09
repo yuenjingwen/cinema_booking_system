@@ -39,7 +39,26 @@ public class TicketDatabase{
 		
 
 	public static ArrayList<Ticket> getArrayList() {
-		
+		return TDB;
+	}
+	
+	public static void updateTickets(File file){
+		try{
+			FileOutputStream fo = new FileOutputStream(file);
+			ObjectOutputStream output = new ObjectOutputStream(fo);
+			for(Ticket t: TDB){
+				output.writeObject(t);
+			}
+			fo.close();
+			output.close();
+		} catch (FileNotFoundException e){
+			e.printStackTrace();
+		} catch (IOException e){
+			e.printStackTrace();
+		}
+	}	
+	
+	public static void fetchTickets(){
 		TDB = new ArrayList<Ticket>();
 		
 		try{
@@ -64,23 +83,7 @@ public class TicketDatabase{
 			e.printStackTrace();
 		}
 		
-		return TDB;
-	}
-	
-	public static void updateTickets(File file){
-		try{
-			FileOutputStream fo = new FileOutputStream(file);
-			ObjectOutputStream output = new ObjectOutputStream(fo);
-			for(Ticket t: TDB){
-				output.writeObject(t);
-			}
-			fo.close();
-			output.close();
-		} catch (FileNotFoundException e){
-			e.printStackTrace();
-		} catch (IOException e){
-			e.printStackTrace();
-		}
-	}	
 		
 	}
+	
+}
