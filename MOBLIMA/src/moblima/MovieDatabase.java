@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class MovieDatabase{
 
 	private static ArrayList<Movie> movieList;
-	private static ArrayList<MovieReview> RDB;
+//	private static ArrayList<MovieReview> RDB;
 	private static File movieFile = new File("Movie.dat");
 	
 	
@@ -243,7 +243,7 @@ public class MovieDatabase{
 	*/
 
 	
-
+/*
 	public void editReview(int reviewIndex, String reviewText, int rating) {
 		MovieReview temp = new MovieReview(reviewText, rating);
 		RDB.set(reviewIndex, temp);
@@ -262,7 +262,7 @@ public class MovieDatabase{
 		} catch (IOException e){
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	public static void printReviewList() {
 		
@@ -273,12 +273,20 @@ public class MovieDatabase{
 		sc.close();
 		
 		//print all reviews for that movie 
-		for (MovieReview r : MovieDatabase.getArrayList().get(choice).getReviewList()) {	//print into format
+		/*for (MovieReview r : MovieDatabase.getArrayList().get(choice-1).getReviewList()) {	//print into format
 			System.out.println(r.getReview());
 			System.out.println(r.getRating());
+		*/
+		for (MovieReview r : movieList.get(choice-1).getReviewList()) {	//print into format
+				System.out.println(r.getReview());
+				System.out.println(r.getRating());
+			
+			
 		}
 	}
 
+	
+	
 	
 
 	
