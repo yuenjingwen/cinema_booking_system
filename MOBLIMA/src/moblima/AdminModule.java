@@ -66,7 +66,7 @@ public class AdminModule {
 			
 			MainMenuManager.choice = 0;
 			while(MainMenuManager.choice != 4){
-				printAdminMenu(scanner);												// Opens Admin menu
+				printAdminMenu(scanner);	// Opens Admin menu
 			}
 		}
 	}
@@ -75,7 +75,9 @@ public class AdminModule {
 		System.out.print("1. Create/Update/Remove movie listing\n"
 				+ "2. Create/Update/Remove cinema showtimes and the movies to be shown\n"
 				+ "3. Configure system settings\n"
-				+ "4. Back\n"
+				+ "4. Top 5 ticket sales\n"
+				+ "5. Top 5 overall reviewers' rating\n"
+				+ "6. Back\n"
 				+ "Please enter choice: ");
 		try{
 			MainMenuManager.choice = scanner.nextInt();
@@ -97,8 +99,17 @@ public class AdminModule {
 				printAdminSystemConfig(scanner);
 				MainMenuManager.choice = 3;
 				break;
+				
 			case 4:
-				System.out.println("Logout Successful");
+				printTop5sales(scanner);
+				break;
+				
+			case 5:
+				printTop5ratings (scanner);
+				break;
+				
+			case 6:
+				System.out.println("\n~Logout Successful~\n");
 				break;
 			default:
 				System.out.println("\n===========");
@@ -112,6 +123,7 @@ public class AdminModule {
 			scanner.nextLine();
 		}
 	}
+
 
 	private static void printAdminMovieMenu(Scanner scanner){
 		MovieDatabase.printMovieList();
@@ -237,6 +249,54 @@ public class AdminModule {
 			scanner.nextLine();
 		}
 	}
+	
+	private static void printTop5sales(Scanner scanner)
+	{
+		
+	}
+	
+	private static void printTop5ratings (Scanner scanner)
+	{
+		float[] avgRatingsArray = new float[MovieDatabase.getArrayList().size()];
+		
+		for (int i=0; i<MovieDatabase.getArrayList().size(); i++) //filling up float[] avgRatingsArray
+		{
+			avgRatingsArray[i] = MovieDatabase.getArrayList().get(i).getAvgRating();
+		}
+		
+		insertionSort(avgRatingsArray);
+		
+		int j;
+		for (int i=0; i<5; i++)
+		{
+			if (MovieDatabase.getArrayList().get(j).getAvgRating() == avgRatingsArray[i])
+			{
+				
+			}
+		}
+	}
+	
+	private static float[] insertionSort(float[] array)
+	{
+		for(int i = 1; i < array.length; i++)
+		{
+			for(int j = i; j>0; j--)
+			{						// Swaps if current array[j] < array[j-1] then decreases j by 1
+				if(array[j]<array[j-1])
+				{					// Swap sequence
+					float temp = array[j-1];					
+					array[j-1] = array[j];
+					array[j] = temp;
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
+		return array;
+	}
+
 
 	
 }
