@@ -44,12 +44,13 @@ public static void customerMain(Scanner scanner){
 				case 2:
 						//Have to list description of movie- function yet to implement
 					int addOrRead=0;
-					while (addOrRead != 3){
+					while (addOrRead != 4){
 					try{
 						System.out.println("=========Reviews=========\n"
 										  +"1. Read reviews\n"
-										  +"2. Add review\n"
-										  +"3. Back\n"
+										  +"2. View overall reviewers' rating\n"
+										  +"3. Add review\n"
+										  +"4. Back\n"
 										  +"=========================\n"
 										  +"Do you want to read or add reviews?");
 						addOrRead = scanner.nextInt();
@@ -63,9 +64,11 @@ public static void customerMain(Scanner scanner){
 					
 					
 						switch(addOrRead){
-						case 1: addReview(scanner);
+						case 1: readReview(scanner);
 						break;
-						case 2: readReview(scanner);
+						case 2: printAverageRating(scanner);
+						break;
+						case 3: addReview(scanner);
 						break;
 						}
 					}
