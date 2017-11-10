@@ -40,13 +40,28 @@ public class CustomerModule {
 				
 				switch (custChoice) {
 				case 1:
-					
-						buyProcess(scanner);
+						MovieDatabase.printMovieList();
+						//buyProcess(scanner);
 		
 					break;
 				case 2:
-		
-						addReview(scanner);
+						MovieDatabase.printMovieDetails();
+						int choice =0;
+						//addReview(scanner);
+						while (choice != 1 || choice !=2) {
+						System.out.println("Please select the following:");
+						System.out.println("1. View Reviews");
+						System.out.println("2. Write Review:");
+						choice = scanner.nextInt();
+						if (choice ==1) {
+							
+						}
+						else if (choice ==2) {
+							
+						}
+						else 
+							System.out.println("Choice not available. Please select again");
+						}
 			
 					break;
 				case 3:
