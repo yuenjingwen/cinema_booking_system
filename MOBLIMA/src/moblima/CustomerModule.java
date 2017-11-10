@@ -25,11 +25,14 @@ public class CustomerModule {
 		int custChoice =0;
 		
 		while (custChoice!=5) {
-		System.out.print("1. Buy a ticket\n"
-							+ "2. Add review\n"
-							+ "3. Read reviews\n"
-							+ "4. See my movie history\n"
-							+ "5. Back\n"
+		System.out.print(	"=====================Movie-goer Menu====================="
+							+ "1. Search/List Movie\n"
+							+ "2. View movie details- View/Write Reviews\n"
+							+ "3. Check seat availability and selection of seat\n"
+							+ "4. Book and purchase Ticket\n"
+							+ "5. See my movie history\n"
+							+ "6. Back\n"
+							+ "======================================================="
 							+ "Please enter choice: ");
 			try{
 				custChoice = scanner.nextInt();
@@ -170,6 +173,8 @@ public class CustomerModule {
 			scanner.nextLine();
 		}
 
+		System.out.println("Please enter your age");
+		int age = scanner.nextInt();
 		
 		
 		

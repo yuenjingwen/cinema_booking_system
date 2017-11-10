@@ -15,16 +15,17 @@ public class Ticket implements Serializable {
 	public String seat;
 	
 	
-	public Ticket(String discount, String cineplex, String cinema, String movie, String time, String seat){	//create new constructor. use calculate ticket price to set the price
+	public Ticket(String discount, String cineplex, String cinema, String movie, String time, String seat, int age){	//create new constructor. use calculate ticket price to set the price
 		this.discount = discount;
 		this.cineplex = cineplex;
 		this.cinema = cinema;
 		this.movie = movie;
 		this.time = time;
 		this.seat = seat;
+	    this.price = ;
 		
 		//assume all digital movies
-		//calculateTicketPrice(DIGITAL, MovieType mEnum, int age, int movieDate, boolean student);
+		calculateTicketPrice(DIGITAL, MovieType mEnum, int age;, int movieDate, boolean student);
 		this.price = 
 		
 		
