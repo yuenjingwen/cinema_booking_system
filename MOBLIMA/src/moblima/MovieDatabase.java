@@ -270,7 +270,6 @@ public class MovieDatabase{
 		System.out.print("Which movie review would you like to read?");	//ask which movie you want to see review for
 		Scanner sc = new Scanner(System.in);
 		int choice = sc.nextInt();
-		sc.close();
 		
 		//print all reviews for that movie 
 		for (MovieReview r : movieList.get(choice-1).getReviewList()) {	//print into format
