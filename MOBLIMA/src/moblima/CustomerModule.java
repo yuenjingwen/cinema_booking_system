@@ -235,7 +235,17 @@ public class CustomerModule {
 		MovieDatabase.printReviewList(scanner);
 	}
 	
-	
+	private static void printAverageRating(Scanner scanner) {
+		
+		MovieDatabase.printMovieList();
+		System.out.print("Which movie's average rating would you like to view?");	//ask which movie user wants to see avg rating of
+		int choice = scanner.nextInt();
+		
+		MovieDatabase.getArrayList().get(choice-1).printAvgRating();
+		
+		
+	}
+
 	
 	//need a way to read Ticket history
 	private static void showHistory(Scanner scanner) {

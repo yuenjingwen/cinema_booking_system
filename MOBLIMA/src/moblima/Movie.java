@@ -47,14 +47,32 @@ public class Movie implements Serializable{
 		return this.cast;
 	}
 
-	public float getAverageRating(){
+	
+	public float getAvgRating()
+	{
 		float sum = 0;
 		for(MovieReview o : reviews){
 			sum += (float) o.getRating();
 		}
 		
-		return (sum/reviews.size());
+		return sum/reviews.size();
 	}
+	
+	public void printAvgRating()
+	{
+		//print avg rating for that movie if there is >1 ratings
+				if (reviews.size() > 1)
+				{
+					System.out.printf("%.1f", getAvgRating());
+					System.out.println("\n");
+				}
+		//NA when there is one or less rating
+				else
+				{
+					System.out.println("NA - there is only one individual rating");
+				}
+	}
+
 	
 	public void printReviews(){
 		for(MovieReview o : reviews){
