@@ -113,8 +113,12 @@ public class Movie implements Serializable{
 		reviews.add(new MovieReview(review, rating));
 	}
 	
+	
 	public void addTicketSale(float ticketSalePrice){
 		this.ticketSales += ticketSalePrice;
 	}
+
+
+
 }
 

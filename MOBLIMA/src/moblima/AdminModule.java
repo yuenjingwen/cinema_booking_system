@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AdminModule {
@@ -65,7 +66,7 @@ public class AdminModule {
 			
 			
 			MainMenuManager.choice = 0;
-			while(MainMenuManager.choice != 4){
+			while(MainMenuManager.choice != 6){
 				printAdminMenu(scanner);	// Opens Admin menu
 			}
 		}
@@ -257,36 +258,36 @@ public class AdminModule {
 	
 	private static void printTop5ratings (Scanner scanner)
 	{
-		float[] avgRatingsArray = new float[MovieDatabase.getArrayList().size()];
+		ArrayList<Movie> sortedRatingsList = new ArrayList<Movie>();
 		
-		for (int i=0; i<MovieDatabase.getArrayList().size(); i++) //filling up float[] avgRatingsArray
+		for(int i=0; i<MovieDatabase.getArrayList().size(); i++)
 		{
-			avgRatingsArray[i] = MovieDatabase.getArrayList().get(i).getAvgRating();
+			sortedRatingsList.get(i).setTitle(MovieDatabase.getArrayList().get(i).getTitle());
+			
+			sortedRatingsList.get(i).getReviewList().add(i, MovieDatabase.getArrayList().get(i).getReviewList().get(i));
+
 		}
 		
-		insertionSort(avgRatingsArray);
+		ratingsInsertionSort(sortedRatingsList);
 		
-		int j;
-		for (int i=0; i<5; i++)
+		for (int i=1; i<=5; i++)
 		{
-			if (MovieDatabase.getArrayList().get(j).getAvgRating() == avgRatingsArray[i])
-			{
-				
-			}
+			System.out.println("Number " + i + ":\nTitle: " + sortedRatingsList.get(i-1).getTitle() 
+								+ "\nOverall reviewers' rating: " + sortedRatingsList.get(i-1).getAvgRating());
 		}
 	}
 	
-	private static float[] insertionSort(float[] array)
+	private static ArrayList<Movie> ratingsInsertionSort(ArrayList<Movie> list)
 	{
-		for(int i = 1; i < array.length; i++)
+		for(int i = 1; i < list.size(); i++)
 		{
 			for(int j = i; j>0; j--)
 			{						// Swaps if current array[j] < array[j-1] then decreases j by 1
-				if(array[j]<array[j-1])
+				if(list.get(j).getAvgRating() > list.get(j-1).getAvgRating())  
 				{					// Swap sequence
-					float temp = array[j-1];					
-					array[j-1] = array[j];
-					array[j] = temp;
+					Movie temp = list.get(j-1);
+					list.add(j-1, list.get(j));
+					list.add(j, temp);
 				}
 				else
 				{
@@ -294,7 +295,7 @@ public class AdminModule {
 				}
 			}
 		}
-		return array;
+		return list;
 	}
 
 
