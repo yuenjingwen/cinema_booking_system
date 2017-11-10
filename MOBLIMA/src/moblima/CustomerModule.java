@@ -26,7 +26,9 @@ public class CustomerModule {
 	
 	//Menu
 	public static void customerMain(Scanner scanner){
-			System.out.print("1. Buy a ticket\n"
+		
+		do {
+		System.out.print("1. Buy a ticket\n"
 							+ "2. Add review\n"
 							+ "3. Read reviews\n"
 							+ "4. See my movie history\n"
@@ -37,25 +39,25 @@ public class CustomerModule {
 				scanner.nextLine();
 				switch (MainMenuManager.choice) {
 				case 1:
-					while(MainMenuManager.choice != 5){
+					
 						buyProcess(scanner);
-					}
+		
 					break;
 				case 2:
-					while(MainMenuManager.choice != 5){
+		
 						addReview(scanner);
-					}
+			
 					break;
 				case 3:
-					while(MainMenuManager.choice != 5){
+				
 						readReview(scanner);
-					}
+		
 					break;
 				case 4:
-					while(MainMenuManager.choice != 5){
+				
 						showHistory(scanner);
 						
-					}
+				
 					break;
 				case 5:
 					System.out.println("Logout Successful");
@@ -71,6 +73,7 @@ public class CustomerModule {
 				System.out.println("Invalid input. Please re-enter choicee.");
 				scanner.nextLine();
 			}
+		} while(MainMenuManager.choice!=5);
 	}
 	//Process of buying
 	public static void buyProcess(Scanner scanner){
