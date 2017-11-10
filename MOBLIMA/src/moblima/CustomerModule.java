@@ -28,10 +28,9 @@ public static void customerMain(Scanner scanner){
 		System.out.print(	"=====================Movie-goer Menu=====================\n"
 							+ "1. Search/List Movie\n"
 							+ "2. View movie details- View/Write Reviews\n"
-							+ "3. Check seat availability and selection of seat\n"
-							+ "4. Book and purchase Ticket\n"
-							+ "5. See my movie history\n"
-							+ "6. Back\n"
+							+ "3. Check seat availability and Book/purchase Ticket\n"
+							+ "4. See my movie history\n"
+							+ "5. Back\n"
 							+ "=======================================================\n"
 							+ "Please enter choice: \n");
 			try{
@@ -40,25 +39,42 @@ public static void customerMain(Scanner scanner){
 				
 				switch (custChoice) {
 				case 1:
-					
-						buyProcess(scanner);
-		
+						CineplexDatabase.printAllShowtimes();
 					break;
 				case 2:
-		
-						addReview(scanner);
-			
+						//Have to list description of movie- function yet to implement
+					int addOrRead=0;
+					while (addOrRead != 3){
+					try{
+						System.out.println("=========Reviews=========\n"
+										  +"1. Read reviews\n"
+										  +"2. Add review\n"
+										  +"3. Back\n"
+										  +"=========================\n"
+										  +"Do you want to read or add reviews?");
+						addOrRead = scanner.nextInt();
+						scanner.nextLine();
+						
+						}catch(Exception e){
+						e.printStackTrace();
+						System.out.println("Invalid input. Please re-enter choicee.");
+						scanner.nextLine();
+					}
+					
+					
+						switch(addOrRead){
+						case 1: addReview(scanner);
+						break;
+						case 2: readReview(scanner);
+						break;
+						}
+					}
 					break;
 				case 3:
-				
-						readReview(scanner);
-		
+					buyProcess(scanner);
 					break;
 				case 4:
-				
-						showHistory(scanner);
-						
-				
+					showHistory(scanner);
 					break;
 				case 5:
 					System.out.println("Logout Successful");
@@ -270,18 +286,14 @@ public static void customerMain(Scanner scanner){
 		
 	}
 
-	
-	//need a way to read Ticket history
+
 	private static void showHistory(Scanner scanner) {
 		for(int i=0;  ; i++) {
 			while(TicketDatabase.getArrayList().get(i) != null)
 				TicketDatabase.getArrayList().get(i).printTicket();
 		}
-		
-		//use print method in Ticket class
-			
-		
 	}
+		
 
 
 	
