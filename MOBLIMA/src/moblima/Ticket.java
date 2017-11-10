@@ -19,9 +19,9 @@ public class Ticket implements Serializable {
 	public String mType;
 	
 	
-	public Ticket(String discount, String cineplex, String movie, String time, String seat, int age, int cinemaIndex, int cineplexIndex, int showtimeIndex){	//create new constructor. use calculate ticket price to set the price
+	public Ticket(String seat, int age, int cinemaIndex, int cineplexIndex, int showtimeIndex){	//create new constructor. use calculate ticket price to set the price
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-		this.discount = discount;
+		
 		this.cineplex = CineplexDatabase.cineplexList.get(cineplexIndex -1).getName(); //use cineplex index to get
 		this.cinema = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaID();; //use cinema index to get
 		this.movie = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getTitle();
@@ -31,11 +31,8 @@ public class Ticket implements Serializable {
 	    this.movieDay = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime().getDayOfWeek().name();
 	    this.mType = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();		
 		this.price = calculateTicketPrice(classOfCinema, mType, age, movieDay);
-		
-		
-		
-		
-		
+		this.discount = getDiscount();
+			
 	}
 	
 	public float getTicketPrice() {
@@ -96,6 +93,8 @@ public class Ticket implements Serializable {
 			break;
 		case "SATURDAY": 
 		case "SUNDAY": temp += 2;
+			break;
+		default: System.out.println("movieDay isn't part of switch");
 			break;
 					
 		}

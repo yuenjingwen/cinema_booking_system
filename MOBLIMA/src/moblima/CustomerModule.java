@@ -25,15 +25,15 @@ public static void customerMain(Scanner scanner){
 		int custChoice =0;
 		
 		while (custChoice!=5) {
-		System.out.print(	"=====================Movie-goer Menu====================="
+		System.out.print(	"=====================Movie-goer Menu=====================\n"
 							+ "1. Search/List Movie\n"
 							+ "2. View movie details- View/Write Reviews\n"
 							+ "3. Check seat availability and selection of seat\n"
 							+ "4. Book and purchase Ticket\n"
 							+ "5. See my movie history\n"
 							+ "6. Back\n"
-							+ "======================================================="
-							+ "Please enter choice: ");
+							+ "=======================================================\n"
+							+ "Please enter choice: \n");
 			try{
 				custChoice = scanner.nextInt();
 				scanner.nextLine();
@@ -46,7 +46,7 @@ public static void customerMain(Scanner scanner){
 					break;
 				case 2:
 		
-						MovieDatabase.addReview(scanner);
+						addReview(scanner);
 			
 					break;
 				case 3:
@@ -84,24 +84,68 @@ public static void customerMain(Scanner scanner){
 	//Process of buying
 	public static void buyProcess(Scanner scanner){
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm"); 
-		
-		//printCineplex choices********************
-		CineplexDatabase.printAllShowtimes();
-		
-		//Choose
-		int i = 1;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");	
+		int i = 1; //Choose
 		int showtimeIndex;
 		int cineplexIndex;
 		int cinemaIndex;
 		int timeIndex;
+		int age = 0;
+		int mobileNumber;
+		String name;
+		String emailAddress;
+		String seat;
+		
+		
+		//Get Name
+		try{
+			System.out.println("Enter Name:");
+			name = scanner.nextLine();
+			
+			}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("Invalid input. Please re-enter choicee.");
+			scanner.nextLine();
+		}
+		//Get mobile number
+		try{
+			System.out.println("Enter Mobile Number:");
+			mobileNumber = scanner.nextInt();
+			scanner.nextLine();
+			
+			}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("Invalid input. Please re-enter choicee.");
+			scanner.nextLine();
+		}
+		//Get email address
+		try{
+			System.out.println("Enter email address:");
+			emailAddress = scanner.nextLine();
+			
+			}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("Invalid input. Please re-enter choicee.");
+			scanner.nextLine();
+		}
+		//Get age
+		try{
+			System.out.println("Enter age:");
+			age = scanner.nextInt();
+			scanner.nextLine();
+			}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("Invalid input. Please re-enter choicee.");
+			scanner.nextLine();
+		}
+		
+		//printCineplex choices********
+		CineplexDatabase.printAllShowtimes();
 		
 		System.out.print("Select cineplex: ");
 		
 		cineplexIndex = scanner.nextInt();
 		scanner.nextLine();
-		
-		ticket.cineplex=CineplexDatabase.cineplexList.get(cineplexIndex -1).getName();
 		
 		i = 1;
 		System.out.println("\n===============================");
@@ -113,7 +157,6 @@ public static void customerMain(Scanner scanner){
 		System.out.print("Select cinema: ");
 		cinemaIndex = scanner.nextInt();
 		scanner.nextLine();
-		ticket.cinema=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaID();
 		
 		i = 1;
 		System.out.println("\n========Movie=================== Movie Screening Time=======");
@@ -125,11 +168,8 @@ public static void customerMain(Scanner scanner){
 		System.out.print("Select showtime: ");
 		showtimeIndex = scanner.nextInt();
 		scanner.nextLine();
-		ticket.movie=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getTitle();
 		
 
-						
-		ticket.time=CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime().format(formatter);
 		//implement seat
 		CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).printSeating();
 
@@ -173,29 +213,46 @@ public static void customerMain(Scanner scanner){
 			System.out.println("Invalid input. Please re-enter choicee.");
 			scanner.nextLine();
 		}
-
-		System.out.println("Please enter your age");
-		int age = scanner.nextInt();
 		
 		
 		
 		CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).setSeat(column, row);
 		
 		String tempColumn = Integer.toString(column);
-		ticket.seat = rowString+ tempColumn  ;
+		seat = rowString+ tempColumn  ;
 			
 			
-			System.out.println("You have paid for your ticket!");
-			ticket.printTicket();
+			
 			
 			//need Edit this
-			Ticket ticket= new Ticket(//parameters here);
+			Ticket ticket= new Ticket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex);
+			System.out.println("You have paid for your ticket!");
+			ticket.printTicket();
 			TicketDatabase.add(ticket);
 
 	
 	}
 
-
+	
+	private static void addReview(Scanner scanner) {
+		int movieIndex;
+		
+		MovieDatabase.printMovieList();
+		System.out.println("Select Movie to review");
+		movieIndex = scanner.nextInt();
+		scanner.nextLine();
+		
+		System.out.println("===================================================");
+		System.out.println("Enter review below:");
+		String tempReview = scanner.nextLine();
+		System.out.println("===================================================");
+		System.out.println("Give ratings between 1(Bad) to 5(Worth Watching!):");
+		int tempRating = scanner.nextInt();
+		scanner.nextLine();
+		MovieDatabase.getArrayList().get(movieIndex-1).addReview(tempReview, tempRating);
+		
+		MovieDatabase.updateMovies();
+	}
 	
 	//need a way to read review
 	private static void readReview(Scanner scanner) {	
@@ -212,6 +269,8 @@ public static void customerMain(Scanner scanner){
 		
 		
 	}
+
+	
 	//need a way to read Ticket history
 	private static void showHistory(Scanner scanner) {
 		for(int i=0;  ; i++) {
