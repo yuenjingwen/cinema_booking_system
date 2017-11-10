@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class CustomerModule {
 	DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
 	Scanner scanner;
-	public static Ticket ticket= new Ticket();
+	
 	static int row, column;
 
 	//Menu
@@ -79,7 +79,7 @@ public class CustomerModule {
 	}
 	//Process of buying
 	public static void buyProcess(Scanner scanner){
-		
+		Ticket ticket= new Ticket();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm"); 
 		
 		//printCineplex choices********************
@@ -211,7 +211,7 @@ public class CustomerModule {
 	
 	//need a way to read review
 	private static void readReview(Scanner scanner) {	
-		MovieDatabase.printReviewList();
+		MovieDatabase.printReviewList(scanner);
 	}
 	
 	

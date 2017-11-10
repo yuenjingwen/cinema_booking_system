@@ -264,12 +264,11 @@ public class MovieDatabase{
 		}
 	}*/
 	
-	public static void printReviewList() {
+	public static void printReviewList(Scanner scanner) {
 		
 		MovieDatabase.printMovieList();	//print movie list
 		System.out.print("Which movie review would you like to read?");	//ask which movie you want to see review for
-		Scanner sc = new Scanner(System.in);
-		int choice = sc.nextInt();
+		int choice = scanner.nextInt();
 		
 		//print all reviews for that movie 
 		for (MovieReview r : movieList.get(choice-1).getReviewList()) {	//print into format
