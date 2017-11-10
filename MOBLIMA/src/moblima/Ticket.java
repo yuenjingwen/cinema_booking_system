@@ -1,9 +1,11 @@
 package moblima;
 
 import java.time.LocalDateTime;
+import java.io.Serializable;
 
-public class Ticket {
+public class Ticket implements Serializable {
 	
+	private static final long serialVersionUID = 84759385764544637L;
 	private float price;
 	private String discount = "None";
 	public String cineplex; //new
@@ -11,6 +13,7 @@ public class Ticket {
 	public String movie; //new
 	public String time; //new
 	public String seat;
+	
 	
 	public Ticket(){
 		price=0;
