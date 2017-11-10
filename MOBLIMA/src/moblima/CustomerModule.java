@@ -20,7 +20,7 @@ public class CustomerModule {
 	static int row, column;
 
 	//Menu
-	public static void customerMain(Scanner scanner){
+public static void customerMain(Scanner scanner){
 		
 		int custChoice =0;
 		
@@ -40,28 +40,13 @@ public class CustomerModule {
 				
 				switch (custChoice) {
 				case 1:
-						MovieDatabase.printMovieList();
-						//buyProcess(scanner);
+					
+						buyProcess(scanner);
 		
 					break;
 				case 2:
-						MovieDatabase.printMovieDetails();
-						int choice =0;
-						//addReview(scanner);
-						while (choice != 1 || choice !=2) {
-						System.out.println("Please select the following:");
-						System.out.println("1. View Reviews");
-						System.out.println("2. Write Review:");
-						choice = scanner.nextInt();
-						if (choice ==1) {
-							
-						}
-						else if (choice ==2) {
-							
-						}
-						else 
-							System.out.println("Choice not available. Please select again");
-						}
+		
+						addReview(scanner);
 			
 					break;
 				case 3:
@@ -95,6 +80,7 @@ public class CustomerModule {
 		}
 		
 	}
+	
 	//Process of buying
 	public static void buyProcess(Scanner scanner){
 		
