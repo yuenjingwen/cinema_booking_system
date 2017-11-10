@@ -1,32 +1,39 @@
 package moblima;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.io.Serializable;
 
 public class Ticket implements Serializable {
-	
+	float PRICE_TICKET = 10;
 	private static final long serialVersionUID = 84759385764544637L;
 	private float price;
 	private String discount = "None";
-	public String cineplex; //new
-	public String cinema; //new
-	public String movie; //new
-	public String time; //new
+	public String cineplex; 
+	public String cinema; 
+	public String movie; 
+	public String time; 
 	public String seat;
+	public CinemaEnum classOfCinema;
+	public String movieDay;
+	public String mType;
 	
 	
-	public Ticket(String discount, String cineplex, String cinema, String movie, String time, String seat, int age){	//create new constructor. use calculate ticket price to set the price
+	public Ticket(String discount, String cineplex, String movie, String time, String seat, int age, int cinemaIndex, int cineplexIndex, int showtimeIndex){	//create new constructor. use calculate ticket price to set the price
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 		this.discount = discount;
-		this.cineplex = cineplex;
-		this.cinema = cinema;
-		this.movie = movie;
-		this.time = time;
+		this.cineplex = CineplexDatabase.cineplexList.get(cineplexIndex -1).getName(); //use cineplex index to get
+		this.cinema = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaID();; //use cinema index to get
+		this.movie = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getTitle();
+		this.time = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime().format(formatter);
 		this.seat = seat;
-	    this.price = ;
+		this.classOfCinema= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getClassOfCinema();
+	    this.movieDay = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime().getDayOfWeek().name();
+	    this.mType = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();		
+		this.price = calculateTicketPrice(classOfCinema, mType, age, movieDay);
 		
-		//assume all digital movies
-		calculateTicketPrice(DIGITAL, MovieType mEnum, int age;, int movieDate, boolean student);
-		this.price = 
+		
+		
 		
 		
 	}
@@ -41,7 +48,7 @@ public class Ticket implements Serializable {
 
 
 
-	public void calculateTicketPrice(CinemaEnum cEnum, MovieType mEnum, int age, int movieDate, boolean student){
+	public float calculateTicketPrice(CinemaEnum cEnum, String mEnum, int age, String movieDay){
 		
 		float temp = 0;
 		
@@ -58,13 +65,13 @@ public class Ticket implements Serializable {
 		}
 		
 		switch(mEnum){
-		case NORMAL:
+		case "NORMAL":
 			temp += 2;
 			break;
-		case BLOCKBUSTER:
+		case "BLOCKBUSTER":
 			temp += 3;
 			break;
-		case THREE_D:
+		case "THREE_D":
 			temp += 5;
 			break;
 		default:
@@ -78,12 +85,22 @@ public class Ticket implements Serializable {
 		}else if(age > 65){
 			discount = "Elderly Discount";
 			temp -= 4;
-		}else if(student){
-			discount = "Student Discount";
-			temp -= 2;
 		}
 		
+		switch (movieDay){
+		case "MONDAY":
+		case "TUESDAY":
+		case "WEDNESDAY":
+		case "THURSDAY":
+		case "FRIDAY":
+			break;
+		case "SATURDAY": 
+		case "SUNDAY": temp += 2;
+			break;
+					
+		}
 		
+		return PRICE_TICKET + temp;
 	}
 	
 	public void setCineplex(String cineplexName){
