@@ -18,15 +18,13 @@ import java.util.Scanner;
 public class CineplexDatabase{
 	
 	public static ArrayList<Cineplex> cineplexList;
-	
-
 	private static File cineplexFile = new File("Cineplex.dat");
 	
 	public static ArrayList<Cineplex> getArrayList() {
 		return cineplexList;
 	}
 	
-	// Fetching infomation of al cineplexes.
+	// Fetching infomation of all cineplexes.
 	public static void fetchCineplexes(){
 		cineplexList = new ArrayList<Cineplex>();
 		try{

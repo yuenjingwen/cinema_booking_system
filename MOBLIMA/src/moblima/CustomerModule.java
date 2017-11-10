@@ -18,16 +18,13 @@ public class CustomerModule {
 	Scanner scanner;
 	public static Ticket ticket= new Ticket();
 	static int row, column;
-	
-	private static ArrayList<Cineplex> cineplexList;
-	private static File cineplexFile = new File("Cineplex.dat");
 
-	
-	
 	//Menu
 	public static void customerMain(Scanner scanner){
 		
-		do {
+		int custChoice =0;
+		
+		while (custChoice!=5) {
 		System.out.print("1. Buy a ticket\n"
 							+ "2. Add review\n"
 							+ "3. Read reviews\n"
@@ -35,9 +32,10 @@ public class CustomerModule {
 							+ "5. Back\n"
 							+ "Please enter choice: ");
 			try{
-				MainMenuManager.choice = scanner.nextInt();
+				custChoice = scanner.nextInt();
 				scanner.nextLine();
-				switch (MainMenuManager.choice) {
+				
+				switch (custChoice) {
 				case 1:
 					
 						buyProcess(scanner);
@@ -68,12 +66,16 @@ public class CustomerModule {
 					System.out.println("===========\n");				
 					break;
 				}
-			}catch(Exception e){
+			
+			}
+		
+				catch(Exception e){
 				e.printStackTrace();
 				System.out.println("Invalid input. Please re-enter choicee.");
 				scanner.nextLine();
 			}
-		} while(MainMenuManager.choice!=5);
+		}
+		
 	}
 	//Process of buying
 	public static void buyProcess(Scanner scanner){

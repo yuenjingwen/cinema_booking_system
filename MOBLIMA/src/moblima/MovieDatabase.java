@@ -273,25 +273,12 @@ public class MovieDatabase{
 		sc.close();
 		
 		//print all reviews for that movie 
-		/*for (MovieReview r : MovieDatabase.getArrayList().get(choice-1).getReviewList()) {	//print into format
-			System.out.println(r.getReview());
-			System.out.println(r.getRating());
-		*/
 		for (MovieReview r : movieList.get(choice-1).getReviewList()) {	//print into format
-				System.out.println(r.getReview());
-				System.out.println(r.getRating());
-			
-			
+				System.out.println("Review: " + r.getReview());
+				System.out.println("Rating: " + r.getRating()+"\n");
+		
 		}
 	}
-
-	
-	
-	
-
-	
-	
-
 	
 }
 
