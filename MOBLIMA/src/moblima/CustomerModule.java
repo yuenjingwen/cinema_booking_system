@@ -46,7 +46,7 @@ public static void customerMain(Scanner scanner){
 					break;
 				case 2:
 		
-						addReview(scanner);
+						MovieDatabase.addReview(scanner);
 			
 					break;
 				case 3:
@@ -195,26 +195,7 @@ public static void customerMain(Scanner scanner){
 	
 	}
 
-	
-	private static void addReview(Scanner scanner) {
-		int movieIndex;
-		
-		MovieDatabase.printMovieList();
-		System.out.println("Select Movie to review");
-		movieIndex = scanner.nextInt();
-		scanner.nextLine();
-		
-		System.out.println("===================================================");
-		System.out.println("Enter review below:");
-		String tempReview = scanner.nextLine();
-		System.out.println("===================================================");
-		System.out.println("Give ratings between 1(Bad) to 5(Worth Watching!):");
-		int tempRating = scanner.nextInt();
-		scanner.nextLine();
-		MovieDatabase.getArrayList().get(movieIndex-1).addReview(tempReview, tempRating);
-		
-		MovieDatabase.updateMovies();
-	}
+
 	
 	//need a way to read review
 	private static void readReview(Scanner scanner) {	
@@ -231,8 +212,6 @@ public static void customerMain(Scanner scanner){
 		
 		
 	}
-
-	
 	//need a way to read Ticket history
 	private static void showHistory(Scanner scanner) {
 		for(int i=0;  ; i++) {

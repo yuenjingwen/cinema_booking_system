@@ -277,8 +277,28 @@ public class MovieDatabase{
 		
 		}
 	}
+
+
+	public static void addReview(Scanner scanner) {
+	int movieIndex;
 	
+	MovieDatabase.printMovieList();
+	System.out.println("Select Movie to review");
+	movieIndex = scanner.nextInt();
+	scanner.nextLine();
+	
+	System.out.println("===================================================");
+	System.out.println("Enter review below:");
+	String tempReview = scanner.nextLine();
+	System.out.println("===================================================");
+	System.out.println("Give ratings between 1(Bad) to 5(Worth Watching!):");
+	int tempRating = scanner.nextInt();
+	scanner.nextLine();
+	getArrayList().get(movieIndex-1).addReview(tempReview, tempRating);
+	
+	updateMovies();
 }
 
+}
 
 
