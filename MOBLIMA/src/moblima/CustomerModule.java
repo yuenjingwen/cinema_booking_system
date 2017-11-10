@@ -79,7 +79,7 @@ public class CustomerModule {
 	}
 	//Process of buying
 	public static void buyProcess(Scanner scanner){
-		Ticket ticket= new Ticket();
+		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm"); 
 		
 		//printCineplex choices********************
@@ -183,6 +183,7 @@ public class CustomerModule {
 			ticket.printTicket();
 			
 			//need Edit this
+			Ticket ticket= new Ticket(//parameters here);
 			TicketDatabase.add(ticket);
 
 	
