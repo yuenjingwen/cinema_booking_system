@@ -106,6 +106,7 @@ public class AdminModule {
 				break;
 				
 			case 5:
+			
 				printTop5ratings (scanner);
 				break;
 				
@@ -120,7 +121,7 @@ public class AdminModule {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			System.out.println("Invalid input. Please re-enter choicee.");
+			System.out.println("Invalid input. Please re-enter choice.");
 			scanner.nextLine();
 		}
 	}
@@ -257,17 +258,25 @@ public class AdminModule {
 	}
 	
 	private static void printTop5ratings (Scanner scanner)
-	{
+	{	
 		ArrayList<Movie> sortedRatingsList = new ArrayList<Movie>();
 		
-		for(int i=0; i<MovieDatabase.getArrayList().size(); i++)
-		{
-			sortedRatingsList.get(i).setTitle(MovieDatabase.getArrayList().get(i).getTitle());
-			
-			sortedRatingsList.get(i).getReviewList().add(i, MovieDatabase.getArrayList().get(i).getReviewList().get(i));
-
+		System.out.println("1");
+		if (MovieDatabase.getArrayList().get(0) == null){
+			System.out.println("Top 5 list is empty");
+			return;
 		}
-		
+		if (MovieDatabase.getArrayList().size() != 0){
+		 System.out.println("Size"+MovieDatabase.getArrayList().size() );
+		 
+		for(int i=0; i<MovieDatabase.getArrayList().size()-1; i++)
+		{	
+			sortedRatingsList.add(MovieDatabase.getArrayList().get(i));
+			sortedRatingsList.get(i).setTitle(MovieDatabase.getArrayList().get(i).getTitle());		
+			sortedRatingsList.get(i).getReviewList().add(i, MovieDatabase.getArrayList().get(i).getReviewList().get(i));
+			System.out.println("check");
+		}
+	
 		ratingsInsertionSort(sortedRatingsList);
 		
 		for (int i=1; i<=5; i++)
@@ -275,6 +284,8 @@ public class AdminModule {
 			System.out.println("Number " + i + ":\nTitle: " + sortedRatingsList.get(i-1).getTitle() 
 								+ "\nOverall reviewers' rating: " + sortedRatingsList.get(i-1).getAvgRating());
 		}
+		}
+		
 	}
 	
 	private static ArrayList<Movie> ratingsInsertionSort(ArrayList<Movie> list)
