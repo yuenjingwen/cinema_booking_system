@@ -291,9 +291,11 @@ public static void customerMain(Scanner scanner){
 
 
 	private static void showHistory(Scanner scanner) {
-		for(int i=0;  ; i++) {
-			while(TicketDatabase.getArrayList().get(i) != null)
-				TicketDatabase.getArrayList().get(i).printTicket();
+		for(int i=0;i <TicketDatabase.getArrayList().size()  ; i++) {
+			if(TicketDatabase.getArrayList().get(i) != null){
+				TicketDatabase.getArrayList().get(i).printTicket();		
+				}
+
 		}
 	}
 		
