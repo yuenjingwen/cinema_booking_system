@@ -64,6 +64,14 @@ public class CineplexDatabase{
 		}
 	}	
 	
+	public static void printAllCineplexes() {
+		int i=1;
+			System.out.println("=~=~=~=~=~=~=~=~=~=~=~=~=~=~");
+		for (Cineplex cp: getArrayList()) {
+			System.out.println("Cineplex [" + i + "]: "+ cp.getName());
+			i++;
+			}
+		}
 
 	public static void addShowTime(Scanner scanner){
 		int i = 1;
@@ -130,7 +138,6 @@ public class CineplexDatabase{
 		
 		updateCineplexes(cineplexFile);
 	}
-	
 	
 	public static void printAllShowtimes() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);

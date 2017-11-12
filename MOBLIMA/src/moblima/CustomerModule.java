@@ -16,14 +16,14 @@ public static void customerMain(Scanner scanner){
 		
 		int custChoice =0;
 		
-		while (custChoice!=5) {
+		while (custChoice!=7) {
 		System.out.print(	"=====================Movie-goer Menu=====================\n"
 							+ "1. Search/List Movie\n"
 							+ "2. View movie details- View/Write Reviews\n"
 							+ "3. Check seat availability and Book/purchase Ticket\n"
 							+ "4. See my movie history\n"
-							+ "5. List top 5 movies by rating"
-							+ "6. List top 5 movies by sales"
+							+ "5. List top 5 movies by rating\n"
+							+ "6. List top 5 movies by sales\n"
 							+ "7. Back\n"
 							+ "=======================================================\n"
 							+ "Please enter choice: \n");
@@ -166,13 +166,12 @@ public static void customerMain(Scanner scanner){
 			scanner.nextLine();
 			}catch(Exception e){
 			e.printStackTrace();
-			System.out.println("Invalid input. Please re-enter choicee.");
+			System.out.println("Invalid input. Please re-enter choice.");
 			scanner.nextLine();
 		}
 		
 		//printCineplex choices********
-		CineplexDatabase.printAllShowtimes();
-		
+		CineplexDatabase.printAllCineplexes();
 		System.out.print("Select cineplex: ");
 		
 		cineplexIndex = scanner.nextInt();
@@ -199,7 +198,6 @@ public static void customerMain(Scanner scanner){
 		System.out.print("Select showtime: ");
 		showtimeIndex = scanner.nextInt();
 		scanner.nextLine();
-		
 
 		//implement seat
 		CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).printSeating();
