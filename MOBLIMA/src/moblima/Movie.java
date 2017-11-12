@@ -11,7 +11,7 @@ public class Movie implements Serializable{
 	private String director;
 	private String cast;
 	private ArrayList<MovieReview> reviews;
-	
+	private ShowingStatus showingStatus;	
 	private MovieType movieType;
 	
 	private float ticketSales;
@@ -22,7 +22,7 @@ public class Movie implements Serializable{
 
 	public Movie(String title, String synopsis, String director, String cast, MovieType movieType){
 		this.title = title;
-
+		this.showingStatus = ShowingStatus.NOW_SHOWING;
 		this.synopsis = synopsis;
 		this.director = director;
 		this.cast = cast;
@@ -40,14 +40,15 @@ public class Movie implements Serializable{
 	public String getSynopsis(){
 		return this.synopsis;
 	}
+	
 	public String getDirector(){
 		return this.director;
 	}
+	
 	public String getCast(){
 		return this.cast;
 	}
 
-	
 	public float getAvgRating()
 	{
 		float sum = 0;
@@ -56,6 +57,10 @@ public class Movie implements Serializable{
 		}
 		
 		return sum/reviews.size();
+	}
+	
+	public ShowingStatus getShowingStatus() {
+		return showingStatus;
 	}
 	
 	public void printAvgRating()
@@ -96,7 +101,6 @@ public class Movie implements Serializable{
 		this.title = title;
 	}
 	
-
 	public void setSynopsis(String synopsis){
 		this.synopsis = synopsis;
 	}
@@ -113,7 +117,10 @@ public class Movie implements Serializable{
 		reviews.add(new MovieReview(review, rating));
 	}
 	
-	
+	public void setShowingStatus (ShowingStatus status){
+		this.showingStatus = status;
+	}
+		
 	public void addTicketSale(float ticketSalePrice){
 		this.ticketSales += ticketSalePrice;
 	}

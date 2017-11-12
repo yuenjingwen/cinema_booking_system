@@ -209,6 +209,7 @@ public class MovieDatabase{
 		for(Movie m : getArrayList()){
 			System.out.println("=======================================================");
 			System.out.println("Index: " + i + "\t" + m.getMovieType() + "\n");
+			System.out.println("Showing Status: " + m.getShowingStatus().toString());
 			System.out.println("Title:\t\t" + m.getTitle());
 			System.out.println("Director:\t" + m.getDirector());
 			System.out.println("Cast:\t\t" + m.getCast());
