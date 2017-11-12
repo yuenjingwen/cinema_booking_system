@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Movie implements Serializable, Comparator<Movie>{
+public class Movie implements Serializable{
 
 	private static final long serialVersionUID = 41302788253857504L;
 	private String title;
