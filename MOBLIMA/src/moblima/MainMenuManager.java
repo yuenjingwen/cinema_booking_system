@@ -12,10 +12,8 @@ public class MainMenuManager {
 	public static void main(String[] args) {
 		
 		Scanner scanner = new Scanner(System.in);
-		TicketDatabase.fetchTickets();
-		PublicHolidaysDatabase.fetchHolidays();
-		CineplexDatabase.fetchCineplexes();
-		MovieDatabase.fetchMovies();
+		
+		fetchAllDatabases();
 		
 		choice = 0;
 		
@@ -27,8 +25,7 @@ public class MainMenuManager {
 					scanner.nextLine();
 				}
 			}
-		
-		
+			
 		System.out.println("Scanner closed. Program properly terminated.");
 		scanner.close();
 	}
@@ -62,33 +59,14 @@ public class MainMenuManager {
 			System.out.println("Invalid Input! Please enter choice from 1-3.");
 			scanner.nextLine();
 		}
+	}	
+	
+	private static void fetchAllDatabases() {
+		TicketDatabase.fetchTickets();
+		PublicHolidaysDatabase.fetchHolidays();
+		CineplexDatabase.fetchCineplexes();
+		MovieDatabase.fetchMovies();
 	}
-	
-	public static String breakLines(String input, int maxLineLength) {
-	    String[] tokens = input.split("\\s+");
-	    StringBuilder output = new StringBuilder(input.length());
-	    int lineLen = 0;
-	    for (int i = 0; i < tokens.length; i++) {
-	        String word = tokens[i];
-
-	        if (lineLen + (" " + word).length() > maxLineLength) {
-	            if (i > 0) {
-	                output.append('\n');
-	            }
-	            lineLen = 0;
-	        }
-	        if (i < tokens.length - 1 && (lineLen + (word + " ").length() + tokens[i + 1].length() <=
-	                maxLineLength)) {
-	            word += " ";
-	        }
-	        output.append(word);
-	        lineLen += word.length();
-	    }
-	    return output.toString();
-	}
-	
-	
-	
 	
 	
 	
