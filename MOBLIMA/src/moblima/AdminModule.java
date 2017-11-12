@@ -126,7 +126,6 @@ public class AdminModule {
 		}
 	}
 
-
 	private static void printAdminMovieMenu(Scanner scanner){
 		MovieDatabase.printMovieList();
 		System.out.print("\n=====================\n"
@@ -261,11 +260,12 @@ public class AdminModule {
 	{	
 		ArrayList<Movie> sortedRatingsList = new ArrayList<Movie>();
 		
-		System.out.println("1");
+		
 		if (MovieDatabase.getArrayList().get(0) == null){
 			System.out.println("Top 5 list is empty");
 			return;
 		}
+		
 		if (MovieDatabase.getArrayList().size() != 0){
 		 System.out.println("Size"+MovieDatabase.getArrayList().size() );
 		 

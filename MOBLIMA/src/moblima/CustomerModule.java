@@ -30,7 +30,7 @@ public static void customerMain(Scanner scanner){
 				
 				switch (custChoice) {
 				case 1:
-						CineplexDatabase.printAllShowtimes();
+						MovieDatabase.printMovieList();
 					break;
 				case 2:
 						//Have to list description of movie- function yet to implement
