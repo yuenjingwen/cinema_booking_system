@@ -2,6 +2,7 @@ package moblima;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CustomerModule {
@@ -289,7 +290,67 @@ public static void customerMain(Scanner scanner){
 
 		}
 	}
+	
+	private static void printTop5sales(Scanner scanner)
+	{
 		
+	}
+	
+	private static void printTop5ratings (Scanner scanner)
+	{	
+		ArrayList<Movie> sortedRatingsList = new ArrayList<Movie>();
+		
+		
+		if (MovieDatabase.getArrayList().get(0) == null){
+			System.out.println("Top 5 list is empty");
+			return;
+		}
+		
+		if (MovieDatabase.getArrayList().size() != 0){
+		 System.out.println("Size"+MovieDatabase.getArrayList().size() );
+		 
+		for(int i=0; i<MovieDatabase.getArrayList().size()-1; i++)
+		{	
+			sortedRatingsList.add(MovieDatabase.getArrayList().get(i));
+			sortedRatingsList.get(i).setTitle(MovieDatabase.getArrayList().get(i).getTitle());		
+			sortedRatingsList.get(i).getReviewList().add(i, MovieDatabase.getArrayList().get(i).getReviewList().get(i));
+			System.out.println("check");
+		}
+	
+		ratingsInsertionSort(sortedRatingsList);
+		
+		for (int i=1; i<=5; i++)
+		{
+			System.out.println("Number " + i + ":\nTitle: " + sortedRatingsList.get(i-1).getTitle() 
+								+ "\nOverall reviewers' rating: " + sortedRatingsList.get(i-1).getAvgRating());
+		}
+		}
+		
+	}
+	
+	private static ArrayList<Movie> ratingsInsertionSort(ArrayList<Movie> list)
+	{
+		for(int i = 1; i < list.size(); i++)
+		{
+			for(int j = i; j>0; j--)
+			{						// Swaps if current array[j] < array[j-1] then decreases j by 1
+				if(list.get(j).getAvgRating() > list.get(j-1).getAvgRating())  
+				{					// Swap sequence
+					Movie temp = list.get(j-1);
+					list.add(j-1, list.get(j));
+					list.add(j, temp);
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
+		return list;
+	}
+
+
+	
 
 
 	
