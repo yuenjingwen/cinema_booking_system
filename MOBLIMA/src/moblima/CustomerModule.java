@@ -22,7 +22,9 @@ public static void customerMain(Scanner scanner){
 							+ "2. View movie details- View/Write Reviews\n"
 							+ "3. Check seat availability and Book/purchase Ticket\n"
 							+ "4. See my movie history\n"
-							+ "5. Back\n"
+							+ "5. List top 5 movies by rating"
+							+ "6. List top 5 movies by sales"
+							+ "7. Back\n"
 							+ "=======================================================\n"
 							+ "Please enter choice: \n");
 			try{
@@ -31,47 +33,24 @@ public static void customerMain(Scanner scanner){
 				
 				switch (custChoice) {
 				case 1:
-						MovieDatabase.printMovieList();
+					MovieDatabase.printMovieList();
 					break;
 				case 2:
-						//Have to list description of movie- function yet to implement
-					int addOrRead=0;
-					while (addOrRead != 4){
-					try{
-						System.out.println("=========Reviews=========\n"
-										  +"1. Read reviews\n"
-										  +"2. View overall reviewers' rating\n"
-										  +"3. Add review\n"
-										  +"4. Back\n"
-										  +"=========================\n"
-										  +"Do you want to read or add reviews?");
-						addOrRead = scanner.nextInt();
-						scanner.nextLine();
-						
-						}catch(Exception e){
-						e.printStackTrace();
-						System.out.println("Invalid input. Please re-enter choicee.");
-						scanner.nextLine();
-					}
-					
-					
-						switch(addOrRead){
-						case 1: readReview(scanner);
-						break;
-						case 2: printAverageRating(scanner);
-						break;
-						case 3: addReview(scanner);
-						break;
-						}
-					}
+					customerReviewMenu(scanner);
 					break;
 				case 3:
-					buyProcess(scanner);
+					customerBuyProcess(scanner);
 					break;
 				case 4:
-					showHistory(scanner);
+					customerShowHistory(scanner);
 					break;
 				case 5:
+					customerPrintTop5Sales(scanner);
+					break;
+				case 6:
+					customerPrintTop5Ratings(scanner);
+					break;
+				case 7:
 					System.out.println("Logout Successful");
 					break;
 				default:
@@ -92,10 +71,44 @@ public static void customerMain(Scanner scanner){
 		
 	}
 	
-	//Process of buying
-	public static void buyProcess(Scanner scanner){
+	private static void customerReviewMenu(Scanner scanner) {
+		//Have to list description of movie- function yet to implement
+		while (MainMenuManager.choice != 4){
+		try{
+			System.out.println("=========Reviews=========\n"
+							  +"1. Read reviews\n"
+							  +"2. View overall reviewers' rating\n"
+							  +"3. Add review\n"
+							  +"4. Back\n"
+							  +"=========================\n"
+							  +"Do you want to read or add reviews?");
+			MainMenuManager.choice = scanner.nextInt();
+			scanner.nextLine();
+			
+			}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("Invalid input. Please re-enter choicee.");
+			scanner.nextLine();
+		}
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");	
+		
+			switch(MainMenuManager.choice){
+			case 1: 
+				readReview(scanner);
+				break;
+			case 2: 
+				printAverageRating(scanner);
+				break;
+			case 3: 
+				addReview(scanner);
+				break;
+			}
+		}
+}
+
+	//Process of buying
+	public static void customerBuyProcess(Scanner scanner){
+		
 		int i = 1; //Choose
 		int showtimeIndex;
 		int cineplexIndex;
@@ -106,7 +119,14 @@ public static void customerMain(Scanner scanner){
 		String name;
 		String emailAddress;
 		String seat;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");	
 		
+		
+		System.out.println("===================================");
+		System.out.println("===================================");
+		System.out.println("======TICKET PURCHASE COUNTER======");
+		System.out.println("===================================");
+		System.out.println("===================================");
 		
 		//Get Name
 		try{
@@ -282,7 +302,7 @@ public static void customerMain(Scanner scanner){
 	}
 
 
-	private static void showHistory(Scanner scanner) {
+	private static void customerShowHistory(Scanner scanner) {
 		for(int i=0;i <TicketDatabase.getArrayList().size()  ; i++) {
 			if(TicketDatabase.getArrayList().get(i) != null){
 				TicketDatabase.getArrayList().get(i).printTicket();		
@@ -291,31 +311,31 @@ public static void customerMain(Scanner scanner){
 		}
 	}
 	
-	private static void printTop5sales(Scanner scanner)
+	private static void customerPrintTop5Sales(Scanner scanner)
 	{
 		
 	}
 	
-	private static void printTop5ratings (Scanner scanner)
+	private static void customerPrintTop5Ratings (Scanner scanner)
 	{	
-		ArrayList<Movie> sortedRatingsList = new ArrayList<Movie>();
+		
 		
 		
 		if (MovieDatabase.getArrayList().get(0) == null){
 			System.out.println("Top 5 list is empty");
 			return;
-		}
-		
-		if (MovieDatabase.getArrayList().size() != 0){
-		 System.out.println("Size"+MovieDatabase.getArrayList().size() );
+		}else if (MovieDatabase.getArrayList().size() != 0){
+			
+			ArrayList<Movie> sortedRatingsList = new ArrayList<Movie>();
+			System.out.println("Size"+MovieDatabase.getArrayList().size() );
 		 
-		for(int i=0; i<MovieDatabase.getArrayList().size()-1; i++)
-		{	
-			sortedRatingsList.add(MovieDatabase.getArrayList().get(i));
-			sortedRatingsList.get(i).setTitle(MovieDatabase.getArrayList().get(i).getTitle());		
-			sortedRatingsList.get(i).getReviewList().add(i, MovieDatabase.getArrayList().get(i).getReviewList().get(i));
-			System.out.println("check");
-		}
+			for(int i=0; i<MovieDatabase.getArrayList().size()-1; i++)
+				{	
+				sortedRatingsList.add(MovieDatabase.getArrayList().get(i));
+				sortedRatingsList.get(i).setTitle(MovieDatabase.getArrayList().get(i).getTitle());		
+				sortedRatingsList.get(i).getReviewList().add(i, MovieDatabase.getArrayList().get(i).getReviewList().get(i));
+				System.out.println("check");
+			}
 	
 		ratingsInsertionSort(sortedRatingsList);
 		

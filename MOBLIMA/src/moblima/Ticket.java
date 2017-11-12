@@ -4,33 +4,38 @@ import java.time.format.DateTimeFormatter;
 import java.io.Serializable;
 
 public class Ticket implements Serializable {
-	float PRICE_TICKET = 10;
+	
 	private static final long serialVersionUID = 84759385764544637L;
+	float PRICE_TICKET = 10;
+	
+	
 	private float price;
 	private String discount = "None";
-	public String cineplex; 
-	public String cinema; 
-	public String movie; 
-	public String time; 
-	public String seat;
-	public CinemaEnum classOfCinema;
-	public String movieDay;
-	public String mType;
+	private String cineplex; 
+	private String cinema; 
+	private String movie; 
+	private String time; 
+	private String seat;
+	private CinemaEnum classOfCinema;
+	private String movieDay;
+	private MovieType mType;
 	
 	
 	public Ticket(String seat, int age, int cinemaIndex, int cineplexIndex, int showtimeIndex){	//create new constructor. use calculate ticket price to set the price
+		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 		
-		this.cineplex = CineplexDatabase.cineplexList.get(cineplexIndex -1).getName(); //use cineplex index to get
-		this.cinema = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaID();; //use cinema index to get
-		this.movie = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getTitle();
-		this.time = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime().format(formatter);
-		this.seat = seat;
-		this.classOfCinema= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getClassOfCinema();
-	    this.movieDay = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime().getDayOfWeek().name();
-	    this.mType = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();		
-		this.price = calculateTicketPrice(classOfCinema, mType, age, movieDay);
-		this.discount = getDiscount();
+		
+		this.cineplex 		= CineplexDatabase.cineplexList.get(cineplexIndex -1).getName(); //use cineplex index to get
+		this.cinema 		= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaID();; //use cinema index to get
+		this.movie 			= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getTitle();
+		this.time 			= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime().format(formatter);
+		this.seat 			= seat;
+		this.classOfCinema	= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getClassOfCinema();
+	    this.movieDay 		= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime().getDayOfWeek().name();
+	    this.mType			= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();		
+		this.price 			= calculateTicketPrice(classOfCinema, mType, age, movieDay);
+		this.discount 		= getDiscount();
 			
 	}
 	
@@ -44,7 +49,7 @@ public class Ticket implements Serializable {
 
 
 
-	public float calculateTicketPrice(CinemaEnum cEnum, String mEnum, int age, String movieDay){
+	public float calculateTicketPrice(CinemaEnum cEnum, MovieType mEnum, int age, String movieDay){
 		
 		float temp = 0;
 		
@@ -60,7 +65,7 @@ public class Ticket implements Serializable {
 			break;
 		}
 		
-		switch(mEnum){
+		switch(mEnum.toString()){
 		case "NORMAL":
 			temp += 2;
 			break;
@@ -93,7 +98,8 @@ public class Ticket implements Serializable {
 		case "SATURDAY": 
 		case "SUNDAY": temp += 2;
 			break;
-		default: System.out.println("movieDay isn't part of switch");
+		default: 
+			System.out.println("Error in ticket pricing.");
 			break;
 					
 		}
