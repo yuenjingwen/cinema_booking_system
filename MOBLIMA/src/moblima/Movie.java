@@ -126,37 +126,35 @@ public class Movie implements Serializable{
 		this.ticketSales += ticketSalePrice;
 	}
 
-
 	
-	 static Comparator<Movie> salesComparator() {
-	        return new Comparator<Movie>() {
-
-				@Override
-				public int compare(Movie o1, Movie o2) {
-					if (o1.getTicketSales()==o2.getTicketSales()) {
-						return o1.getTitle().compareTo(o2.getTitle());
-					} else {
-						int comp = (int) (o1.getTicketSales()-o2.getTicketSales());
-						return comp;
-					}
+	static Comparator<Movie> salesComparator() {
+		
+		return new Comparator<Movie>() {
+			@Override
+			public int compare(Movie o1, Movie o2) {
+				if (o1.getTicketSales()==o2.getTicketSales()) {
+					return o1.getTitle().compareTo(o2.getTitle());
+				} else {
+					int comp = (int) (o1.getTicketSales()-o2.getTicketSales());
+					return comp;
 				}
-	        };
-	    }
+			}
+		};
+	}
 
-	 static Comparator<Movie> ratingComparator() {
-	        return new Comparator<Movie>()	 {
-
-				@Override
-				public int compare(Movie o1, Movie o2) {
-					if (o1.getAvgRating() == o2.getAvgRating()) {
-						return o1.getTitle().compareTo(o2.getTitle());
-					}else {
-						int comp = (int) (o1.getAvgRating()-o2.getAvgRating());
-						return comp;
-					}
+	static Comparator<Movie> ratingComparator() {
+		return new Comparator<Movie>()	 {
+			@Override
+			public int compare(Movie o1, Movie o2) {
+				if (o1.getAvgRating() == o2.getAvgRating()) {
+					return o1.getTitle().compareTo(o2.getTitle());
+				}else {
+					int comp = (int) (o1.getAvgRating()-o2.getAvgRating());
+					return comp;
 				}
-	        };
-	    }
+			}
+		};
+	}
 
 }
 
