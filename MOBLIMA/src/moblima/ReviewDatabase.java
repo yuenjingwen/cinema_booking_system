@@ -15,7 +15,7 @@ public class ReviewDatabase{
 	
 
 	public static void add(String reviewText, int rating) {
-		MovieReview temp = new MovieReview(reviewText, rating);
+//		MovieReview temp = new MovieReview(reviewText, rating);
 		
 			
 		File file = new File("MovieReview.dat"); //this dat file has yet to be created
@@ -75,12 +75,11 @@ public class ReviewDatabase{
 		}
 	}
 	
-	public void fetch() {
+	public void fetch(Scanner scanner) {
 		
 		MovieDatabase.printMovieList();	//print movie list
 		System.out.print("Which movie review would you like to read?");	//ask which movie you want to see review for
-		Scanner sc = new Scanner(System.in);
-		int choice = sc.nextInt();
+		int choice = scanner.nextInt();
 		
 		//print all reviews for that movie 
 		for (MovieReview r : MovieDatabase.getArrayList().get(choice).getReviewList()) {	//print into format

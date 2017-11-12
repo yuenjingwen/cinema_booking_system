@@ -214,7 +214,7 @@ public class MovieDatabase{
 			System.out.println("Cast:\t\t" + m.getCast());
 			System.out.println("-------------------------------------------------------");
 			System.out.println("Synopsis: ");
-			System.out.println(breakLines(m.getSynopsis(), 50));
+			System.out.println(breakLinesForReviews(m.getSynopsis(), 50));
 			System.out.println("=======================================================");
 			i++;
 		}
@@ -299,7 +299,7 @@ public class MovieDatabase{
 	updateMovies();
 }
 	
-	private static String breakLines(String input, int maxLineLength) {
+	private static String breakLinesForReviews(String input, int maxLineLength) {
 	    String[] tokens = input.split("\\s+");
 	    StringBuilder output = new StringBuilder(input.length());
 	    int lineLen = 0;
