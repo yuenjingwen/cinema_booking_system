@@ -4,6 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CustomerModule {
@@ -173,7 +174,6 @@ public static void customerMain(Scanner scanner){
 				scanner.nextLine();
 				break;
 				}catch(Exception e){
-				e.printStackTrace();
 				System.out.println("Invalid input. Please re-enter choice.");
 				scanner.nextLine();
 			}
@@ -207,13 +207,16 @@ public static void customerMain(Scanner scanner){
 				System.out.print("Select cinema: ");
 				cinemaIndex = scanner.nextInt();
 				scanner.nextLine();
+				if (CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().size() == 0) {
+					throw new InputMismatchException();
+				}
 				break;
+			} catch (InputMismatchException IMe) {
+				System.out.println("Cinema has no showing times. Please select another cinema.");
 			} catch (Exception e) {
 				System.out.println("Invalid input. Please re-enter choice.");
 			}
 		} while(true);
-		
-		
 		
 		i = 1;
 		System.out.println("\n========Movie=================== Movie Screening Time=======");
@@ -257,7 +260,7 @@ public static void customerMain(Scanner scanner){
 			case "F": row=6;
 			break;
 			case "G": row=7;
-			break;
+				break;
 			case "H": row=8;
 			break;
 			default: System.out.println("Error input!");
@@ -321,7 +324,7 @@ public static void customerMain(Scanner scanner){
 				break;
 			case "n":
 			case "N": 
-				System.out.println("Please select option:");
+				System.out.println("");
 				break;
 			default:
 			}
