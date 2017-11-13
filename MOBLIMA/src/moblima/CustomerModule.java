@@ -109,7 +109,7 @@ public static void customerMain(Scanner scanner){
 }
 
 	//Process of buying
-	public static void customerBuyProcess(Scanner scanner){
+public static void customerBuyProcess(Scanner scanner){
 		
 		int i = 1; //Choose
 		int showtimeIndex;
@@ -301,33 +301,50 @@ public static void customerMain(Scanner scanner){
 			
 			System.out.println("Would you like to pay?: Y/N");
 			
-			switch(keepSeatingPlan) {
-			case "y":
-			case "Y":
-				System.out.println("Making payment...");		
-
-				ticket.printTicket();
-				TicketDatabase.add(ticket);
-				
-				Movie tempM = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie();
-				
-				int movieIndex = MovieDatabase.getArrayList().indexOf(tempM);
-				
-				CinemaEnum cEnum = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getClassOfCinema();			
-				MovieType mEnum = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();
-				String movieDay = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime().getDayOfWeek().name();
-				
-				//adds ticket sale to the movie's total sales
-				MovieDatabase.getArrayList().get(movieIndex).addTicketSale(ticket.calculateTicketPrice(cEnum, mEnum, age, movieDay));
-				
-				System.out.println("You have paid for your ticket!");
+			
+			keepSeatingPlan = scanner.next();
+			
+			do {
+				scanner.nextLine();
+				switch(keepSeatingPlan.toUpperCase()) {
+				case "Y":
+					System.out.println("Making payment...");		
+	
+					ticket.printTicket();
+					TicketDatabase.add(ticket);
+					
+					Movie tempM = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie();
+					
+					int index = 0;
+					int movieIndex = 0;
+					for (Movie m: MovieDatabase.getArrayList()) {
+						if (tempM.getTitle() == m.getTitle()) {
+							movieIndex = index;
+							break;
+						} else {
+							index++;
+						}
+					}
+					
+					CinemaEnum cEnum = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getClassOfCinema();			
+					MovieType mEnum = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();
+					String movieDay = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime().getDayOfWeek().name();
+					
+					//adds ticket sale to the movie's total sales
+					MovieDatabase.getArrayList().get(movieIndex).addTicketSale(ticket.calculateTicketPrice(cEnum, mEnum, age, movieDay));
+					
+					System.out.println("You have paid for your ticket!");
+					TicketDatabase.updateTickets();
+					CineplexDatabase.updateCineplexes();
+					break;
+				case "N": 
+					System.out.println("Going back to menu...");
+					break;
+				default:
+					System.out.println("Invalid input, please enter Y or N.");
+				}
 				break;
-			case "n":
-			case "N": 
-				System.out.println("");
-				break;
-			default:
-			}
+			} while (true);
 			
 			
 	}

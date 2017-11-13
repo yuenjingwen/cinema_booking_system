@@ -48,9 +48,9 @@ public class CineplexDatabase{
 		}
 	}
 		
-	public static void updateCineplexes(File file){
+	public static void updateCineplexes(){
 		try{
-			FileOutputStream fo = new FileOutputStream(file);
+			FileOutputStream fo = new FileOutputStream(cineplexFile);
 			ObjectOutputStream output = new ObjectOutputStream(fo);
 			for(Cineplex c: cineplexList){
 				output.writeObject(c);
@@ -136,7 +136,7 @@ public class CineplexDatabase{
 		
 		Collections.sort(cineplexList.get(cineplexIndex-1).getCinemaList().get(cinemaIndex-1).getCinemaShowList());
 		
-		updateCineplexes(cineplexFile);
+		updateCineplexes();
 	}
 	
 	public static void printAllShowtimes() {
@@ -300,7 +300,7 @@ public class CineplexDatabase{
 			}
 		}
 		
-		updateCineplexes(cineplexFile);
+		updateCineplexes();
 		}
 	
 	public void printShowtimeOfCinema(ArrayList<CinemaShow> cinemaShowList) {
