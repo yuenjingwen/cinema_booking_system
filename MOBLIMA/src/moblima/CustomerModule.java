@@ -191,10 +191,10 @@ private static void customerReviewMenu(Scanner scanner) {
 		
 			switch(MainMenuManager.choice){
 			case 1: 
-				readReview(scanner);
+				customerReadReview(scanner);
 				break;
 			case 2: 
-				printAverageRating(scanner);
+				customerPrintAverageRating(scanner);
 				break;
 			case 3: 
 				MovieDatabase.addReview(scanner);
@@ -204,13 +204,12 @@ private static void customerReviewMenu(Scanner scanner) {
 }
 
 	//Process of buying
-public static void customerBuyProcess(Scanner scanner){
+private static void customerBuyProcess(Scanner scanner){
 		
 		int i = 1; //Choose
 		int showtimeIndex;
 		int cineplexIndex;
 		int cinemaIndex;
-		int timeIndex;
 		int age = 0;
 		int mobileNumber;
 		String name;
@@ -445,7 +444,7 @@ public static void customerBuyProcess(Scanner scanner){
 	}
 	
 	//need a way to read review
-private static void readReview(Scanner scanner) {	
+private static void customerReadReview(Scanner scanner) {	
 	MovieDatabase.printMovieTitles();
 		
 	do {
@@ -463,7 +462,7 @@ private static void readReview(Scanner scanner) {
 	} while (true);
 }
 	
-private static void printAverageRating(Scanner scanner) {
+private static void customerPrintAverageRating(Scanner scanner) {
 		
 	MovieDatabase.printFullMovieList();
 	System.out.print("Which movie's average rating would you like to view?");	//ask which movie user wants to see avg rating of

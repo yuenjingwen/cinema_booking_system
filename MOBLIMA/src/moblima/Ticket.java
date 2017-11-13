@@ -18,6 +18,11 @@ public class Ticket implements Serializable {
 	private String movie; 
 	private String time; 
 	private String seat;
+	
+	private String ticketholderName;
+	private String email;
+	private int mobileNumber;
+	
 	private CinemaEnum classOfCinema;
 	private LocalDateTime movieDay;
 	private MovieType mType;
