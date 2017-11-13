@@ -66,7 +66,7 @@ public class AdminModule {
 			
 			
 			MainMenuManager.choice = 0;
-			while(MainMenuManager.choice != 6){
+			while(MainMenuManager.choice != 4){
 				printAdminMenu(scanner);	// Opens Admin menu
 			}
 		}
