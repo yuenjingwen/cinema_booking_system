@@ -342,6 +342,7 @@ public static void customerMain(Scanner scanner){
 								+ "\nOverall Sales: " + tempSalesList.get(index-1).getTicketSales()
 								+ "\n==================================================================\n\n");
 		}
+	}
 		
 		
 		
