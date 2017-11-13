@@ -201,7 +201,7 @@ public class MovieDatabase{
 		}
 	}	
 	
-	public static void printfullMovieList() {
+	public static void printFullMovieList() {
 		System.out.print("\n=======================================================\n");
 		System.out.print("                     Movies Listed                     ");
 		System.out.print("\n=======================================================\n");
@@ -228,7 +228,7 @@ public class MovieDatabase{
 		System.out.print("\n=======================================================\n");
 		int i = 1;
 		for(Movie m : getArrayList()){
-			System.out.println("Title:\t\t" + m.getTitle());
+			System.out.println("Title:\t\t\t" + m.getTitle());
 			System.out.println("Average Rating:\t\t" + m.getAvgRating() + " from " + m.getReviewList().size() + " reviews");
 			System.out.println("=======================================================");
 		}
@@ -277,7 +277,7 @@ public class MovieDatabase{
 	
 	public static void printReviewList(Scanner scanner) {
 		
-		MovieDatabase.printfullMovieList();	//print movie list
+		MovieDatabase.printFullMovieList();	//print movie list
 		System.out.print("Which movie review would you like to read?");
 		System.out.println();//ask which movie you want to see review for
 		int movieIndex = scanner.nextInt();
@@ -296,7 +296,7 @@ public class MovieDatabase{
 	public static void addReview(Scanner scanner) {
 	int movieIndex;
 	
-	MovieDatabase.printfullMovieList();
+	MovieDatabase.printFullMovieList();
 	System.out.println("Select Movie to review");
 	movieIndex = scanner.nextInt();
 	scanner.nextLine();
@@ -336,6 +336,19 @@ public class MovieDatabase{
 	    return output.toString();
 	}
 
+	public static void printSingleMovieDetails(Movie m) {
+		System.out.println("=======================================================");
+		System.out.println("Movie Type:		" + m.getMovieType() + "\n");
+		System.out.println("Showing Status: " + m.getShowingStatus().toString());
+		System.out.println("Title:\t\t" + m.getTitle());
+		System.out.println("Director:\t" + m.getDirector());
+		System.out.println("Cast:\t\t" + m.getCast());
+		System.out.println("-------------------------------------------------------");
+		System.out.println("Synopsis: ");
+		System.out.println(breakLinesForReviews(m.getSynopsis(), 50));
+		System.out.println("=======================================================");
+	}
 }
+
 
 

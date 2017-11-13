@@ -75,7 +75,7 @@ public class Movie implements Serializable{
 		//NA when there is one or less rating
 				else
 				{
-					System.out.println("NA - there is only one individual rating");
+					System.out.println("NA - there is only one individual rating/review to display.");
 				}
 	}
 

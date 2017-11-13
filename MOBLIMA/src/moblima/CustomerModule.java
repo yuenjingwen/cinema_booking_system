@@ -22,11 +22,12 @@ public static void customerMain(Scanner scanner){
 		System.out.print(	"=====================Movie-goer Menu=====================\n"
 							+ "1. Search/List Movie\n"
 							+ "2. View movie details- View/Write Reviews\n"
-							+ "3. Check seat availability and Book/purchase Ticket\n"
-							+ "4. See my movie history\n"
-							+ "5. List top 5 movies by sales\n"
-							+ "6. List top 5 movies by rating\n"
-							+ "7. Back\n"
+							+ "3. Check seat availability\n"
+							+ "4. Book and purchase tickets"
+							+ "5. See my movie history\n"
+							+ "6. List top 5 movies by sales\n"
+							+ "7. List top 5 movies by rating\n"
+							+ "8. Back\n"
 							+ "=======================================================\n"
 							+ "Please enter choice: \n");
 			try{
@@ -35,24 +36,27 @@ public static void customerMain(Scanner scanner){
 				
 				switch (custChoice) {
 				case 1:
-					MovieDatabase.printfullMovieList();
+					customerSearchAndListMovies(scanner);
 					break;
 				case 2:
 					customerReviewMenu(scanner);
 					break;
 				case 3:
-					customerBuyProcess(scanner);
+					customerCheckSeatAvailability(scanner);
 					break;
 				case 4:
-					customerShowHistory(scanner);
+					customerBuyProcess(scanner);
 					break;
 				case 5:
-					customerPrintTop5Sales(scanner);
+					customerShowHistory(scanner);
 					break;
 				case 6:
-					customerPrintTop5Ratings(scanner);
+					customerPrintTop5Sales(scanner);
 					break;
 				case 7:
+					customerPrintTop5Ratings(scanner);
+					break;
+				case 8 :
 					System.out.println("Logout Successful");
 					break;
 				default:
@@ -73,6 +77,57 @@ public static void customerMain(Scanner scanner){
 		
 	}
 	
+private static void customerSearchAndListMovies(Scanner scanner) {
+		int choice = 0;
+		
+		while (choice != 3)
+			try{
+				System.out.println("=========Movie Menu=========\n"
+								  +"1. View Movie List\n"
+								  +"2. Search for movie\n"
+								  +"3. Back\n"
+								  +"=========================\n"
+								  +"Enter choice:");
+				choice = scanner.nextInt();
+				scanner.nextLine();
+				
+				}catch(Exception e){
+				e.printStackTrace();
+				System.out.println("Invalid input. Please re-enter choice.");
+				scanner.nextLine();
+			}
+		
+		switch(choice) {
+		case 1:
+			MovieDatabase.printFullMovieList();
+			break;
+		case 2:
+			System.out.println("Please enter movie to search:");
+			
+			String movieToSearch = scanner.nextLine();
+			scanner.nextLine();
+			
+			for (Movie m: MovieDatabase.getArrayList()) {
+				if (m.getTitle() ==  movieToSearch) {
+					System.out.println("Movie found!");
+					MovieDatabase.printSingleMovieDetails(m);
+					break;
+				}
+			}
+			break;
+		case 3:
+			break;
+		default: 
+			System.out.println("Invalid input entered. Please reenter choice.");
+		}
+		
+	}
+
+private static void customerCheckSeatAvailability(Scanner scanner) {
+	// TODO Auto-generated method stub
+	
+}
+
 private static void customerReviewMenu(Scanner scanner) {
 		//Have to list description of movie- function yet to implement
 		while (MainMenuManager.choice != 4){
@@ -89,7 +144,7 @@ private static void customerReviewMenu(Scanner scanner) {
 			
 			}catch(Exception e){
 			e.printStackTrace();
-			System.out.println("Invalid input. Please re-enter choicee.");
+			System.out.println("Invalid input. Please re-enter choice.");
 			scanner.nextLine();
 		}
 		
@@ -353,7 +408,7 @@ public static void customerBuyProcess(Scanner scanner){
 	private static void addReview(Scanner scanner) {
 		int movieIndex;
 		
-		MovieDatabase.printfullMovieList();
+		MovieDatabase.printFullMovieList();
 		System.out.println("Select Movie to review");
 		movieIndex = scanner.nextInt();
 		scanner.nextLine();
@@ -377,7 +432,7 @@ public static void customerBuyProcess(Scanner scanner){
 	
 	private static void printAverageRating(Scanner scanner) {
 		
-		MovieDatabase.printfullMovieList();
+		MovieDatabase.printFullMovieList();
 		System.out.print("Which movie's average rating would you like to view?");	//ask which movie user wants to see avg rating of
 		int choice = scanner.nextInt();
 		
@@ -447,10 +502,15 @@ public static void customerBuyProcess(Scanner scanner){
 		
 		for (int index=1; index<=5; index++)
 		{
-			System.out.println(	"==================================================================\n"
-								+ "Number " + index + ":\nTitle: " + tempRatingsList.get(index-1).getTitle() 
-								+ "\nAverage Rating: " + tempRatingsList.get(index-1).getAvgRating()
-								+ "\n==================================================================\n\n");
+			System.out.println(	"==================================================================");
+			System.out.println("Number " + index + ":\nTitle: " + tempRatingsList.get(index-1).getTitle());
+			
+			if (tempRatingsList.get(index-1).getReviewList().size() < 2) {
+			System.out.println("Average rating: " + "NA. Movie has only 1 review/rating.");
+			} else {
+			System.out.println("Average rating: " + tempRatingsList.get(index-1).getAvgRating());
+			}
+			
 		}
 		
 		}

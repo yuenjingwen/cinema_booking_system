@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class Ticket implements Serializable {
 	
 	private static final long serialVersionUID = 84759385764544637L;
-	float PRICE_TICKET = 10;
+	static float BASE_PRICE_TICKET = 10;
 	
 	
 	private float price;
@@ -104,7 +104,7 @@ public class Ticket implements Serializable {
 					
 		}
 		
-		return PRICE_TICKET + temp;
+		return BASE_PRICE_TICKET + temp;
 	}
 	
 	public void setCineplex(String cineplexName){

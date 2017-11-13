@@ -117,7 +117,7 @@ public class AdminModule {
 	}
 
 	private static void printAdminMovieMenu(Scanner scanner){
-		MovieDatabase.printfullMovieList();
+		MovieDatabase.printFullMovieList();
 		System.out.print("\n=====================\n"
 				+ "Movie Listing Editor\n"
 				+ "=====================\n"
