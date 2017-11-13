@@ -226,6 +226,10 @@ public class AdminModule {
 				MainMenuManager.choice = 2;
 				break;
 			case 3:
+				while(MainMenuManager.choice!=4){
+					TicketDatabase.printTicketDiscountMenu(scanner);
+				}
+				MainMenuManager.choice = 3;
 				break;
 			case 4:
 				break;
