@@ -11,6 +11,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 public class MovieDatabase{
 
 	private static ArrayList<Movie> movieList;
@@ -32,6 +34,7 @@ public class MovieDatabase{
 				+ "3. Synopsis\n"
 				+ "4. Movie Type\n"
 				+ "5. Cast\n"
+				+ "6. Showing Status\n"
 				+ "Enter movie type: ");
 		try{
 			int select = scanner.nextInt();
@@ -86,6 +89,33 @@ public class MovieDatabase{
 				temp = scanner.nextLine();
 				movieList.get(index - 1).setCast(temp);
 				break;
+			case 6: 
+				System.out.println("List of showing statuses:");
+				System.out.println("1. Now Showing");
+				System.out.println("2. Coming Soon");
+				System.out.println("3. Preview");
+				System.out.println("4. End of Showing");
+				System.out.println("Select new showing status:");
+			
+				do {
+					int choice = scanner.nextInt();
+					switch (choice) {
+					case 1: 
+						movieList.get(index-1).setShowingStatus(ShowingStatus.NOW_SHOWING);
+						break;
+					case 2: 
+						movieList.get(index-1).setShowingStatus(ShowingStatus.COMING_SOON);
+						break;
+					case 3: 
+						movieList.get(index-1).setShowingStatus(ShowingStatus.PREVIEW);
+						break;
+					case 4: 
+						movieList.get(index-1).setShowingStatus(ShowingStatus.END_OF_SHOWING);
+						break;
+					default:
+						System.out.println("Invalid Input. Please re-enter choice.");
+					}
+				} while (true);
 			default:
 				System.out.println("\n===========");
 				System.out.println("Invalid Selection");
