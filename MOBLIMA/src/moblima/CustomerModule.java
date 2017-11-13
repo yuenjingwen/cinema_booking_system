@@ -25,7 +25,7 @@ public static void customerMain(Scanner scanner){
 							+ "2. View movie details- View/Write Reviews\n"
 							+ "3. Check seat availability\n"
 							+ "4. Book and purchase tickets\n"
-							+ "5. See my movie history\n"
+							+ "5. See my booking history\n"
 							+ "6. List top 5 movies by sales\n"
 							+ "7. List top 5 movies by rating\n"
 							+ "8. Back\n"
@@ -483,6 +483,12 @@ public static void customerBuyProcess(Scanner scanner){
 
 
 	private static void customerShowHistory(Scanner scanner) {
+		
+		if (TicketDatabase.getArrayList().size()== 0) {
+			System.out.println("No booking history found.");
+			return;
+		}
+		
 		for(int i=0;i <TicketDatabase.getArrayList().size()  ; i++) {
 			if(TicketDatabase.getArrayList().get(i) != null){
 				TicketDatabase.getArrayList().get(i).printTicket();		

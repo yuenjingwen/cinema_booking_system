@@ -11,9 +11,14 @@ public class MainMenuManager {
 
 	public static void main(String[] args) {
 		
+		
+		
 		Scanner scanner = new Scanner(System.in);
 		
 		fetchAllDatabases();
+		
+		
+
 		
 		choice = 0;
 		
