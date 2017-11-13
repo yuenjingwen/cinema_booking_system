@@ -78,6 +78,7 @@ public static void customerMain(Scanner scanner){
 	}
 	
 private static void customerSearchAndListMovies(Scanner scanner) {
+	
 		int choice = 0;
 		
 		while (choice != 3) {
@@ -91,8 +92,8 @@ private static void customerSearchAndListMovies(Scanner scanner) {
 				choice = scanner.nextInt();
 				scanner.nextLine();
 				}catch(Exception e){
-				System.out.println("Invalid input. Please re-enter choice.");
-				scanner.nextLine();
+					System.out.println("Invalid input. Please re-enter choice.");
+					scanner.nextLine();
 			}
 		
 			switch(choice) {
@@ -124,6 +125,9 @@ private static void customerSearchAndListMovies(Scanner scanner) {
 	}
 
 private static void customerCheckSeatAvailability(Scanner scanner) {
+	
+	CineplexDatabase.printAllShowtimes();
+	
 	System.out.println("Which showtime do you want to check seat availability for?");
 	
 	do {
@@ -134,7 +138,14 @@ private static void customerCheckSeatAvailability(Scanner scanner) {
 	for (Cineplex cp: CineplexDatabase.getArrayList()) {
 		for (Cinema c: cp.getCinemaList()){
 			for (CinemaShow cs: c.getCinemaShowList()) {
-				
+				if (choice == showtimeIndex) {
+					cs.printSeating();
+					break;
+				} else if (showtimeIndex > c.getCinemaShowList().size()) {
+					System.out.println("Could not find showtime.");
+					break;
+				}
+				showtimeIndex++;
 			}
 		}
 	}
