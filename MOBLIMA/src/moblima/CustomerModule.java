@@ -3,6 +3,7 @@ package moblima;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class CustomerModule {
@@ -314,9 +315,25 @@ public static void customerMain(Scanner scanner){
 	
 	private static void customerPrintTop5Sales(Scanner scanner)
 	{
+		ArrayList<Movie> tempSalesList = MovieDatabase.getArrayList();
+		
+		Collections.sort(tempSalesList, Movie.salesComparator());
+		
+		for (int index=1; index<=5; index++)
+		{
+			System.out.println(	"==================================================================\n"
+								+ "Number " + index + ":\nTitle: " + tempSalesList.get(index-1).getTitle() 
+								+ "\nOverall Sales: " + tempSalesList.get(index-1).getTicketSales()
+								+ "\n==================================================================\n\n");
+		}
+		
+		
+		
+		/*
+		
 		MovieDatabase.getArrayList().get(1).getTicketSales();
 		
-ArrayList<Movie> sortedSalesList = new ArrayList<Movie>();
+		ArrayList<Movie> sortedSalesList = new ArrayList<Movie>();
 		
 		
 		if (MovieDatabase.getArrayList().get(0) == null){
@@ -346,6 +363,8 @@ ArrayList<Movie> sortedSalesList = new ArrayList<Movie>();
 		else{
 			System.out.println("Default statement: Error... Returning to main menu");
 		}
+		
+		*/
 	}
 	
 	
@@ -354,6 +373,21 @@ ArrayList<Movie> sortedSalesList = new ArrayList<Movie>();
 	private static void customerPrintTop5Ratings (Scanner scanner)
 	{
 		
+		ArrayList<Movie> tempSalesList = MovieDatabase.getArrayList();
+		
+		Collections.sort(tempSalesList, Movie.ratingComparator());
+		
+		for (int index=1; index<=5; index++)
+		{
+			System.out.println(	"==================================================================\n"
+								+ "Number " + index + ":\nTitle: " + tempSalesList.get(index-1).getTitle() 
+								+ "\nAverage Rating: " + tempSalesList.get(index-1).getAvgRating()
+								+ "\n==================================================================\n\n");
+		}
+		
+		
+		
+		/*
 		
 		ArrayList<Movie> sortedRatingsList = new ArrayList<Movie>();
 		
@@ -408,6 +442,8 @@ ArrayList<Movie> sortedSalesList = new ArrayList<Movie>();
 			}
 		}
 		return list;
+		
+		*/
 	}
 
 
