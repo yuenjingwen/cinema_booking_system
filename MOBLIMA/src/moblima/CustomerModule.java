@@ -20,7 +20,7 @@ public static void customerMain(Scanner scanner){
 		
 		int custChoice =0;
 		
-		while (custChoice!=7) {
+		while (custChoice!=8) {
 		System.out.print(	"=====================Movie-goer Menu=====================\n"
 							+ "1. Search/List Movie\n"
 							+ "2. View movie details- View/Write Reviews\n"
@@ -145,6 +145,7 @@ private static void customerCheckSeatAvailability(Scanner scanner) {
 							System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 							System.out.println("Movie: " + cs.getMovie().getTitle());
 							System.out.println("- - - - - - - - - - - - - - - - - ");
+							
 							cs.printSeating();
 							
 							showtimeIndex++;

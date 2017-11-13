@@ -55,10 +55,20 @@ public class Ticket implements Serializable {
 		
 		switch(cEnum){
 		case DIGITAL:
-			temp += 5;
+			try {
+			temp += TicketDatabase.getDiscount("Digital");
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
 			break;
 		case PLATINIUM:
-			temp += 8;
+			try {
+				temp += TicketDatabase.getDiscount("Platinum");
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
 			break;
 		default:
 			System.out.println("Error in ticket pricing.");
@@ -67,13 +77,28 @@ public class Ticket implements Serializable {
 		
 		switch(mEnum.toString()){
 		case "NORMAL":
-			temp += 2;
+			try {
+				temp += TicketDatabase.getDiscount("Normal");
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
 			break;
 		case "BLOCKBUSTER":
-			temp += 3;
+			try {
+				temp += TicketDatabase.getDiscount("Blockbuster");
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
 			break;
 		case "THREE_D":
-			temp += 5;
+			try {
+				temp += TicketDatabase.getDiscount("3D");
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
 			break;
 		default:
 			System.out.println("Error in ticket pricing.");
@@ -82,10 +107,20 @@ public class Ticket implements Serializable {
 		
 		if(age < 12){
 			discount = "Child Discount";
-			temp -= 2;
+			try {
+				temp -= TicketDatabase.getDiscount("Child Discount");
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
 		}else if(age > 65){
 			discount = "Elderly Discount";
-			temp -= 4;
+			try {
+				temp -= TicketDatabase.getDiscount("Elderly Discount");
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
 		}
 		
 		switch (movieDay){

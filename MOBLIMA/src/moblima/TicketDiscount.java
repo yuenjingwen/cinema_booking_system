@@ -6,36 +6,36 @@ public class TicketDiscount implements Serializable {
 	
 	private static final long serialVersionUID = 96857686746573625L;
 	
-	private String typeDiscount;
-	private int valueDiscount;
+	private String discountName;
+	private int discountValue;
 	
 	//default constructor
 	public TicketDiscount() { 
-		typeDiscount = null;
-		valueDiscount = 0;
+		discountName = null;
+		discountValue = 0;
 	}
 	
 	//constructor
 	public TicketDiscount(String type, int value)
 	{
-		typeDiscount = type;
-		valueDiscount = value;
+		discountName = type;
+		discountValue = value;
 	}
 	
-	public String getTypeDiscount() {
-		return typeDiscount;
+	public String getDiscountName() {
+		return discountName;
 	}
 	
-	public void setTypeDiscount(String type) {
-		typeDiscount = type;
+	public void setDiscountName(String type) {
+		discountName = type;
 	}
 	
-	public int getvalueDiscount() {
-		return valueDiscount;
+	public int getDiscountValue() {
+		return discountValue;
 	}
 	
-	public void setvalueDiscount(int value) {
-		valueDiscount = value;
+	public void setDiscountValue(int value) {
+		discountValue = value;
 	}
 	
 	

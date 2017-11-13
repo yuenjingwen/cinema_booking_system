@@ -63,10 +63,11 @@ public class MainMenuManager {
 	
 	private static void fetchAllDatabases() {
 		TicketDatabase.fetchTickets();
+		TicketDatabase.fetchTicketDiscount();
 		PublicHolidaysDatabase.fetchHolidays();
 		CineplexDatabase.fetchCineplexes();
 		MovieDatabase.fetchMovies();
-		TicketDatabase.fetchTicketDiscount();
+
 	}
 	
 	

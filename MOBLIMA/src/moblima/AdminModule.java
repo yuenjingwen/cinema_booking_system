@@ -200,8 +200,8 @@ public class AdminModule {
 				+ "SYSTEM CONFIG\n"
 				+ "=====================\n"
 				+ "1. Change password\n"
-				+ "2. Public Holidays\n"
-				+ "3. Ticket Price Rate\n"
+				+ "2. Manage Public Holidays\n"
+				+ "3. Manage ticket discounts\n"
 				+ "4. Back\n"
 				+ "Please enter choice: ");
 		try{

@@ -121,7 +121,7 @@ public class TicketDatabase{
 			newValue = scanner.nextInt();
 			scanner.nextLine();
 			
-			discountList.get(index - 1).setvalueDiscount(newValue);
+			discountList.get(index - 1).setDiscountValue(newValue);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -130,6 +130,15 @@ public class TicketDatabase{
 	
 	public static ArrayList<TicketDiscount> getDiscountArrayList() {
 		return discountList;
+	}
+	
+	public static int getDiscount (String discountName) throws Exception{
+		for (TicketDiscount td: getDiscountArrayList()) {
+			if (discountName.equals(td.getDiscountName())) {
+				return td.getDiscountValue();
+			}
+		}
+		throw new Exception("No discount found.");
 	}
 	
 	public static void updateTicketDiscount(){
@@ -183,19 +192,20 @@ public class TicketDatabase{
 				+ "========================\n"
 				+ "Current List of Ticket Discounts:");
 		
-		System.out.println("=============================================");
-		System.out.println("ID\tDISCOUNT TYPE\tDISCOUNT VALUE");
-		System.out.println("=============================================");
+		System.out.println("==============================================");
+		System.out.println("ID\tDISCOUNT TYPE\t\tDISCOUNT VALUE");
+		System.out.println("==============================================");
 		
 		int i = 1;
 		for(TicketDiscount d : discountList)
 		{
-			System.out.print(i + ".\t");
-			System.out.println(d.getTypeDiscount() + "\t\t" + d.getvalueDiscount());
+			System.out.print(i + ".	");
+			System.out.printf("%-16s", d.getDiscountName());
+			System.out.print("	" + d.getDiscountValue()+ "\n");
 			i++;
 		}
 		
-		System.out.println("=============================================");
+		System.out.println("==============================================");
 		
 		System.out.print(""
 				+ "1. Add Ticket Discount\n"
