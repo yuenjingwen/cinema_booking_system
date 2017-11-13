@@ -394,63 +394,19 @@ public static void customerMain(Scanner scanner){
 			for(int i=0; i<MovieDatabase.getArrayList().size(); i++)
 				{	
 					tempSalesList.add(MovieDatabase.getArrayList().get(i));
-					//MovieDatabase.getArrayList().get(i)
-					//tempSalesList.get(i).setTitle(MovieDatabase.getArrayList().get(i).getTitle());		
-					//tempSalesList.get(i).getReviewList().add(i, MovieDatabase.getArrayList().get(i).getReviewList().get(i));
 				}
 		
 		Collections.sort(tempSalesList, Movie.salesComparator());
 		
-		for (int index=1; index<=5; index++)
-		{
-			System.out.println(	"==================================================================\n"
-								+ "Number " + index + ":\nTitle: " + tempSalesList.get(index-1).getTitle() 
-								+ "\nOverall Sales: " + tempSalesList.get(index-1).getTicketSales()
-								+ "\n==================================================================\n\n");
-		}
-	}
-		
-		
-		
-		/*
-		
-		MovieDatabase.getArrayList().get(1).getTicketSales();
-		
-		ArrayList<Movie> sortedSalesList = new ArrayList<Movie>();
-		
-		
-		if (MovieDatabase.getArrayList().get(0) == null){
-			System.out.println("Top 5 list is empty");
-			return;
-		}else if (MovieDatabase.getArrayList().size() != 0){
-			
-		 
-			for(int i=0; i<MovieDatabase.getArrayList().size()-1; i++)
+			for (int index=1; index<=5; index++)
 				{
-				sortedSalesList.add(MovieDatabase.getArrayList().get(i));
-				sortedSalesList.get(i).setTitle(MovieDatabase.getArrayList().get(i).getTitle());		
-
-			}
-			
-	
-		salesInsertionSort(sortedSalesList);
-		
-		for (int j=1; j<=5; j++)
-		{
-			System.out.println(	"==================================================================\n"
-								+ "Number " + j + ":\nTitle: " + sortedSalesList.get(j-1).getTitle() 
-								+ "\nOverall Sales: " + sortedSalesList.get(j-1).getTicketSales()
-								+ "\n==================================================================\n\n");
+					System.out.println(	"==================================================================\n"
+										+ "Number " + index + ":\nTitle: " + tempSalesList.get(index-1).getTitle() 
+										+ "\nOverall Sales: " + tempSalesList.get(index-1).getTicketSales()
+										+ "\n==================================================================\n\n");
+				}
 		}
-		}
-		else{
-			System.out.println("Default statement: Error... Returning to main menu");
-		}
-		
-		*/
 	}
-	
-	
 	
 	
 	private static void customerPrintTop5Ratings (Scanner scanner)
@@ -468,9 +424,6 @@ public static void customerMain(Scanner scanner){
 			for(int i=0; i<MovieDatabase.getArrayList().size(); i++)
 				{	
 					tempRatingsList.add(MovieDatabase.getArrayList().get(i));
-					//MovieDatabase.getArrayList().get(i)
-					//tempSalesList.get(i).setTitle(MovieDatabase.getArrayList().get(i).getTitle());		
-					//tempSalesList.get(i).getReviewList().add(i, MovieDatabase.getArrayList().get(i).getReviewList().get(i));
 				}
 		
 		Collections.sort(tempRatingsList, Movie.ratingComparator());
@@ -487,82 +440,3 @@ public static void customerMain(Scanner scanner){
 	}
 	
 }
-		
-		/*
-		
-		ArrayList<Movie> tempSalesList = new ArrayList<Movie>();
-		
-		
-		if (MovieDatabase.getArrayList().get(0) == null){
-			System.out.println("Top 5 list is empty");
-			return;
-		}else if (MovieDatabase.getArrayList().size() != 0){
-			
-		 
-			for(int i=0; i<MovieDatabase.getArrayList().size()-1; i++)
-				{	
-				tempSalesList.add(MovieDatabase.getArrayList().get(i));
-				//MovieDatabase.getArrayList().get(i)
-				tempSalesList.get(i).setTitle(MovieDatabase.getArrayList().get(i).getTitle());		
-				//tempSalesList.get(i).getReviewList().add(i, MovieDatabase.getArrayList().get(i).getReviewList().get(i));
-			}
-			
-	
-		ratingsInsertionSort(tempSalesList);
-		
-		for (int j=1; j<=5; j++)
-		{
-			System.out.println("==================================================================\n"
-								+ "Number " + j + ":\nTitle: " + tempSalesList.get(j-1).getTitle() 
-								+ "\nOverall reviewers' rating: " + tempSalesList.get(j-1).getAvgRating()
-								+ "\n==================================================================\n\n");
-		}
-		}
-		else{
-			System.out.println("Default statement: Error... Returning to main menu");
-		}
-		
-	}
-	
-	private static ArrayList<Movie> ratingsInsertionSort(ArrayList<Movie> list)
-	{
-		for(int i = 1; i < list.size(); i++)
-		{
-			for(int j = i; j>0; j--)
-			{						// Swaps if current array[j] < array[j-1] then decreases j by 1
-				if(list.get(j).getAvgRating() > list.get(j-1).getAvgRating())  
-				{					// Swap sequence
-					Movie temp = list.get(j-1);
-					list.add(j-1, list.get(j));
-					list.add(j, temp);
-				}
-				else
-				{
-					break;
-				}
-			}
-		}
-		return list;
-		
-		*/
-	
-	/*private static ArrayList<Movie> salesInsertionSort(ArrayList<Movie> list)
-	{
-		for(int i = 1; i < list.size(); i++)
-		{
-			for(int j = i; j>0; j--)
-			{						// Swaps if current array[j] < array[j-1] then decreases j by 1
-				if(list.get(j).getTicketSales() > list.get(j-1).getTicketSales())  
-				{					// Swap sequence
-					Movie temp = list.get(j-1);
-					list.add(j-1, list.get(j));
-					list.add(j, temp);
-				}
-				else
-				{
-					break;
-				}
-			}
-		}
-		return list;
-	}*/
