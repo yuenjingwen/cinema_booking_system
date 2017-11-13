@@ -18,21 +18,6 @@ public class TicketDatabase{
 	
 	public static void add(Ticket temp) { 
 		ticketList.add(temp);	
-
-		/*try{														//IS DIS NECESSARY i dun think so
-			FileOutputStream fo = new FileOutputStream(ticketFile);
-			ObjectOutputStream output = new ObjectOutputStream(fo);
-			for(Ticket ticket: TDB){
-				output.writeObject(ticket);
-			}
-			fo.close();
-			output.close();
-		} catch (FileNotFoundException e){
-			e.printStackTrace();
-		} catch (IOException e){
-			e.printStackTrace();
-		}
-		*/
 		updateTickets();
 	} 
 		
