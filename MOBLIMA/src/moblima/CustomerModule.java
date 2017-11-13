@@ -245,7 +245,7 @@ public static void customerMain(Scanner scanner){
 		
 		
 		
-		CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).setSeat(column, row);
+		CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).setSeat(row-1, column-1);
 		
 		String tempColumn = Integer.toString(column);
 		seat = rowString+ tempColumn  ;
