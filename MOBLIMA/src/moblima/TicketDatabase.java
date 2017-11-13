@@ -12,12 +12,12 @@ import java.util.ArrayList;
 
 public class TicketDatabase{
 
-	private static ArrayList<Ticket> TDB;
+	private static ArrayList<Ticket> ticketList;
 	private static File ticketFile = new File("Ticket.dat"); 
 
 	
 	public static void add(Ticket temp) { 
-		TDB.add(temp);	
+		ticketList.add(temp);	
 
 		/*try{														//IS DIS NECESSARY i dun think so
 			FileOutputStream fo = new FileOutputStream(ticketFile);
@@ -33,20 +33,20 @@ public class TicketDatabase{
 			e.printStackTrace();
 		}
 		*/
-		updateTickets(ticketFile);
+		updateTickets();
 	} 
 		
 		
 
 	public static ArrayList<Ticket> getArrayList() {
-		return TDB;
+		return ticketList;
 	}
 	
-	public static void updateTickets(File file){
+	public static void updateTickets(){
 		try{
-			FileOutputStream fo = new FileOutputStream(file);
+			FileOutputStream fo = new FileOutputStream(ticketFile);
 			ObjectOutputStream output = new ObjectOutputStream(fo);
-			for(Ticket t: TDB){
+			for(Ticket t: ticketList){
 				output.writeObject(t);
 			}
 			fo.close();
@@ -59,7 +59,7 @@ public class TicketDatabase{
 	}	
 	
 	public static void fetchTickets(){
-		TDB = new ArrayList<Ticket>();
+		ticketList = new ArrayList<Ticket>();
 		
 		try{
 			FileInputStream fi = new FileInputStream(ticketFile);
@@ -68,7 +68,7 @@ public class TicketDatabase{
 			try{
 				while(true){
 					Ticket t = (Ticket)input.readObject();
-					TDB.add(t);
+					ticketList.add(t);
 				}
 			} catch (EOFException e){
 			} catch (ClassNotFoundException e) {
