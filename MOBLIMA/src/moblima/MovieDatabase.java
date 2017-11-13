@@ -273,7 +273,7 @@ public class MovieDatabase{
 		int movieIndex = scanner.nextInt();
 		
 		//print all reviews for that movie 
-				System.out.println("=== Reviews For " + MovieDatabase.getArrayList().get(movieIndex -1).getTitle() + " ====");
+				System.out.println("=== Reviews For " + MovieDatabase.getArrayList().get(movieIndex -1).getTitle() + " ====\n");
 		for (MovieReview r : movieList.get(movieIndex-1).getReviewList()) {	//print into format
 				System.out.println("Review: " + r.getReview());
 				System.out.println("Rating: " + r.getRating());

@@ -128,7 +128,7 @@ public static void customerMain(Scanner scanner){
 		System.out.println("======TICKET PURCHASE COUNTER======");
 		System.out.println("===================================");
 		System.out.println("===================================");
-		
+
 		//Get Name
 		try{
 			System.out.println("Enter Name:");
@@ -315,7 +315,23 @@ public static void customerMain(Scanner scanner){
 	
 	private static void customerPrintTop5Sales(Scanner scanner)
 	{
-		ArrayList<Movie> tempSalesList = MovieDatabase.getArrayList();
+		ArrayList<Movie> tempSalesList = new ArrayList<Movie>();
+		
+		//create replica of MovieList
+		if (MovieDatabase.getArrayList().get(0) == null)
+		{
+			System.out.println("Top 5 list is empty");
+			return;
+		}
+		else if (MovieDatabase.getArrayList().size() != 0)
+		{
+			for(int i=0; i<MovieDatabase.getArrayList().size(); i++)
+				{	
+					tempSalesList.add(MovieDatabase.getArrayList().get(i));
+					//MovieDatabase.getArrayList().get(i)
+					//tempSalesList.get(i).setTitle(MovieDatabase.getArrayList().get(i).getTitle());		
+					//tempSalesList.get(i).getReviewList().add(i, MovieDatabase.getArrayList().get(i).getReviewList().get(i));
+				}
 		
 		Collections.sort(tempSalesList, Movie.salesComparator());
 		
@@ -372,24 +388,42 @@ public static void customerMain(Scanner scanner){
 	
 	private static void customerPrintTop5Ratings (Scanner scanner)
 	{
+		ArrayList<Movie> tempRatingsList = new ArrayList<Movie>();
+				
+		//create replica of MovieList
+		if (MovieDatabase.getArrayList().get(0) == null)
+		{
+			System.out.println("Top 5 list is empty");
+			return;
+		}
+		else if (MovieDatabase.getArrayList().size() != 0)
+		{
+			for(int i=0; i<MovieDatabase.getArrayList().size(); i++)
+				{	
+					tempRatingsList.add(MovieDatabase.getArrayList().get(i));
+					//MovieDatabase.getArrayList().get(i)
+					//tempSalesList.get(i).setTitle(MovieDatabase.getArrayList().get(i).getTitle());		
+					//tempSalesList.get(i).getReviewList().add(i, MovieDatabase.getArrayList().get(i).getReviewList().get(i));
+				}
 		
-		ArrayList<Movie> tempSalesList = MovieDatabase.getArrayList();
-		
-		Collections.sort(tempSalesList, Movie.ratingComparator());
+		Collections.sort(tempRatingsList, Movie.ratingComparator());
 		
 		for (int index=1; index<=5; index++)
 		{
 			System.out.println(	"==================================================================\n"
-								+ "Number " + index + ":\nTitle: " + tempSalesList.get(index-1).getTitle() 
-								+ "\nAverage Rating: " + tempSalesList.get(index-1).getAvgRating()
+								+ "Number " + index + ":\nTitle: " + tempRatingsList.get(index-1).getTitle() 
+								+ "\nAverage Rating: " + tempRatingsList.get(index-1).getAvgRating()
 								+ "\n==================================================================\n\n");
 		}
 		
-		
+		}
+	}
+	
+}
 		
 		/*
 		
-		ArrayList<Movie> sortedRatingsList = new ArrayList<Movie>();
+		ArrayList<Movie> tempSalesList = new ArrayList<Movie>();
 		
 		
 		if (MovieDatabase.getArrayList().get(0) == null){
@@ -400,20 +434,20 @@ public static void customerMain(Scanner scanner){
 		 
 			for(int i=0; i<MovieDatabase.getArrayList().size()-1; i++)
 				{	
-				sortedRatingsList.add(MovieDatabase.getArrayList().get(i));
+				tempSalesList.add(MovieDatabase.getArrayList().get(i));
 				//MovieDatabase.getArrayList().get(i)
-				sortedRatingsList.get(i).setTitle(MovieDatabase.getArrayList().get(i).getTitle());		
-				//sortedRatingsList.get(i).getReviewList().add(i, MovieDatabase.getArrayList().get(i).getReviewList().get(i));
+				tempSalesList.get(i).setTitle(MovieDatabase.getArrayList().get(i).getTitle());		
+				//tempSalesList.get(i).getReviewList().add(i, MovieDatabase.getArrayList().get(i).getReviewList().get(i));
 			}
 			
 	
-		ratingsInsertionSort(sortedRatingsList);
+		ratingsInsertionSort(tempSalesList);
 		
 		for (int j=1; j<=5; j++)
 		{
 			System.out.println("==================================================================\n"
-								+ "Number " + j + ":\nTitle: " + sortedRatingsList.get(j-1).getTitle() 
-								+ "\nOverall reviewers' rating: " + sortedRatingsList.get(j-1).getAvgRating()
+								+ "Number " + j + ":\nTitle: " + tempSalesList.get(j-1).getTitle() 
+								+ "\nOverall reviewers' rating: " + tempSalesList.get(j-1).getAvgRating()
 								+ "\n==================================================================\n\n");
 		}
 		}
@@ -444,11 +478,8 @@ public static void customerMain(Scanner scanner){
 		return list;
 		
 		*/
-	}
-
-
 	
-	private static ArrayList<Movie> salesInsertionSort(ArrayList<Movie> list)
+	/*private static ArrayList<Movie> salesInsertionSort(ArrayList<Movie> list)
 	{
 		for(int i = 1; i < list.size(); i++)
 		{
@@ -467,12 +498,4 @@ public static void customerMain(Scanner scanner){
 			}
 		}
 		return list;
-	}
-
-	
-	
-	
-	
-	
-	
-}
+	}*/
