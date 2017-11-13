@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class PublicHolidaysDatabase{
 	
-	public static ArrayList<PublicHoliday> phList = new ArrayList<PublicHoliday>();
+	private static ArrayList<PublicHoliday> phList = new ArrayList<PublicHoliday>();
 	private static File file = new File ("PublicHolidays.dat");
 	
 
@@ -135,5 +135,9 @@ public class PublicHolidaysDatabase{
 		} catch (FileNotFoundException e) {
 		} catch (IOException e) {
 		}
+	}
+	
+	public static ArrayList<PublicHoliday> getArrayList(){
+		return phList;
 	}
 }

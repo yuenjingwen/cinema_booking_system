@@ -1,5 +1,7 @@
 package moblima;
 
+import java.time.LocalDateTime;
+import java.time.MonthDay;
 import java.time.format.DateTimeFormatter;
 import java.io.Serializable;
 
@@ -17,7 +19,7 @@ public class Ticket implements Serializable {
 	private String time; 
 	private String seat;
 	private CinemaEnum classOfCinema;
-	private String movieDay;
+	private LocalDateTime movieDay;
 	private MovieType mType;
 	
 	
@@ -32,7 +34,7 @@ public class Ticket implements Serializable {
 		this.time 			= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime().format(formatter);
 		this.seat 			= seat;
 		this.classOfCinema	= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getClassOfCinema();
-	    this.movieDay 		= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime().getDayOfWeek().name();
+	    this.movieDay 		= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime();
 	    this.mType			= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();		
 		this.price 			= calculateTicketPrice(classOfCinema, mType, age, movieDay);
 		this.discount 		= getDiscount();
@@ -49,7 +51,7 @@ public class Ticket implements Serializable {
 
 
 
-	public float calculateTicketPrice(CinemaEnum cEnum, MovieType mEnum, int age, String movieDay){
+	public float calculateTicketPrice(CinemaEnum cEnum, MovieType mEnum, int age, LocalDateTime movieDay){
 		
 		float temp = 0;
 		
@@ -123,7 +125,7 @@ public class Ticket implements Serializable {
 			}
 		}
 		
-		switch (movieDay){
+		switch (movieDay.getDayOfWeek().toString()){
 		case "MONDAY":
 		case "TUESDAY":
 		case "WEDNESDAY":
@@ -137,6 +139,22 @@ public class Ticket implements Serializable {
 			System.out.println("Error in ticket pricing.");
 			break;
 					
+		}
+		
+		
+		//checks if the movie date lands on a public holiday and adds the appropriate charges accordingly
+		MonthDay tempMD = MonthDay.from(movieDay);
+		
+		for (PublicHoliday ph: PublicHolidaysDatabase.getArrayList()) {
+			if (tempMD == ph.getDate()) {
+				try {
+					temp += TicketDatabase.getDiscount("Public Holiday");
+					break;
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println(e.getMessage());
+				}
+			}
 		}
 		
 		return BASE_PRICE_TICKET + temp;
