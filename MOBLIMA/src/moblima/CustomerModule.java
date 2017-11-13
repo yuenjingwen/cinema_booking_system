@@ -22,8 +22,8 @@ public static void customerMain(Scanner scanner){
 							+ "2. View movie details- View/Write Reviews\n"
 							+ "3. Check seat availability and Book/purchase Ticket\n"
 							+ "4. See my movie history\n"
-							+ "5. List top 5 movies by rating\n"
-							+ "6. List top 5 movies by sales\n"
+							+ "5. List top 5 movies by sales\n"
+							+ "6. List top 5 movies by rating\n"
 							+ "7. Back\n"
 							+ "=======================================================\n"
 							+ "Please enter choice: \n");
@@ -319,7 +319,7 @@ public static void customerMain(Scanner scanner){
 	
 	private static void customerPrintTop5Ratings (Scanner scanner)
 	{	
-		
+		ArrayList<Movie> sortedRatingsList = new ArrayList<Movie>();
 		
 		
 		if (MovieDatabase.getArrayList().get(0) == null){
@@ -327,24 +327,29 @@ public static void customerMain(Scanner scanner){
 			return;
 		}else if (MovieDatabase.getArrayList().size() != 0){
 			
-			ArrayList<Movie> sortedRatingsList = new ArrayList<Movie>();
+			
 			System.out.println("Size"+MovieDatabase.getArrayList().size() );
 		 
 			for(int i=0; i<MovieDatabase.getArrayList().size()-1; i++)
-				{	
+				{	System.out.println(MovieDatabase.getArrayList().get(i).getTitle());
 				sortedRatingsList.add(MovieDatabase.getArrayList().get(i));
+				//MovieDatabase.getArrayList().get(i)
 				sortedRatingsList.get(i).setTitle(MovieDatabase.getArrayList().get(i).getTitle());		
-				sortedRatingsList.get(i).getReviewList().add(i, MovieDatabase.getArrayList().get(i).getReviewList().get(i));
+				//sortedRatingsList.get(i).getReviewList().add(i, MovieDatabase.getArrayList().get(i).getReviewList().get(i));
 				System.out.println("check");
 			}
+			
 	
 		ratingsInsertionSort(sortedRatingsList);
 		
-		for (int i=1; i<=5; i++)
+		for (int j=1; j<=5; j++)
 		{
-			System.out.println("Number " + i + ":\nTitle: " + sortedRatingsList.get(i-1).getTitle() 
-								+ "\nOverall reviewers' rating: " + sortedRatingsList.get(i-1).getAvgRating());
+			System.out.println("Number " + j + ":\nTitle: " + sortedRatingsList.get(j-1).getTitle() 
+								+ "\nOverall reviewers' rating: " + sortedRatingsList.get(j-1).getAvgRating());
 		}
+		}
+		else{
+			System.out.println("Default statement: Error... Returning to main menu");
 		}
 		
 	}
