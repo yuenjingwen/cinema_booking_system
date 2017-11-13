@@ -18,8 +18,6 @@ public class PublicHolidaysDatabase{
 	private static File file = new File ("PublicHolidays.dat");
 	
 
-	
-
 	public static void printPublicHolidayMenu(Scanner scanner){
 		System.out.println("\n=====================\n"
 				+ "Public Holidays Settings\n"
@@ -84,6 +82,7 @@ public class PublicHolidaysDatabase{
 		description = scanner.nextLine();
 		MonthDay holiday = MonthDay.of(month, dayOfMonth);
 		phList.add(new PublicHoliday(description, holiday));
+		updateHolidays();
 	}
 
 	public static void removePH(Scanner scanner){
