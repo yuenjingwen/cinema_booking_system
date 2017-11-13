@@ -81,8 +81,12 @@ public class Movie implements Serializable{
 
 	
 	public void printReviews(){
+			System.out.println("- - - - - - - - - - - - - - - - - ");
 		for(MovieReview o : reviews){
-			System.out.println(o.getReview() + "\n" + o.getRating());
+			
+			System.out.println("Review:			"+ "Rating: " + o.getRating());
+			System.out.println(o.getReview());
+			System.out.println("- - - - - - - - - - - - - - - - - ");
 		}
 	}
 	

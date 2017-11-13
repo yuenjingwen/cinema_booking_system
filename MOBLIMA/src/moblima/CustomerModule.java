@@ -197,7 +197,7 @@ private static void customerReviewMenu(Scanner scanner) {
 				printAverageRating(scanner);
 				break;
 			case 3: 
-				addReview(scanner);
+				MovieDatabase.addReview(scanner);
 				break;
 			}
 		}
@@ -443,123 +443,115 @@ public static void customerBuyProcess(Scanner scanner){
 			
 			
 	}
-
-	
-	private static void addReview(Scanner scanner) {
-		int movieIndex;
-		
-		MovieDatabase.printFullMovieList();
-		System.out.println("Select Movie to review");
-		movieIndex = scanner.nextInt();
-		scanner.nextLine();
-		
-		System.out.println("===================================================");
-		System.out.println("Enter review below:");
-		String tempReview = scanner.nextLine();
-		System.out.println("===================================================");
-		System.out.println("Give ratings between 1(Bad) to 5(Worth Watching!):");
-		int tempRating = scanner.nextInt();
-		scanner.nextLine();
-		MovieDatabase.getArrayList().get(movieIndex-1).addReview(tempReview, tempRating);
-		
-		MovieDatabase.updateMovies();
-	}
 	
 	//need a way to read review
-	private static void readReview(Scanner scanner) {	
-		MovieDatabase.printMovieTitles();
-	}
-	
-	private static void printAverageRating(Scanner scanner) {
+private static void readReview(Scanner scanner) {	
+	MovieDatabase.printMovieTitles();
 		
-		MovieDatabase.printFullMovieList();
-		System.out.print("Which movie's average rating would you like to view?");	//ask which movie user wants to see avg rating of
-		int choice = scanner.nextInt();
+	do {
+		try {
+		System.out.println("Which movie's reviews do you want to read?");
+		int movieIndex = scanner.nextInt();
 		
-		MovieDatabase.getArrayList().get(choice-1).printAvgRating();
+		System.out.println("===Reviews for " + MovieDatabase.getArrayList().get(movieIndex-1).getTitle()+ "=============");
+		MovieDatabase.getArrayList().get(movieIndex-1).printReviews();
 		
-		
-	}
-
-
-	private static void customerShowHistory(Scanner scanner) {
-		
-		if (TicketDatabase.getArrayList().size()== 0) {
-			System.out.println("No booking history found.");
-			return;
+		break;
+		} catch (InputMismatchException IMe) {
+			System.out.println("Invalid input. Try again");
 		}
+	} while (true);
+}
+	
+private static void printAverageRating(Scanner scanner) {
 		
-		for(int i=0;i <TicketDatabase.getArrayList().size()  ; i++) {
-			if(TicketDatabase.getArrayList().get(i) != null){
+	MovieDatabase.printFullMovieList();
+	System.out.print("Which movie's average rating would you like to view?");	//ask which movie user wants to see avg rating of
+	int choice = scanner.nextInt();
+		
+	MovieDatabase.getArrayList().get(choice-1).printAvgRating();
+		
+		
+	}
+
+private static void customerShowHistory(Scanner scanner) {
+		
+	if (TicketDatabase.getArrayList().size()== 0) {
+		System.out.println("No booking history found.");
+		return;
+	}
+		
+	for(int i=0;i <TicketDatabase.getArrayList().size()  ; i++) {
+		if(TicketDatabase.getArrayList().get(i) != null){
 				TicketDatabase.getArrayList().get(i).printTicket();		
-				}
+			}
 
-		}
 	}
+}
 	
-	private static void customerPrintTop5Sales(Scanner scanner)
+private static void customerPrintTop5Sales(Scanner scanner)
+{
+	ArrayList<Movie> tempSalesList = new ArrayList<Movie>();
+
+	//create replica of MovieList
+	if (MovieDatabase.getArrayList().get(0) == null)
 	{
-		ArrayList<Movie> tempSalesList = new ArrayList<Movie>();
-		
-		//create replica of MovieList
-		if (MovieDatabase.getArrayList().get(0) == null)
-		{
-			System.out.println("Top 5 list is empty");
-			return;
+		System.out.println("Top 5 list is empty");
+		return;
+	}
+	else if (MovieDatabase.getArrayList().size() != 0)
+	{
+		for(int i=0; i<MovieDatabase.getArrayList().size(); i++)
+		{	
+			tempSalesList.add(MovieDatabase.getArrayList().get(i));
 		}
-		else if (MovieDatabase.getArrayList().size() != 0)
-		{
-			for(int i=0; i<MovieDatabase.getArrayList().size(); i++)
-				{	
-					tempSalesList.add(MovieDatabase.getArrayList().get(i));
-				}
-		
+
 		Collections.sort(tempSalesList, Movie.salesComparator());
-		
-			for (int index=1; index<=5; index++)
-				{
-					System.out.println(	"==================================================================\n"
-										+ "Number " + index + ":\nTitle: " + tempSalesList.get(index-1).getTitle() 
-										+ "\nOverall Sales: " + tempSalesList.get(index-1).getTicketSales()
-										+ "\n==================================================================\n\n");
-				}
+
+		for (int index=1; index<=5; index++)
+		{
+			System.out.println(	"==================================================================\n"
+					+ "Number " + index + ":\nTitle: " + tempSalesList.get(index-1).getTitle() 
+					+ "\nOverall Sales: " + tempSalesList.get(index-1).getTicketSales()
+					+ "\n==================================================================\n\n");
 		}
 	}
+}
 	
 	
-	private static void customerPrintTop5Ratings (Scanner scanner)
+private static void customerPrintTop5Ratings (Scanner scanner)
+{
+	ArrayList<Movie> tempRatingsList = new ArrayList<Movie>();
+
+	//create replica of MovieList
+	if (MovieDatabase.getArrayList().get(0) == null)
 	{
-		ArrayList<Movie> tempRatingsList = new ArrayList<Movie>();
-				
-		//create replica of MovieList
-		if (MovieDatabase.getArrayList().get(0) == null)
-		{
-			System.out.println("Top 5 list is empty");
-			return;
+		System.out.println("Top 5 list is empty");
+		return;
+	}
+	else if (MovieDatabase.getArrayList().size() != 0)
+	{
+		for(int i=0; i<MovieDatabase.getArrayList().size(); i++)
+		{	
+			tempRatingsList.add(MovieDatabase.getArrayList().get(i));
 		}
-		else if (MovieDatabase.getArrayList().size() != 0)
-		{
-			for(int i=0; i<MovieDatabase.getArrayList().size(); i++)
-				{	
-					tempRatingsList.add(MovieDatabase.getArrayList().get(i));
-				}
-		
+
 		Collections.sort(tempRatingsList, Movie.ratingComparator());
-		
+
 		for (int index=1; index<=5; index++)
 		{
 			System.out.println(	"==================================================================");
 			System.out.println("Number " + index + ":\nTitle: " + tempRatingsList.get(index-1).getTitle());
-			
+
 			if (tempRatingsList.get(index-1).getReviewList().size() < 2) {
-			System.out.println("Average rating: " + "NA. Movie has only 1 review/rating.");
+				System.out.println("Average rating: " + "NA. Movie has only 1 review/rating.");
 			} else {
-			System.out.println("Average rating: " + tempRatingsList.get(index-1).getAvgRating());
+				System.out.println("Average rating: " + tempRatingsList.get(index-1).getAvgRating());
 			}
-			
+
 		}
-		
-		}
+
 	}
-	
+}
+
 }

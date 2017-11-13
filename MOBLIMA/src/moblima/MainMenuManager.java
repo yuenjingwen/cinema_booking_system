@@ -15,11 +15,8 @@ public class MainMenuManager {
 		
 		Scanner scanner = new Scanner(System.in);
 		
-		fetchAllDatabases();
-		
-		
-
-		
+		fetchAllDatabasesFromFile();
+				
 		choice = 0;
 		
 			while(choice != 3){
@@ -66,7 +63,7 @@ public class MainMenuManager {
 		}
 	}	
 	
-	private static void fetchAllDatabases() {
+	private static void fetchAllDatabasesFromFile() {
 		TicketDatabase.fetchTickets();
 		TicketDatabase.fetchTicketDiscount();
 		PublicHolidaysDatabase.fetchHolidays();
