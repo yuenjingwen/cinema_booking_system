@@ -80,7 +80,7 @@ public static void customerMain(Scanner scanner){
 private static void customerSearchAndListMovies(Scanner scanner) {
 		int choice = 0;
 		
-		while (choice != 3)
+		while (choice != 3) {
 			try{
 				System.out.println("=========Movie Menu=========\n"
 								  +"1. View Movie List\n"
@@ -90,41 +90,62 @@ private static void customerSearchAndListMovies(Scanner scanner) {
 								  +"Enter choice:");
 				choice = scanner.nextInt();
 				scanner.nextLine();
-				
 				}catch(Exception e){
-				e.printStackTrace();
 				System.out.println("Invalid input. Please re-enter choice.");
 				scanner.nextLine();
 			}
 		
-		switch(choice) {
-		case 1:
-			MovieDatabase.printFullMovieList();
-			break;
-		case 2:
-			System.out.println("Please enter movie to search:");
-			
-			String movieToSearch = scanner.nextLine();
-			scanner.nextLine();
-			
-			for (Movie m: MovieDatabase.getArrayList()) {
-				if (m.getTitle() ==  movieToSearch) {
-					System.out.println("Movie found!");
-					MovieDatabase.printSingleMovieDetails(m);
-					break;
+			switch(choice) {
+			case 1:
+				MovieDatabase.printFullMovieList();
+				break;
+			case 2:
+				System.out.println("Please enter movie to search:");
+				String tempMovie = scanner.nextLine();
+				
+				for (Movie m: MovieDatabase.getArrayList()) {				
+					
+					if (tempMovie.equals(m.getTitle())) {			
+						System.out.println("Movie found!");
+						MovieDatabase.printSingleMovieDetails(m);
+						break;
+					}
 				}
+				
+				System.out.println("Movie not found.");
+				break;
+			case 3:
+				break;
+			default: 
+				System.out.println("Invalid input entered. Please reenter choice.");
 			}
-			break;
-		case 3:
-			break;
-		default: 
-			System.out.println("Invalid input entered. Please reenter choice.");
 		}
 		
 	}
 
 private static void customerCheckSeatAvailability(Scanner scanner) {
-	// TODO Auto-generated method stub
+	System.out.println("Which showtime do you want to check seat availability for?");
+	
+	do {
+	try {
+	int choice = scanner.nextInt();
+	scanner.nextLine();
+	int showtimeIndex = 1;
+	for (Cineplex cp: CineplexDatabase.getArrayList()) {
+		for (Cinema c: cp.getCinemaList()){
+			for (CinemaShow cs: c.getCinemaShowList()) {
+				
+			}
+		}
+	}
+	
+	
+	} catch (InputMismatchException IMe) {
+		System.out.println("Invalid choice entered. Please re-enter choice.");
+	} catch (ArrayIndexOutOfBoundsException AOe) {
+		System.out.println("No such showtime found, please re-enter choice.");
+	}
+	} while(true);
 	
 }
 
