@@ -128,28 +128,32 @@ public static void customerMain(Scanner scanner){
 		System.out.println("======TICKET PURCHASE COUNTER======");
 		System.out.println("===================================");
 		System.out.println("===================================");
-
+		
 		//Get Name
-		try{
-			System.out.println("Enter Name:");
-			name = scanner.nextLine();
-			
-			}catch(Exception e){
-			e.printStackTrace();
-			System.out.println("Invalid input. Please re-enter choicee.");
-			scanner.nextLine();
-		}
+		
+
+			try{
+				System.out.println("Enter Name:");
+				name = scanner.nextLine();
+				}catch(Exception e){
+				e.printStackTrace();
+				System.out.println("Invalid input. Please re-enter choice.");
+				scanner.nextLine();
+			}
+		
+		
 		//Get mobile number
-		try{
-			System.out.println("Enter Mobile Number:");
-			mobileNumber = scanner.nextInt();
-			scanner.nextLine();
-			
-			}catch(Exception e){
-			e.printStackTrace();
-			System.out.println("Invalid input. Please re-enter choicee.");
-			scanner.nextLine();
-		}
+		do {
+			try{
+				System.out.println("Enter Mobile Number:");
+				mobileNumber = scanner.nextInt();
+				scanner.nextLine();
+				break;
+				}catch(Exception e){
+				System.out.println("Invalid input. Please re-enter choice.");
+				scanner.nextLine();
+			}
+		} while (true);
 		//Get email address
 		try{
 			System.out.println("Enter email address:");
@@ -157,26 +161,38 @@ public static void customerMain(Scanner scanner){
 			
 			}catch(Exception e){
 			e.printStackTrace();
-			System.out.println("Invalid input. Please re-enter choicee.");
-			scanner.nextLine();
-		}
-		//Get age
-		try{
-			System.out.println("Enter age:");
-			age = scanner.nextInt();
-			scanner.nextLine();
-			}catch(Exception e){
-			e.printStackTrace();
 			System.out.println("Invalid input. Please re-enter choice.");
 			scanner.nextLine();
 		}
+		//Get age
+		
+		do {
+			try{
+				System.out.println("Enter age:");
+				age = scanner.nextInt();
+				scanner.nextLine();
+				break;
+				}catch(Exception e){
+				e.printStackTrace();
+				System.out.println("Invalid input. Please re-enter choice.");
+				scanner.nextLine();
+			}
+		} while (true);
 		
 		//printCineplex choices********
-		CineplexDatabase.printAllCineplexes();
-		System.out.print("Select cineplex: ");
 		
+		do {
+			try {
+		CineplexDatabase.printAllCineplexes();
+		System.out.print("Select cineplex: ");	
 		cineplexIndex = scanner.nextInt();
 		scanner.nextLine();
+		break;
+			} catch (Exception e) {
+				System.out.println("Invalid input. Please re-enter choice.");
+			}
+		
+		} while(true);
 		
 		i = 1;
 		System.out.println("\n===============================");
@@ -185,9 +201,19 @@ public static void customerMain(Scanner scanner){
 			System.out.println("===============================");
 			i++;
 		}
-		System.out.print("Select cinema: ");
-		cinemaIndex = scanner.nextInt();
-		scanner.nextLine();
+		
+		do {
+			try {		
+				System.out.print("Select cinema: ");
+				cinemaIndex = scanner.nextInt();
+				scanner.nextLine();
+				break;
+			} catch (Exception e) {
+				System.out.println("Invalid input. Please re-enter choice.");
+			}
+		} while(true);
+		
+		
 		
 		i = 1;
 		System.out.println("\n========Movie=================== Movie Screening Time=======");
@@ -196,9 +222,18 @@ public static void customerMain(Scanner scanner){
 			System.out.println("======================================================");
 			i++;
 		}
+		
+		
+		do {
+			try {	
 		System.out.print("Select showtime: ");
 		showtimeIndex = scanner.nextInt();
 		scanner.nextLine();
+		break;
+			} catch (Exception e) {
+				System.out.println("Invalid input. Please re-enter choice.");
+			}
+		} while(true);
 
 		//implement seat
 		CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).printSeating();
@@ -257,13 +292,41 @@ public static void customerMain(Scanner scanner){
 			//need Edit this
 			Ticket ticket= new Ticket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex);
 			System.out.println("Price:" + ticket.getTicketPrice());
-			System.out.println("Making payment...");
-		
-			System.out.println("You have paid for your ticket!");
-			ticket.printTicket();
-			TicketDatabase.add(ticket);
 			
-	
+			
+			String keepSeatingPlan = "O";
+			
+			System.out.println("Would you like to pay?: Y/N");
+			
+			switch(keepSeatingPlan) {
+			case "y":
+			case "Y":
+				System.out.println("Making payment...");		
+
+				ticket.printTicket();
+				TicketDatabase.add(ticket);
+				
+				Movie tempM = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie();
+				
+				int movieIndex = MovieDatabase.getArrayList().indexOf(tempM);
+				
+				CinemaEnum cEnum = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getClassOfCinema();			
+				MovieType mEnum = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();
+				String movieDay = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime().getDayOfWeek().name();
+				
+				//adds ticket sale to the movie's total sales
+				MovieDatabase.getArrayList().get(movieIndex).addTicketSale(ticket.calculateTicketPrice(cEnum, mEnum, age, movieDay));
+				
+				System.out.println("You have paid for your ticket!");
+				break;
+			case "n":
+			case "N": 
+				System.out.println("Please select option:");
+				break;
+			default:
+			}
+			
+			
 	}
 
 	
