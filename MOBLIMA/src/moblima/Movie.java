@@ -149,8 +149,14 @@ public class Movie implements Serializable{
 				if (o1.getAvgRating() == o2.getAvgRating()) {
 					return o1.getTitle().compareTo(o2.getTitle());
 				}else {
-					int comp = (int) (o1.getAvgRating()-o2.getAvgRating());
-					return comp;
+					float comp = (o2.getAvgRating()-o1.getAvgRating());
+					if (comp > 0) {
+						return 1;
+					} else if (comp < 0) {
+						return -1;
+					} else {
+						return 0;
+					}
 				}
 			}
 		};
