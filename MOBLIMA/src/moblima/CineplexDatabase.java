@@ -247,7 +247,7 @@ public class CineplexDatabase{
 					editShow.setShowtime(LocalDateTime.of(2017, month, day, hour, minute));
 					break;
 				case 2:
-					MovieDatabase.printMovieList();
+					MovieDatabase.printfullMovieList();
 					System.out.print("Select movie to change to: ");
 					int movieIndex = scanner.nextInt();
 					scanner.nextLine();

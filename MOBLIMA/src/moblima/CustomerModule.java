@@ -35,7 +35,7 @@ public static void customerMain(Scanner scanner){
 				
 				switch (custChoice) {
 				case 1:
-					MovieDatabase.printMovieList();
+					MovieDatabase.printfullMovieList();
 					break;
 				case 2:
 					customerReviewMenu(scanner);
@@ -73,7 +73,7 @@ public static void customerMain(Scanner scanner){
 		
 	}
 	
-	private static void customerReviewMenu(Scanner scanner) {
+private static void customerReviewMenu(Scanner scanner) {
 		//Have to list description of movie- function yet to implement
 		while (MainMenuManager.choice != 4){
 		try{
@@ -353,7 +353,7 @@ public static void customerBuyProcess(Scanner scanner){
 	private static void addReview(Scanner scanner) {
 		int movieIndex;
 		
-		MovieDatabase.printMovieList();
+		MovieDatabase.printfullMovieList();
 		System.out.println("Select Movie to review");
 		movieIndex = scanner.nextInt();
 		scanner.nextLine();
@@ -372,12 +372,12 @@ public static void customerBuyProcess(Scanner scanner){
 	
 	//need a way to read review
 	private static void readReview(Scanner scanner) {	
-		MovieDatabase.printReviewList(scanner);
+		MovieDatabase.printMovieTitles();
 	}
 	
 	private static void printAverageRating(Scanner scanner) {
 		
-		MovieDatabase.printMovieList();
+		MovieDatabase.printfullMovieList();
 		System.out.print("Which movie's average rating would you like to view?");	//ask which movie user wants to see avg rating of
 		int choice = scanner.nextInt();
 		

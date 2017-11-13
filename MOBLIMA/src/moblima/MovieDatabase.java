@@ -201,7 +201,7 @@ public class MovieDatabase{
 		}
 	}	
 	
-	public static void printMovieList() {
+	public static void printfullMovieList() {
 		System.out.print("\n=======================================================\n");
 		System.out.print("                     Movies Listed                     ");
 		System.out.print("\n=======================================================\n");
@@ -222,6 +222,17 @@ public class MovieDatabase{
 	
 	}
 
+	public static void printMovieTitles() {
+		System.out.print("\n=======================================================\n");
+		System.out.print("                     Movies Listed                     ");
+		System.out.print("\n=======================================================\n");
+		int i = 1;
+		for(Movie m : getArrayList()){
+			System.out.println("Title:\t\t" + m.getTitle());
+			System.out.println("Average Rating:\t\t" + m.getAvgRating() + " from " + m.getReviewList().size() + " reviews");
+			System.out.println("=======================================================");
+		}
+	}
 /*
 	public void removeReview(int reviewIndex) {
 		RDB.remove(reviewIndex-1);
@@ -242,7 +253,6 @@ public class MovieDatabase{
 		}
 	}
 	*/
-
 	
 /*
 	public void editReview(int reviewIndex, String reviewText, int rating) {
@@ -267,7 +277,7 @@ public class MovieDatabase{
 	
 	public static void printReviewList(Scanner scanner) {
 		
-		MovieDatabase.printMovieList();	//print movie list
+		MovieDatabase.printfullMovieList();	//print movie list
 		System.out.print("Which movie review would you like to read?");
 		System.out.println();//ask which movie you want to see review for
 		int movieIndex = scanner.nextInt();
@@ -286,7 +296,7 @@ public class MovieDatabase{
 	public static void addReview(Scanner scanner) {
 	int movieIndex;
 	
-	MovieDatabase.printMovieList();
+	MovieDatabase.printfullMovieList();
 	System.out.println("Select Movie to review");
 	movieIndex = scanner.nextInt();
 	scanner.nextLine();
