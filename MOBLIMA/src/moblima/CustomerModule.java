@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 public class CustomerModule {
 	DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
 	Scanner scanner;
@@ -23,7 +25,7 @@ public static void customerMain(Scanner scanner){
 							+ "1. Search/List Movie\n"
 							+ "2. View movie details- View/Write Reviews\n"
 							+ "3. Check seat availability\n"
-							+ "4. Book and purchase tickets"
+							+ "4. Book and purchase tickets\n"
 							+ "5. See my movie history\n"
 							+ "6. List top 5 movies by sales\n"
 							+ "7. List top 5 movies by rating\n"
@@ -70,7 +72,7 @@ public static void customerMain(Scanner scanner){
 		
 				catch(Exception e){
 				e.printStackTrace();
-				System.out.println("Invalid input. Please re-enter choicee.");
+				System.out.println("Invalid input. Please re-enter choice.");
 				scanner.nextLine();
 			}
 		}
@@ -130,32 +132,38 @@ private static void customerCheckSeatAvailability(Scanner scanner) {
 	
 	System.out.println("Which showtime do you want to check seat availability for?");
 	
+	
 	do {
-	try {
-	int choice = scanner.nextInt();
-	scanner.nextLine();
-	int showtimeIndex = 1;
-	for (Cineplex cp: CineplexDatabase.getArrayList()) {
-		for (Cinema c: cp.getCinemaList()){
-			for (CinemaShow cs: c.getCinemaShowList()) {
-				if (choice == showtimeIndex) {
-					cs.printSeating();
-					break;
-				} else if (showtimeIndex > c.getCinemaShowList().size()) {
-					System.out.println("Could not find showtime.");
-					break;
+		try {
+			int choice = scanner.nextInt();
+			System.out.println();
+			int showtimeIndex = 1;
+			for (Cineplex cp: CineplexDatabase.getArrayList()) {
+				for (Cinema c: cp.getCinemaList()){
+					for (CinemaShow cs: c.getCinemaShowList()) {
+						if (choice == showtimeIndex) {
+							System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+							System.out.println("Movie: " + cs.getMovie().getTitle());
+							System.out.println("- - - - - - - - - - - - - - - - - ");
+							cs.printSeating();
+							
+							showtimeIndex++;
+							break;
+						} 
+						showtimeIndex++;
+						
+					}
+						
 				}
-				showtimeIndex++;
 			}
-		}
-	}
-	
-	
-	} catch (InputMismatchException IMe) {
+		} catch (InputMismatchException IMe) {
 		System.out.println("Invalid choice entered. Please re-enter choice.");
-	} catch (ArrayIndexOutOfBoundsException AOe) {
+		scanner.nextLine();
+		} catch (ArrayIndexOutOfBoundsException AOe) {
 		System.out.println("No such showtime found, please re-enter choice.");
-	}
+		scanner.nextLine();
+		}
+	
 	} while(true);
 	
 }
