@@ -128,9 +128,10 @@ public class Ticket implements Serializable {
 				           "           "+cineplex+ "\n"+
 				           "           "+cinema+ "\n\n"+
 				           
-				           "                                "+movie+ "\n\n" +									
-				           "                                                        Time:"+time+ "\n" +
-				           "                                                        Seat:"+seat+ "\n" +  
+				           "                                "+movie+ "\n\n" +			
+				           "							Price:" + this.getTicketPrice() + "\n" +
+				           "							Time:"+time+ "\n" +
+				           "							Seat:"+seat+ "\n" +  
 						   "===========================================================================\n");
 	}
 }

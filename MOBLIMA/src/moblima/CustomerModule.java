@@ -255,10 +255,13 @@ public static void customerMain(Scanner scanner){
 			
 			//need Edit this
 			Ticket ticket= new Ticket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex);
+			System.out.println("Price:" + ticket.getTicketPrice());
+			System.out.println("Making payment...");
+		
 			System.out.println("You have paid for your ticket!");
 			ticket.printTicket();
 			TicketDatabase.add(ticket);
-
+			
 	
 	}
 
