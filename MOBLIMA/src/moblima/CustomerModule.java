@@ -314,8 +314,42 @@ public static void customerMain(Scanner scanner){
 	
 	private static void customerPrintTop5Sales(Scanner scanner)
 	{
+		MovieDatabase.getArrayList().get(1).getTicketSales();
 		
+ArrayList<Movie> sortedSalesList = new ArrayList<Movie>();
+		
+		
+		if (MovieDatabase.getArrayList().get(0) == null){
+			System.out.println("Top 5 list is empty");
+			return;
+		}else if (MovieDatabase.getArrayList().size() != 0){
+			
+		 
+			for(int i=0; i<MovieDatabase.getArrayList().size()-1; i++)
+				{
+				sortedSalesList.add(MovieDatabase.getArrayList().get(i));
+				sortedSalesList.get(i).setTitle(MovieDatabase.getArrayList().get(i).getTitle());		
+
+			}
+			
+	
+		salesInsertionSort(sortedSalesList);
+		
+		for (int j=1; j<=5; j++)
+		{
+			System.out.println(	"==================================================================\n"
+								+ "Number " + j + ":\nTitle: " + sortedSalesList.get(j-1).getTitle() 
+								+ "\nOverall Sales: " + sortedSalesList.get(j-1).getTicketSales()
+								+ "\n==================================================================\n\n");
+		}
+		}
+		else{
+			System.out.println("Default statement: Error... Returning to main menu");
+		}
 	}
+	
+	
+	
 	
 	private static void customerPrintTop5Ratings (Scanner scanner)
 	{	
@@ -327,16 +361,13 @@ public static void customerMain(Scanner scanner){
 			return;
 		}else if (MovieDatabase.getArrayList().size() != 0){
 			
-			
-			System.out.println("Size"+MovieDatabase.getArrayList().size() );
 		 
 			for(int i=0; i<MovieDatabase.getArrayList().size()-1; i++)
-				{	System.out.println(MovieDatabase.getArrayList().get(i).getTitle());
+				{	
 				sortedRatingsList.add(MovieDatabase.getArrayList().get(i));
 				//MovieDatabase.getArrayList().get(i)
 				sortedRatingsList.get(i).setTitle(MovieDatabase.getArrayList().get(i).getTitle());		
 				//sortedRatingsList.get(i).getReviewList().add(i, MovieDatabase.getArrayList().get(i).getReviewList().get(i));
-				System.out.println("check");
 			}
 			
 	
@@ -344,8 +375,10 @@ public static void customerMain(Scanner scanner){
 		
 		for (int j=1; j<=5; j++)
 		{
-			System.out.println("Number " + j + ":\nTitle: " + sortedRatingsList.get(j-1).getTitle() 
-								+ "\nOverall reviewers' rating: " + sortedRatingsList.get(j-1).getAvgRating());
+			System.out.println("==================================================================\n"
+								+ "Number " + j + ":\nTitle: " + sortedRatingsList.get(j-1).getTitle() 
+								+ "\nOverall reviewers' rating: " + sortedRatingsList.get(j-1).getAvgRating()
+								+ "\n==================================================================\n\n");
 		}
 		}
 		else{
@@ -377,7 +410,26 @@ public static void customerMain(Scanner scanner){
 
 
 	
-
+	private static ArrayList<Movie> salesInsertionSort(ArrayList<Movie> list)
+	{
+		for(int i = 1; i < list.size(); i++)
+		{
+			for(int j = i; j>0; j--)
+			{						// Swaps if current array[j] < array[j-1] then decreases j by 1
+				if(list.get(j).getTicketSales() > list.get(j-1).getTicketSales())  
+				{					// Swap sequence
+					Movie temp = list.get(j-1);
+					list.add(j-1, list.get(j));
+					list.add(j, temp);
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
+		return list;
+	}
 
 	
 	
