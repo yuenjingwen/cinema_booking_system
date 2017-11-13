@@ -352,7 +352,9 @@ ArrayList<Movie> sortedSalesList = new ArrayList<Movie>();
 	
 	
 	private static void customerPrintTop5Ratings (Scanner scanner)
-	{	
+	{
+		
+		
 		ArrayList<Movie> sortedRatingsList = new ArrayList<Movie>();
 		
 		

@@ -268,13 +268,16 @@ public class MovieDatabase{
 	public static void printReviewList(Scanner scanner) {
 		
 		MovieDatabase.printMovieList();	//print movie list
-		System.out.print("Which movie review would you like to read?");	//ask which movie you want to see review for
-		int choice = scanner.nextInt();
+		System.out.print("Which movie review would you like to read?");
+		System.out.println();//ask which movie you want to see review for
+		int movieIndex = scanner.nextInt();
 		
 		//print all reviews for that movie 
-		for (MovieReview r : movieList.get(choice-1).getReviewList()) {	//print into format
+				System.out.println("=== Reviews For " + MovieDatabase.getArrayList().get(movieIndex -1).getTitle() + " ====");
+		for (MovieReview r : movieList.get(movieIndex-1).getReviewList()) {	//print into format
 				System.out.println("Review: " + r.getReview());
-				System.out.println("Rating: " + r.getRating()+"\n");
+				System.out.println("Rating: " + r.getRating());
+				System.out.println("-------------------------");
 		
 		}
 	}
