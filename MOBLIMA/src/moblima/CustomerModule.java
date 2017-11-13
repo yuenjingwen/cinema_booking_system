@@ -1,13 +1,12 @@
 package moblima;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import javax.swing.plaf.synth.SynthSeparatorUI;
 
 public class CustomerModule {
 	DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
@@ -424,7 +423,7 @@ public static void customerBuyProcess(Scanner scanner){
 					
 					CinemaEnum cEnum = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getClassOfCinema();			
 					MovieType mEnum = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();
-					String movieDay = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime().getDayOfWeek().name();
+					LocalDateTime movieDay = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime();
 					
 					//adds ticket sale to the movie's total sales
 					MovieDatabase.getArrayList().get(movieIndex).addTicketSale(ticket.calculateTicketPrice(cEnum, mEnum, age, movieDay));
