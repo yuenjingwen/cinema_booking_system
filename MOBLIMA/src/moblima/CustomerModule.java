@@ -509,7 +509,7 @@ private static void customerPrintAverageRating(Scanner scanner) {
 
 private static void customerShowHistory(Scanner scanner) {
 		
-	System.out.println("Enter your mobile number to search for booking history:");
+	System.out.println("Enter your name to search for booking history:");
 	
 	
 	//take in customer's mobile number
