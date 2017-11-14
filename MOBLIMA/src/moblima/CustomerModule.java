@@ -351,7 +351,6 @@ private static void customerBuyProcess(Scanner scanner) {
 		
 		do {
 			try{
-				
 				do {
 					try {
 						System.out.println("Select row:");
@@ -456,7 +455,7 @@ private static void customerBuyProcess(Scanner scanner) {
 					
 					//adds ticket sale to the movie's total sales
 					MovieDatabase.getArrayList().get(movieIndex).addTicketSale(ticket.calculateTicketPrice(cEnum, mEnum, age, movieDay));
-					
+					//set seat to occupied
 					CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).setSeat(column-1, row-1);
 					
 					System.out.println("You have paid for your ticket!");
@@ -510,6 +509,21 @@ private static void customerPrintAverageRating(Scanner scanner) {
 
 private static void customerShowHistory(Scanner scanner) {
 		
+	
+	
+	System.out.println("Enter your mobile number to search for booking history:");
+	
+	
+	do {
+		try {
+			
+			break;
+		} catch (Exception e) {
+			
+		}
+	} while (true);
+	
+	
 	if (TicketDatabase.getArrayList().size()== 0) {
 		System.out.println("No booking history found.");
 		return;
@@ -551,7 +565,6 @@ private static void customerPrintTop5Sales(Scanner scanner)
 		}
 	}
 }
-	
 	
 private static void customerPrintTop5Ratings (Scanner scanner)
 {
