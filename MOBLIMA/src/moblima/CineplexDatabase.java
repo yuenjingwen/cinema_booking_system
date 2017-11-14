@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 public class CineplexDatabase{
 	
 	public static ArrayList<Cineplex> cineplexList;
@@ -146,10 +148,11 @@ public class CineplexDatabase{
 		
 		for(Cineplex cp : getArrayList()){
 			System.out.println("		"+cp.getName());											//Cineplex Name
+			System.out.println("Cinema Hall ");
 			System.out.println(															"-------------------------------------------------------");
 			for(Cinema c : cp.getCinemaList()){									
 				System.out.println(													  "\n-------------------------------------------------------");
-				System.out.println(c.getCinemaID() + "\t" + c.getClassOfCinema());		//Cinema Name		Cinema Type
+				System.out.println(c.getCinemaID() + "\t\t" + c.getClassOfCinema());		//Cinema Name		Cinema Type
 				System.out.println(														"-------------------------------------------------------");	
 				for(CinemaShow cs : c.getCinemaShowList()){
 					System.out.println(                                                 "                                                    [" + showtimeIndex + "]");

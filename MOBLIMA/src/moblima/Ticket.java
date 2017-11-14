@@ -48,7 +48,8 @@ public class Ticket implements Serializable {
 	    this.mobileNumber		= mobileNum;
 	    this.mType				= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();		
 		this.price 				= calculateTicketPrice(classOfCinema, mType, age, movieDay);
-		this.discount 			= getDiscount();
+		this.discount 			= getDiscount();		
+		this.TID 				= this.cinema.concat(this.movieDay.format(DateTimeFormatter.ofPattern("yyyyMMddHHmm")));
 		
 	}
 	

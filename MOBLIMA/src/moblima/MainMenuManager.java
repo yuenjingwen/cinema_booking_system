@@ -16,6 +16,10 @@ public class MainMenuManager {
 		Scanner scanner = new Scanner(System.in);
 		
 		fetchAllDatabasesFromFile();
+		
+		CineplexDatabase.updateCineplexes();
+		
+		
 				
 		choice = 0;
 		
