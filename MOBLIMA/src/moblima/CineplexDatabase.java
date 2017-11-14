@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class CineplexDatabase{
+public class CineplexDatabase implements Database{
 	
 	public static ArrayList<Cineplex> cineplexList;
 	private static File cineplexFile = new File("Cineplex.dat");
@@ -327,5 +327,48 @@ public class CineplexDatabase{
 			}
 		}
 		return temp;
+	}
+
+	
+	@Override
+	public void updateDatabase() {
+		try{
+			FileOutputStream fo = new FileOutputStream(cineplexFile);
+			ObjectOutputStream output = new ObjectOutputStream(fo);
+			for(Cineplex c: cineplexList){
+				output.writeObject(c);
+			}
+			fo.close();
+			output.close();
+		} catch (FileNotFoundException e){
+			e.printStackTrace();
+		} catch (IOException e){
+			e.printStackTrace();
+		}
+	}
+
+	
+	@Override
+	public void fetchDatabase() {
+		cineplexList = new ArrayList<Cineplex>();
+		try{
+			FileInputStream fi = new FileInputStream(cineplexFile);
+			ObjectInputStream input = new ObjectInputStream(fi);
+				
+			try{
+				while(true){
+					Cineplex c = (Cineplex)input.readObject();
+					cineplexList.add(c);
+				}
+			} catch (EOFException e){
+			} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+			}
+			
+			fi.close();
+			input.close();
+		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
+		}
 	}
 }

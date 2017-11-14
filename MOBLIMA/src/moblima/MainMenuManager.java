@@ -68,15 +68,16 @@ public class MainMenuManager {
 		TicketDatabase.fetchTicketDiscount();
 		
 		CineplexDatabase.fetchCineplexes();
-		
+		CineplexDatabase cineplexDb = new CineplexDatabase();
+		cineplexDb.fetchDatabase();
 		
 		//MovieDatabase.fetchMovies();
-		MovieDatabase movieDatabase = new MovieDatabase();
-		movieDatabase.fetchDatabase();
+		MovieDatabase movieDb = new MovieDatabase();
+		movieDb.fetchDatabase();
 
 		//PublicHolidayDatabase.fetchHolidays();
-		PublicHolidayDatabase publicholidayDB = new PublicHolidayDatabase();
-		publicholidayDB.fetchDatabase();
+		PublicHolidayDatabase publicholidayDb = new PublicHolidayDatabase();
+		publicholidayDb.fetchDatabase();
 		
 	}	
 	
