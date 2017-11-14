@@ -222,7 +222,7 @@ public class AdminModule {
 				break;
 			case 2:
 				while(MainMenuManager.choice!=3){
-					PublicHolidaysDatabase.printPublicHolidayMenu(scanner);
+					PublicHolidayDatabase.printPublicHolidayMenu(scanner);
 				}
 				MainMenuManager.choice = 2;
 				break;

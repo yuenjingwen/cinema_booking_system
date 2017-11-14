@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class PublicHolidaysDatabase{
+public class PublicHolidayDatabase implements Database{
 	
 	private static ArrayList<PublicHoliday> phList = new ArrayList<PublicHoliday>();
 	private static File file = new File ("PublicHolidays.dat");
@@ -30,7 +30,7 @@ public class PublicHolidaysDatabase{
 		System.out.println("=============================================");
 		
 		int i = 1;
-		for(PublicHoliday ph : PublicHolidaysDatabase.phList){
+		for(PublicHoliday ph : PublicHolidayDatabase.phList){
 			System.out.print(i + ".\t");
 			System.out.println(ph.getDate().format(DateTimeFormatter.ofPattern("dd-MM")) + "\t" + ph.getDescription());
 			i++;
@@ -93,7 +93,7 @@ public class PublicHolidaysDatabase{
 		try{
 			index = scanner.nextInt();
 			scanner.nextLine();
-			PublicHolidaysDatabase.phList.remove(index - 1);
+			PublicHolidayDatabase.phList.remove(index - 1);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -140,5 +140,45 @@ public class PublicHolidaysDatabase{
 	
 	public static ArrayList<PublicHoliday> getArrayList(){
 		return phList;
+	}
+
+	@Override
+	public void updateDatabase() {
+		try{
+			FileOutputStream fo = new FileOutputStream(file);
+			ObjectOutputStream output = new ObjectOutputStream(fo);
+			for(PublicHoliday ph: phList){
+				output.writeObject(ph);
+			}
+			fo.close();
+			output.close();
+		} catch (FileNotFoundException e){
+			e.printStackTrace();
+		} catch (IOException e){
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void fetchDatabase() {
+		try{
+			FileInputStream fi = new FileInputStream(file);
+			ObjectInputStream input = new ObjectInputStream(fi);
+			
+			try{
+				while(true){
+					PublicHoliday ph = (PublicHoliday)input.readObject();
+					phList.add(ph);
+				}
+			} catch (EOFException e){
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			
+			fi.close();
+			input.close();
+		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
+		}
 	}
 }
