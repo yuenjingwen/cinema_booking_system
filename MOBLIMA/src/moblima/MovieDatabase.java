@@ -73,6 +73,7 @@ public class MovieDatabase{
 						movieList.get(index-1).setMovieType(MovieType.THREE_D);
 						break;
 					default:
+						System.out.println("Invalid input. Setting movie type to Normal.");
 						movieList.get(index-1).setMovieType(MovieType.NORMAL);
 						break;
 					}
@@ -84,7 +85,11 @@ public class MovieDatabase{
 				break;
 			case 5:
 				System.out.print("Enter cast: ");
+				try {
 				temp = scanner.nextLine();
+				} catch (Exception e) {
+					System.out.println("Invalid Input. Movie cast empty.");
+				}
 				movieList.get(index - 1).setCast(temp);
 				break;
 			case 6: 

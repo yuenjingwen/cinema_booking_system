@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.MonthDay;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -25,13 +26,13 @@ public class PublicHolidaysDatabase{
 				+ "Current List of Holidays:");
 		
 		System.out.println("=============================================");
-		System.out.println("ID\tDATE\tDESCRIPTION");
+		System.out.println("ID\tDD-MM\tDESCRIPTION");
 		System.out.println("=============================================");
 		
 		int i = 1;
 		for(PublicHoliday ph : PublicHolidaysDatabase.phList){
 			System.out.print(i + ".\t");
-			System.out.println(ph.getDate() + "\t" + ph.getDescription());
+			System.out.println(ph.getDate().format(DateTimeFormatter.ofPattern("dd-MM")) + "\t" + ph.getDescription());
 			i++;
 		}
 		System.out.println("=============================================");
@@ -72,7 +73,7 @@ public class PublicHolidaysDatabase{
 			System.out.print("Enter the month of the holiday: ");
 			month = scanner.nextInt();
 			scanner.nextLine();
-			System.out.print("Enter the DayOfMonth of the holiday: ");
+			System.out.print("Enter the date of the holiday: ");
 			dayOfMonth = scanner.nextInt();
 			scanner.nextLine();
 		} catch (Exception e){
