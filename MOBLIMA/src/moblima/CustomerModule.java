@@ -531,18 +531,25 @@ private static void customerShowHistory(Scanner scanner) {
 	
 	ArrayList<Ticket> tempList = new ArrayList<Ticket>();	
 	
+	
+	
+	
 	for (int i=0;i<TicketDatabase.getArrayList().size();i++) {
 		if (TicketDatabase.getArrayList().get(i).getTicketholderName().equals(name)) {
 			tempList.add(TicketDatabase.getArrayList().get(i));
-		}
-		
+		}		
 	}
-		
-	for(int i=0;i <TicketDatabase.getArrayList().size()  ; i++) {
-		if(TicketDatabase.getArrayList().get(i) != null){
-				TicketDatabase.getArrayList().get(i).printTicket();		
-			}
-
+	
+	if (tempList.size() > 0) {
+	
+		for(int i=0;i <tempList.size()  ; i++) {
+			if(tempList.get(i) != null){
+			tempList.get(i).printTicket();		
+				}
+	
+		}
+	} else {
+		System.out.println("No booking history found.");
 	}
 }
 	
