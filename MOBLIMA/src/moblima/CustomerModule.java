@@ -513,7 +513,7 @@ private static void customerShowHistory(Scanner scanner) {
 	
 	System.out.println("Enter your mobile number to search for booking history:");
 	
-	
+	//take in customer's mobile number
 	do {
 		try {
 			int mobNum = scanner.nextInt();
@@ -522,6 +522,7 @@ private static void customerShowHistory(Scanner scanner) {
 			
 		}
 	} while (true);
+	
 	
 	
 	if (TicketDatabase.getArrayList().size()== 0) {
