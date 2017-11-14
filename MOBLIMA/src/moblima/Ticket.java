@@ -195,6 +195,7 @@ public class Ticket implements Serializable {
 		System.out.println("	Cinema: " + cinema + "					");
 		System.out.println("											");
 		System.out.println("	Movie: " + this.movie + "				");
+		System.out.println("	Date: " + this.movieDay.format(DateTimeFormatter.ofPattern("dd-MM-YYYY")));
 		System.out.println("	Time: " + this.time + "					");
 		System.out.println("	Seat: " + this.seat + "					");
 		System.out.println("											");

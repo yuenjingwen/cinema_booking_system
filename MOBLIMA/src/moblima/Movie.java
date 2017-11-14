@@ -139,7 +139,7 @@ public class Movie implements Serializable{
 				if (o1.getTicketSales()==o2.getTicketSales()) {
 					return o1.getTitle().compareTo(o2.getTitle());
 				} else {
-					int comp = (int) (o1.getTicketSales()-o2.getTicketSales());
+					int comp = (int) (o2.getTicketSales()-o1.getTicketSales());
 					return comp;
 				}
 			}

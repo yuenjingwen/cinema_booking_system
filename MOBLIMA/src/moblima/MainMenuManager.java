@@ -17,8 +17,6 @@ public class MainMenuManager {
 		
 		fetchAllDatabasesFromFile();
 		
-		
-		
 		choice = 0;
 		
 			while(choice != 3){

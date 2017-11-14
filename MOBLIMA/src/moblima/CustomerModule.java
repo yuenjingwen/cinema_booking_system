@@ -422,18 +422,15 @@ private static void customerBuyProcess(Scanner scanner) {
 			//need Edit this
 			Ticket ticket= new Ticket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum);
 			System.out.println("Price:" + ticket.getTicketPrice());
-			
-			
-			String keepSeatingPlan = "O";
-			
+						
 			System.out.println("Would you like to pay?: Y/N");
 			
-			s
-			keepSeatingPlan = scanner.next();
+			String confirmBooking;
+			confirmBooking = scanner.next();
 			
 			do {
 				scanner.nextLine();
-				switch(keepSeatingPlan.toUpperCase()) {
+				switch(confirmBooking.toUpperCase()) {
 				case "Y":
 					System.out.println("Making payment...");		
 	
