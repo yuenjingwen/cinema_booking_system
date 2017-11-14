@@ -69,7 +69,8 @@ public class MainMenuManager {
 		PublicHolidaysDatabase.fetchHolidays();
 		CineplexDatabase.fetchCineplexes();
 		MovieDatabase.fetchMovies();
-
+		
+		PublicHolidayD
 	}	
 	
 }
