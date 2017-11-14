@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TicketDatabase{
+public class TicketDatabase implements Database{
 
 	private static ArrayList<Ticket> ticketList;
 	private static File ticketFile = new File("Ticket.dat"); 
@@ -234,6 +234,85 @@ public class TicketDatabase{
 			System.out.println("Invalid input.");
 			scanner.nextLine();
 		}
+		
+	}
+	
+	
+
+	@Override
+	public void updateDatabase() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void fetchDatabase() {
+		try{
+			FileOutputStream fo = new FileOutputStream(ticketFile);
+			ObjectOutputStream output = new ObjectOutputStream(fo);
+			for(Ticket t: ticketList){
+				output.writeObject(t);
+			}
+			fo.close();
+			output.close();
+		} catch (FileNotFoundException e){
+			e.printStackTrace();
+		} catch (IOException e){
+			e.printStackTrace();
+		}
+	}	
+	
+	public static void fetchTickets(){
+		ticketList = new ArrayList<Ticket>();
+		
+		try{
+			FileInputStream fi = new FileInputStream(ticketFile);
+			ObjectInputStream input = new ObjectInputStream(fi);
+			
+			try{
+				while(true){
+					Ticket t = (Ticket)input.readObject();
+					ticketList.add(t);
+				}
+			} catch (EOFException e){
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			
+			fi.close();
+			input.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		discountList = new ArrayList<TicketDiscount>();
+		
+		try{
+			FileInputStream fi = new FileInputStream(discountFile);
+			ObjectInputStream input = new ObjectInputStream(fi);
+			
+			try{
+				while(true){
+					TicketDiscount d = (TicketDiscount)input.readObject();
+					discountList.add(d);
+				}
+			} catch (EOFException e){
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			
+			fi.close();
+			input.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
 		
 	}
 }
