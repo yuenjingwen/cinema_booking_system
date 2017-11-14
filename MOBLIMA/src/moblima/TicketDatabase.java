@@ -46,7 +46,9 @@ public class TicketDatabase implements Database{
 	}	
 	
 	public static void fetchTickets(){
-		ticketList = new ArrayList<Ticket>();
+		
+		//legacy version, implemented as fetchDatabase()
+	/*	ticketList = new ArrayList<Ticket>();
 		
 		try{
 			FileInputStream fi = new FileInputStream(ticketFile);
@@ -93,6 +95,10 @@ public class TicketDatabase implements Database{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		
+		*/ 
+		
 		
 		
 		
@@ -259,33 +265,7 @@ public class TicketDatabase implements Database{
 			e.printStackTrace();
 		} catch (IOException e){
 			e.printStackTrace();
-		}
-	}	
-	
-	public static void fetchTickets(){
-		ticketList = new ArrayList<Ticket>();
-		
-		try{
-			FileInputStream fi = new FileInputStream(ticketFile);
-			ObjectInputStream input = new ObjectInputStream(fi);
-			
-			try{
-				while(true){
-					Ticket t = (Ticket)input.readObject();
-					ticketList.add(t);
-				}
-			} catch (EOFException e){
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			
-			fi.close();
-			input.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		}	
 		
 		discountList = new ArrayList<TicketDiscount>();
 		
