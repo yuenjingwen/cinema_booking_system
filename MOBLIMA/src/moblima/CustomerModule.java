@@ -211,7 +211,7 @@ private static void customerBuyProcess(Scanner scanner){
 		int cineplexIndex;
 		int cinemaIndex;
 		int age = 0;
-		int mobileNumber;
+		int mobileNum;
 		String name;
 		String emailAddress;
 		String seat;
@@ -226,22 +226,22 @@ private static void customerBuyProcess(Scanner scanner){
 		
 		//Get Name
 		
-
+		do {
 			try{
 				System.out.println("Enter Name:");
 				name = scanner.nextLine();
+				break;
 				}catch(Exception e){
-				e.printStackTrace();
 				System.out.println("Invalid input. Please re-enter choice.");
 				scanner.nextLine();
 			}
-		
+		} while (true);		
 		
 		//Get mobile number
 		do {
 			try{
 				System.out.println("Enter Mobile Number:");
-				mobileNumber = scanner.nextInt();
+				mobileNum = scanner.nextInt();
 				scanner.nextLine();
 				break;
 				}catch(Exception e){
@@ -249,16 +249,21 @@ private static void customerBuyProcess(Scanner scanner){
 				scanner.nextLine();
 			}
 		} while (true);
+		
 		//Get email address
-		try{
-			System.out.println("Enter email address:");
-			emailAddress = scanner.nextLine();
-			
-			}catch(Exception e){
-			e.printStackTrace();
-			System.out.println("Invalid input. Please re-enter choice.");
-			scanner.nextLine();
-		}
+		
+		do {
+			try{
+				System.out.println("Enter email address:");
+				emailAddress = scanner.nextLine();
+				break;
+				}catch(Exception e){
+				e.printStackTrace();
+				System.out.println("Invalid input. Please re-enter choice.");
+				scanner.nextLine();
+			}
+		} while(true);
+		
 		//Get age
 		
 		do {
@@ -387,7 +392,7 @@ private static void customerBuyProcess(Scanner scanner){
 			
 			
 			//need Edit this
-			Ticket ticket= new Ticket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex);
+			Ticket ticket= new Ticket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum);
 			System.out.println("Price:" + ticket.getTicketPrice());
 			
 			

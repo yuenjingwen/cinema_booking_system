@@ -8,6 +8,7 @@ import java.io.Serializable;
 public class Ticket implements Serializable {
 	
 	private static final long serialVersionUID = 84759385764544637L;
+	
 	static float BASE_PRICE_TICKET = 10;
 	
 	
@@ -18,6 +19,7 @@ public class Ticket implements Serializable {
 	private String movie; 
 	private String time; 
 	private String seat;
+	private String TID;
 	
 	private String ticketholderName;
 	private String email;
@@ -28,22 +30,26 @@ public class Ticket implements Serializable {
 	private MovieType mType;
 	
 	
-	public Ticket(String seat, int age, int cinemaIndex, int cineplexIndex, int showtimeIndex){	//create new constructor. use calculate ticket price to set the price
+	
+	public Ticket(String seat, int age, int cinemaIndex, int cineplexIndex, int showtimeIndex, String ticketholderName, String email, int mobileNum){	//create new constructor. use calculate ticket price to set the price
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 		
 		
-		this.cineplex 		= CineplexDatabase.cineplexList.get(cineplexIndex -1).getName(); //use cineplex index to get
-		this.cinema 		= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaID();; //use cinema index to get
-		this.movie 			= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getTitle();
-		this.time 			= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime().format(formatter);
-		this.seat 			= seat;
-		this.classOfCinema	= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getClassOfCinema();
-	    this.movieDay 		= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime();
-	    this.mType			= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();		
-		this.price 			= calculateTicketPrice(classOfCinema, mType, age, movieDay);
-		this.discount 		= getDiscount();
-			
+		this.cineplex 			= CineplexDatabase.cineplexList.get(cineplexIndex -1).getName(); //use cineplex index to get
+		this.cinema 			= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaID();; //use cinema index to get
+		this.movie 				= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getTitle();
+		this.time 				= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime().format(formatter);
+		this.seat 				= seat;
+		this.classOfCinema		= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getClassOfCinema();
+	    this.movieDay 			= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime();
+	    this.ticketholderName	= ticketholderName;
+	    this.email 				= email;
+	    this.mobileNumber		= mobileNum;
+	    this.mType				= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();		
+		this.price 				= calculateTicketPrice(classOfCinema, mType, age, movieDay);
+		this.discount 			= getDiscount();
+		
 	}
 	
 	public float getTicketPrice() {
@@ -181,15 +187,20 @@ public class Ticket implements Serializable {
 		this.seat= seat;
 	}
 	public void printTicket(){
-		System.out.println("===========================================================================\n"+
-						   "                                   Ticket                                  \n"+
-				           "           "+cineplex+ "\n"+
-				           "           "+cinema+ "\n\n"+
-				           
-				           "                                "+movie+ "\n\n" +			
-				           "							Price:" + this.getTicketPrice() + "\n" +
-				           "							Time:"+time+ "\n" +
-				           "							Seat:"+seat+ "\n" +  
-						   "===========================================================================\n");
+		System.out.println("============================================");
+		System.out.println("~~~~~~~~~~~~~~~~~~~Ticket~~~~~~~~~~~~~~~~~~~");
+		System.out.println("	Customer: " + ticketholderName + "		");
+		System.out.println("	Cineplex: " + cineplex + "				");
+		System.out.println("	Cinema: " + cinema + "					");
+		System.out.println("			" + this.movie + "				");
+		System.out.println("			" + this.time + "				");
+		System.out.println("			" + this.seat + "				");
+		System.out.println("											");
+		System.out.println("											");
+		System.out.println("											");
+		System.out.println("				Email: " + email +"			");
+		System.out.println("				Number: " + mobileNumber     );	
+		System.out.println("				Transaction ID: " + this.TID );
+
 	}
 }
