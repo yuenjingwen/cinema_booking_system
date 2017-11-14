@@ -253,26 +253,37 @@ public class TicketDatabase implements Database{
 
 	@Override
 	public void fetchDatabase() {
+
+		ticketList = new ArrayList<Ticket>();
+
 		try{
-			FileOutputStream fo = new FileOutputStream(ticketFile);
-			ObjectOutputStream output = new ObjectOutputStream(fo);
-			for(Ticket t: ticketList){
-				output.writeObject(t);
+			FileInputStream fi = new FileInputStream(ticketFile);
+			ObjectInputStream input = new ObjectInputStream(fi);
+
+			try{
+				while(true){
+					Ticket t = (Ticket)input.readObject();
+					ticketList.add(t);
+				}
+			} catch (EOFException e){
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
 			}
-			fo.close();
-			output.close();
-		} catch (FileNotFoundException e){
+
+			fi.close();
+			input.close();
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		} catch (IOException e){
+		} catch (IOException e) {
 			e.printStackTrace();
-		}	
-		
+		}
+
 		discountList = new ArrayList<TicketDiscount>();
-		
+
 		try{
 			FileInputStream fi = new FileInputStream(discountFile);
 			ObjectInputStream input = new ObjectInputStream(fi);
-			
+
 			try{
 				while(true){
 					TicketDiscount d = (TicketDiscount)input.readObject();
@@ -282,7 +293,7 @@ public class TicketDatabase implements Database{
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
-			
+
 			fi.close();
 			input.close();
 		} catch (FileNotFoundException e) {
@@ -290,9 +301,9 @@ public class TicketDatabase implements Database{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
-		
+
+
+
+
 	}
 }

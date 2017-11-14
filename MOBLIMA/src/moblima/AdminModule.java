@@ -209,7 +209,8 @@ public class AdminModule {
 				+ "1. Change password\n"
 				+ "2. Manage Public Holidays\n"
 				+ "3. Manage ticket discounts\n"
-				+ "4. Back\n"
+				+ "4. See full customer booking history\n"
+				+ "5. Back\n"
 				+ "Please enter choice: ");
 		try{
 			MainMenuManager.choice = scanner.nextInt();
@@ -239,6 +240,11 @@ public class AdminModule {
 				MainMenuManager.choice = 3;
 				break;
 			case 4:
+				for (Ticket t: TicketDatabase.getArrayList()) {
+					t.printTicket();
+				}
+				break;
+			case 5:
 				break;
 			default:
 				System.out.println("\n===========");
