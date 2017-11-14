@@ -18,7 +18,7 @@ public class MainMenuManager {
 		fetchAllDatabasesFromFile();
 		
 		
-				
+		
 		choice = 0;
 		
 			while(choice != 3){
@@ -72,12 +72,6 @@ public class MainMenuManager {
 		CineplexDatabase.fetchCineplexes();
 		MovieDatabase.fetchMovies();
 
-	}
-	
-	
-	
-	
-	
-	
+	}	
 	
 }

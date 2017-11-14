@@ -47,7 +47,8 @@ public class CinemaShow implements Serializable, Comparable<CinemaShow>{
 	}
 
 	public void printSeating(){
-		System.out.println();
+		System.out.println();;
+		System.out.println("==================================");
 		System.out.println("=          MOVIE SCREEN          =");
 		System.out.println("==================================");
 		for(int i = 0; i < 6; i++){
@@ -112,24 +113,12 @@ public class CinemaShow implements Serializable, Comparable<CinemaShow>{
 		return seats;
 	}
 
-	public void setSeat(int x, int y) throws SeatOccupiedException{
-		
-			if (this.seats[x][y].getIsTaken()) {
-			throw new SeatOccupiedException("Seat Taken");
-		} else {
-
-			this.seats[x][y].seatIsTaken(true); 
-		}
-		
-				
+	public void setSeat(int x, int y){	
+		this.seats[x][y].seatIsTaken(true); 			
 	}
 	
-	public boolean checkIfSeatOccupied(int x, int y) {
-		if (this.seats[x][y].getIsTaken()) {
-			return true;
-		} else {
-			return false;
-		}
+	public boolean isSeatOccupied(int x, int y) {
+		return this.seats[x][y].getIsTaken();
 	}
 
 	@Override

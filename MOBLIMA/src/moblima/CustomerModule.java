@@ -147,7 +147,7 @@ private static void customerCheckSeatAvailability(Scanner scanner) {
 			for (Cineplex cp: CineplexDatabase.getArrayList()) {
 				for (Cinema c: cp.getCinemaList()){
 					for (CinemaShow cs: c.getCinemaShowList()) {
-						System.out.println("choice "+ choice+ "showtimeIndex" + showtimeIndex);
+						
 						if (choice == showtimeIndex) {
 							System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 							System.out.println("Movie: " + cs.getMovie().getTitle() + " on " + cs.getShowtime().format(DateTimeFormatter.ofPattern("dd-MM, HH:mm")));
@@ -351,49 +351,66 @@ private static void customerBuyProcess(Scanner scanner) {
 		
 		do {
 			try{
-				System.out.println("Select row:");
-				rowString = scanner.nextLine();
-				switch(rowString){
-				case "A": row=1;
-					break;
-				case "B": row=2;
-				break;
-				case "C": row=3;
-				break;
-				case "D": row=4;
-				break;
-				case "E": row=5;
-				break;
-				case "F": row=6;
-				break;
-				case "G": row=7;
-					break;
-				case "H": row=8;
-				break;
-				default: System.out.println("Error input!");
-					throw new Exception();
-				}
+				
+				do {
+					try {
+						System.out.println("Select row:");
+						rowString = scanner.nextLine();
+						switch(rowString.toUpperCase()){
+						case "A": row=1;
+							break;
+						case "B": row=2;
+							break;
+						case "C": row=3;
+							break;
+						case "D": row=4;
+							break;
+						case "E": row=5;
+							break;
+						case "F": row=6;
+							break;
+						case "G": row=7;
+							break;
+						case "H": row=8;
+							break;
+						default: 
+							throw new Exception();
+						}
+						break;
+					} catch (Exception e) {
+						e.printStackTrace();
+						System.out.println("Error input!");
+					}
+				} while (true);
 					
-				System.out.println("Select column:");
-				column = scanner.nextInt();
-				scanner.nextLine();
+				
+				do {
+					try {
+						System.out.println("Select column:");
+						column = scanner.nextInt();
+						scanner.nextLine();
+						break;
+					} catch (Exception e) {
+						System.out.println("Invalid input, re-enter column.");
+					}
+				} while (true);
 						
 				//if seat not taken
-				if (!CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).checkIfSeatOccupied(column, row)){
+				if (CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).isSeatOccupied(column-1, row-1)){
 					System.out.println("Seat is taken, please book another seat.");
-					break; //exit loop if seat is not taken
+					throw new SeatOccupiedException();
+					//exit loop if seat is not taken
 				}
 				
 				} catch (SeatOccupiedException e) {
-					e.printStackTrace();
-					System.out.println(e.getMessage()); //prints seat is taken.
+					System.out.println("Seat is taken"); //prints seat is taken.
 				} catch(Exception e){
 					e.printStackTrace();
 					System.out.println("Invalid input. Please re-enter choice.");
 					scanner.nextLine();
 				
 				}
-		} while(true);
+		} while(CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).isSeatOccupied(column-1, row-1));
 			
 		
 			String tempColumn = Integer.toString(column);
@@ -411,7 +428,7 @@ private static void customerBuyProcess(Scanner scanner) {
 			
 			System.out.println("Would you like to pay?: Y/N");
 			
-			
+			s
 			keepSeatingPlan = scanner.next();
 			
 			do {
@@ -428,7 +445,7 @@ private static void customerBuyProcess(Scanner scanner) {
 					int index = 0;
 					int movieIndex = 0;
 					for (Movie m: MovieDatabase.getArrayList()) {
-						if (tempM.getTitle() == m.getTitle()) {
+						if (tempM.getTitle().equals(m.getTitle())) {
 							movieIndex = index;
 							break;
 						} else {
@@ -443,9 +460,14 @@ private static void customerBuyProcess(Scanner scanner) {
 					//adds ticket sale to the movie's total sales
 					MovieDatabase.getArrayList().get(movieIndex).addTicketSale(ticket.calculateTicketPrice(cEnum, mEnum, age, movieDay));
 					
+					CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).setSeat(column-1, row-1);
+					
 					System.out.println("You have paid for your ticket!");
+					
 					TicketDatabase.updateTickets();
 					CineplexDatabase.updateCineplexes();
+					MovieDatabase.updateMovies();
+					
 					break;
 				case "N": 
 					System.out.println("Going back to menu...");

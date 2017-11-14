@@ -321,6 +321,7 @@ public class CineplexDatabase{
 		for (Cineplex cp: CineplexDatabase.getArrayList()) {
 			for (Cinema c: cp.getCinemaList()){
 				for (CinemaShow cs: c.getCinemaShowList()) {
+					cs.getClass();
 					temp++;
 					} 
 			}
