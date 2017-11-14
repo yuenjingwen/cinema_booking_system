@@ -64,11 +64,11 @@ public class MainMenuManager {
 	}	
 	
 	private static void fetchAllDatabasesFromFile() {
-		TicketDatabase.fetchTickets();
+		//TicketDatabase.fetchTickets();
 		TicketDatabase ticketDb = new TicketDatabase();
 		ticketDb.fetchDatabase();
 		
-		CineplexDatabase.fetchCineplexes();
+		//CineplexDatabase.fetchCineplexes();
 		CineplexDatabase cineplexDb = new CineplexDatabase();
 		cineplexDb.fetchDatabase();
 		
