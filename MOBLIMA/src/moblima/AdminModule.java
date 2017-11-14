@@ -123,7 +123,9 @@ public class AdminModule {
 				+ "1. Create\n"
 				+ "2. Update\n"
 				+ "3. Remove\n"
-				+ "4. Back\n"
+				+ "4. List top 5 movie ranking by ticket sales\n"
+				+ "5. List top 5 movie ranking by ratings\n"
+				+ "6. Back\n"
 				+ "Please enter choice: ");
 		try{
 			MainMenuManager.choice = scanner.nextInt();

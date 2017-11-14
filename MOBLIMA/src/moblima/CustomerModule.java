@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import moblima.CinemaSeat.SeatOccupiedException;
+
 public class CustomerModule {
 	DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
 	Scanner scanner;
@@ -131,31 +133,36 @@ private static void customerCheckSeatAvailability(Scanner scanner) {
 	
 	System.out.println("Which showtime do you want to check seat availability for?");
 	
+	boolean found = false;
+	int showtimeIndex = 1;
 	
 	do {
 		try {
 			int choice = scanner.nextInt();
+			if (choice > CineplexDatabase.showTimeCount()) {
+				throw new ArrayIndexOutOfBoundsException();
+			}
 			System.out.println();
-			int showtimeIndex = 1;
+			
 			for (Cineplex cp: CineplexDatabase.getArrayList()) {
 				for (Cinema c: cp.getCinemaList()){
 					for (CinemaShow cs: c.getCinemaShowList()) {
+						System.out.println("choice "+ choice+ "showtimeIndex" + showtimeIndex);
 						if (choice == showtimeIndex) {
 							System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-							System.out.println("Movie: " + cs.getMovie().getTitle());
+							System.out.println("Movie: " + cs.getMovie().getTitle() + " on " + cs.getShowtime().format(DateTimeFormatter.ofPattern("dd-MM, HH:mm")));
 							System.out.println("- - - - - - - - - - - - - - - - - ");
 							
 							cs.printSeating();
-							
-							showtimeIndex++;
-							break;
+							found = true;
 						} 
 						showtimeIndex++;
-						
+								
 					}
-						
 				}
 			}
+			
+			showtimeIndex = 1;
 		} catch (InputMismatchException IMe) {
 		System.out.println("Invalid choice entered. Please re-enter choice.");
 		scanner.nextLine();
@@ -164,7 +171,7 @@ private static void customerCheckSeatAvailability(Scanner scanner) {
 		scanner.nextLine();
 		}
 	
-	} while(true);
+	} while(!found);
 	
 }
 
@@ -204,7 +211,7 @@ private static void customerReviewMenu(Scanner scanner) {
 }
 
 	//Process of buying
-private static void customerBuyProcess(Scanner scanner){
+private static void customerBuyProcess(Scanner scanner) {
 		
 		int i = 1; //Choose
 		int showtimeIndex;
@@ -215,7 +222,7 @@ private static void customerBuyProcess(Scanner scanner){
 		String name;
 		String emailAddress;
 		String seat;
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");	
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM : HH:mm");	
 		
 		
 		System.out.println("===================================");
@@ -318,9 +325,9 @@ private static void customerBuyProcess(Scanner scanner){
 		} while(true);
 		
 		i = 1;
-		System.out.println("\n========Movie=================== Movie Screening Time=======");
+		System.out.println("\n========Movie===================Movie Date and Time===");
 		for(CinemaShow cs : CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList()){
-			System.out.println(i + ".\t" + cs.getMovie().getTitle() + "	" + cs.getShowtime().format(formatter));
+			System.out.println(i + ".\t" + cs.getMovie().getTitle() + "			" + cs.getShowtime().format(formatter));
 			System.out.println("======================================================");
 			i++;
 		}
@@ -342,51 +349,55 @@ private static void customerBuyProcess(Scanner scanner){
 
 		String rowString="";
 		
-		try{
-			System.out.println("Select row:");
-			rowString = scanner.nextLine();
-			switch(rowString){
-			case "A": row=1;
+		do {
+			try{
+				System.out.println("Select row:");
+				rowString = scanner.nextLine();
+				switch(rowString){
+				case "A": row=1;
+					break;
+				case "B": row=2;
 				break;
-			case "B": row=2;
-			break;
-			case "C": row=3;
-			break;
-			case "D": row=4;
-			break;
-			case "E": row=5;
-			break;
-			case "F": row=6;
-			break;
-			case "G": row=7;
+				case "C": row=3;
 				break;
-			case "H": row=8;
-			break;
-			default: System.out.println("Error input!");
-				throw new Exception();
-			}		
-			}catch(Exception e){
-			e.printStackTrace();
-			System.out.println("Invalid input. Please re-enter choicee.");
-			scanner.nextLine();
-		}
-		try{
-			System.out.println("Select column:");
-			column = scanner.nextInt();
-			scanner.nextLine();
+				case "D": row=4;
+				break;
+				case "E": row=5;
+				break;
+				case "F": row=6;
+				break;
+				case "G": row=7;
+					break;
+				case "H": row=8;
+				break;
+				default: System.out.println("Error input!");
+					throw new Exception();
+				}
 					
-			}catch(Exception e){
-			e.printStackTrace();
-			System.out.println("Invalid input. Please re-enter choicee.");
-			scanner.nextLine();
-		}
+				System.out.println("Select column:");
+				column = scanner.nextInt();
+				scanner.nextLine();
+						
+				//if seat not taken
+				if (!CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).checkIfSeatOccupied(column, row)){
+					System.out.println("Seat is taken, please book another seat.");
+					break; //exit loop if seat is not taken
+				}
+				
+				} catch (SeatOccupiedException e) {
+					e.printStackTrace();
+					System.out.println(e.getMessage()); //prints seat is taken.
+				} catch(Exception e){
+					e.printStackTrace();
+					System.out.println("Invalid input. Please re-enter choice.");
+					scanner.nextLine();
+				
+				}
+		} while(true);
+			
 		
-		
-		
-		CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).setSeat(row-1, column-1);
-		
-		String tempColumn = Integer.toString(column);
-		seat = rowString+ tempColumn  ;
+			String tempColumn = Integer.toString(column);
+			seat = rowString+ tempColumn  ;
 			
 			
 			

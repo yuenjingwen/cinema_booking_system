@@ -3,12 +3,15 @@ package moblima;
 import java.io.Serializable; 
 import java.time.LocalDateTime;
 
+import moblima.CinemaSeat.SeatOccupiedException;
+
 public class CinemaShow implements Serializable, Comparable<CinemaShow>{
 
 	private static final long serialVersionUID = 707618588443761880L;
 	private CinemaSeat[][] seats;
 	private Movie movie;
 	private LocalDateTime showtime;
+
 	
 	public CinemaShow(Movie movie, LocalDateTime showtime){
 		seats = new CinemaSeat [8][8];
@@ -109,8 +112,24 @@ public class CinemaShow implements Serializable, Comparable<CinemaShow>{
 		return seats;
 	}
 
-	public void setSeat(int x, int y) {
-		this.seats[x][y].setIsTaken(true); 
+	public void setSeat(int x, int y) throws SeatOccupiedException{
+		
+			if (this.seats[x][y].getIsTaken()) {
+			throw new SeatOccupiedException("Seat Taken");
+		} else {
+
+			this.seats[x][y].seatIsTaken(true); 
+		}
+		
+				
+	}
+	
+	public boolean checkIfSeatOccupied(int x, int y) {
+		if (this.seats[x][y].getIsTaken()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
@@ -121,6 +140,8 @@ public class CinemaShow implements Serializable, Comparable<CinemaShow>{
 	public void setMovie(Movie movie) {
 		this.movie = movie;
 	}
+	
+	
 }
 
 	

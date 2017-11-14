@@ -17,11 +17,26 @@ public class CinemaSeat implements Serializable{
 		return isTaken;
 	}
 	
-	public void setIsTaken( boolean isTaken) {
+	public void seatIsTaken(boolean isTaken) {
 		this.isTaken = isTaken;
 	}
 	
 	public SeatType getSeatType() {
 		return seatType;
+	}
+	
+	public static class SeatOccupiedException extends Exception {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -3520635930531900084L;
+		
+		public SeatOccupiedException() {
+			
+		}
+		
+		public SeatOccupiedException(String message){
+	        super(message);
+	    }
 	}
 }

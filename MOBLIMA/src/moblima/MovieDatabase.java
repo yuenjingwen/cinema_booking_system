@@ -261,7 +261,7 @@ public class MovieDatabase{
 		System.out.print("\n=======================================================\n");
 		int i = 1;
 		for(Movie m : getArrayList()){
-			System.out.println(i+")Title:\t\t" + m.getTitle());
+			System.out.println("["+i+"] Title:\t\t" + m.getTitle());
 			System.out.println("Average Rating:\t\t" + m.getAvgRating() + " from " + m.getReviewList().size() + " reviews");
 			System.out.println("=======================================================");
 			i++;

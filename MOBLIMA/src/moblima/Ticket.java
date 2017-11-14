@@ -49,7 +49,7 @@ public class Ticket implements Serializable {
 	    this.mType				= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();		
 		this.price 				= calculateTicketPrice(classOfCinema, mType, age, movieDay);
 		this.discount 			= getDiscount();		
-		this.TID 				= this.cinema.concat(this.movieDay.format(DateTimeFormatter.ofPattern("yyyyMMddHHmm")));
+		this.TID 				= this.cinema.concat(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmm")));
 		
 	}
 	
@@ -193,15 +193,15 @@ public class Ticket implements Serializable {
 		System.out.println("	Customer: " + ticketholderName + "		");
 		System.out.println("	Cineplex: " + cineplex + "				");
 		System.out.println("	Cinema: " + cinema + "					");
-		System.out.println("			" + this.movie + "				");
-		System.out.println("			" + this.time + "				");
-		System.out.println("			" + this.seat + "				");
+		System.out.println("											");
+		System.out.println("	Movie: " + this.movie + "				");
+		System.out.println("	Time: " + this.time + "					");
+		System.out.println("	Seat: " + this.seat + "					");
 		System.out.println("											");
 		System.out.println("											");
-		System.out.println("											");
-		System.out.println("				Email: " + email +"			");
-		System.out.println("				Number: " + mobileNumber     );	
-		System.out.println("				Transaction ID: " + this.TID );
+		System.out.println("	Email: " + email + "					");
+		System.out.println("	Number: " + mobileNumber + "			");	
+		System.out.println("	Transaction ID: " + this.TID + "		");
 
 	}
 }

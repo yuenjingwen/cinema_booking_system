@@ -315,4 +315,16 @@ public class CineplexDatabase{
 		}
 	}
 
+	public static int showTimeCount() {
+		int temp = 0;
+		
+		for (Cineplex cp: CineplexDatabase.getArrayList()) {
+			for (Cinema c: cp.getCinemaList()){
+				for (CinemaShow cs: c.getCinemaShowList()) {
+					temp++;
+					} 
+			}
+		}
+		return temp;
+	}
 }

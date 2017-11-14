@@ -17,8 +17,6 @@ public class MainMenuManager {
 		
 		fetchAllDatabasesFromFile();
 		
-		CineplexDatabase.updateCineplexes();
-		
 		
 				
 		choice = 0;
