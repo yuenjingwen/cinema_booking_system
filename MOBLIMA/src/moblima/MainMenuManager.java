@@ -66,11 +66,13 @@ public class MainMenuManager {
 	private static void fetchAllDatabasesFromFile() {
 		TicketDatabase.fetchTickets();
 		TicketDatabase.fetchTicketDiscount();
-		PublicHolidaysDatabase.fetchHolidays();
+		//PublicHolidayDatabase.fetchHolidays();
 		CineplexDatabase.fetchCineplexes();
 		MovieDatabase.fetchMovies();
 		
-		PublicHolidayD
+		PublicHolidayDatabase publicholidayDB = new PublicHolidayDatabase();
+		publicholidayDB.fetchDatabase();
+		
 	}	
 	
 }

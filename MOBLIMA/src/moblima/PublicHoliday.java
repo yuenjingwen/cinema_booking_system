@@ -3,7 +3,7 @@ package moblima;
 import java.io.Serializable;
 import java.time.MonthDay;
 
-public class PublicHoliday implements Serializable{
+public class PublicHoliday implements Serializable, Comparable<PublicHoliday>{
 
 	private static final long serialVersionUID = 7423582918178200639L;
 	private String description;
@@ -28,5 +28,11 @@ public class PublicHoliday implements Serializable{
 
 	public void setDate(MonthDay date) {
 		this.date = date;
+	}
+
+	@Override
+	public int compareTo(PublicHoliday o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
