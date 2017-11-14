@@ -70,7 +70,7 @@ public class Ticket implements Serializable {
 		switch(cEnum){
 		case DIGITAL:
 			try {
-			temp += TicketDatabase.getDiscount("Digital");
+			temp += TicketDatabase.searchDiscountByName("Digital");
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println(e.getMessage());
@@ -78,7 +78,7 @@ public class Ticket implements Serializable {
 			break;
 		case PLATINIUM:
 			try {
-				temp += TicketDatabase.getDiscount("Platinum");
+				temp += TicketDatabase.searchDiscountByName("Platinum");
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println(e.getMessage());
@@ -92,7 +92,7 @@ public class Ticket implements Serializable {
 		switch(mEnum.toString()){
 		case "NORMAL":
 			try {
-				temp += TicketDatabase.getDiscount("Normal");
+				temp += TicketDatabase.searchDiscountByName("Normal");
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println(e.getMessage());
@@ -100,7 +100,7 @@ public class Ticket implements Serializable {
 			break;
 		case "BLOCKBUSTER":
 			try {
-				temp += TicketDatabase.getDiscount("Blockbuster");
+				temp += TicketDatabase.searchDiscountByName("Blockbuster");
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println(e.getMessage());
@@ -108,7 +108,7 @@ public class Ticket implements Serializable {
 			break;
 		case "THREE_D":
 			try {
-				temp += TicketDatabase.getDiscount("3D");
+				temp += TicketDatabase.searchDiscountByName("3D");
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println(e.getMessage());
@@ -122,7 +122,7 @@ public class Ticket implements Serializable {
 		if(age < 12){
 			discount = "Child Discount";
 			try {
-				temp -= TicketDatabase.getDiscount("Child Discount");
+				temp -= TicketDatabase.searchDiscountByName("Child Discount");
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println(e.getMessage());
@@ -130,7 +130,7 @@ public class Ticket implements Serializable {
 		}else if(age > 65){
 			discount = "Elderly Discount";
 			try {
-				temp -= TicketDatabase.getDiscount("Elderly Discount");
+				temp -= TicketDatabase.searchDiscountByName("Elderly Discount");
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println(e.getMessage());
@@ -160,7 +160,7 @@ public class Ticket implements Serializable {
 		for (PublicHoliday ph: PublicHolidaysDatabase.getArrayList()) {
 			if (tempMD == ph.getDate()) {
 				try {
-					temp += TicketDatabase.getDiscount("Public Holiday");
+					temp += TicketDatabase.searchDiscountByName("Public Holiday");
 					break;
 				} catch (Exception e) {
 					e.printStackTrace();

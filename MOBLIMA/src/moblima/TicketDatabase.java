@@ -131,7 +131,7 @@ public class TicketDatabase{
 		return discountList;
 	}
 	
-	public static int getDiscount (String discountName) throws Exception{
+	public static int searchDiscountByName (String discountName) throws Exception{
 		for (TicketDiscount td: getDiscountArrayList()) {
 			if (discountName.equals(td.getDiscountName())) {
 				return td.getDiscountValue();

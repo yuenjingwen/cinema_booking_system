@@ -516,9 +516,9 @@ private static void customerShowHistory(Scanner scanner) {
 	
 	do {
 		try {
-			
+			int mobNum = scanner.nextInt();
 			break;
-		} catch (Exception e) {
+		} catch (InputMismatchException e) {
 			
 		}
 	} while (true);
