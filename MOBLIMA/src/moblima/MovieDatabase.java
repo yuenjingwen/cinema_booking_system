@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class MovieDatabase{
+public class MovieDatabase implements Database{
 
 	private static ArrayList<Movie> movieList;
 //	private static ArrayList<MovieReview> RDB;
@@ -381,6 +381,38 @@ public class MovieDatabase{
 		System.out.println("Synopsis: ");
 		System.out.println(breakLinesForReviews(m.getSynopsis(), 50));
 		System.out.println("=======================================================");
+	}
+
+	@Override
+	public void updateDatabase() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void fetchDatabase() {
+		movieList = new ArrayList<Movie>();
+		try{
+			FileInputStream fi = new FileInputStream(movieFile);
+			ObjectInputStream input = new ObjectInputStream(fi);
+			
+			try{
+				while(true){
+					Movie m = (Movie)input.readObject();
+					movieList.add(m);
+				}
+			} catch (EOFException e){
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			
+			fi.close();
+			input.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
 

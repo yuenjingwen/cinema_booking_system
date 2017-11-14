@@ -32,7 +32,6 @@ public class PublicHoliday implements Serializable, Comparable<PublicHoliday>{
 
 	@Override
 	public int compareTo(PublicHoliday o) {
-		// TODO Auto-generated method stub
-		return 0;
+		return getDate().compareTo(o.getDate());
 	}
 }

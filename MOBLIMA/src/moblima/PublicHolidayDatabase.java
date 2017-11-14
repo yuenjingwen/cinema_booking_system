@@ -11,6 +11,7 @@ import java.io.ObjectOutputStream;
 import java.time.MonthDay;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class PublicHolidayDatabase implements Database{
@@ -83,6 +84,8 @@ public class PublicHolidayDatabase implements Database{
 		description = scanner.nextLine();
 		MonthDay holiday = MonthDay.of(month, dayOfMonth);
 		phList.add(new PublicHoliday(description, holiday));
+
+		Collections.sort(phList);
 		updateHolidays();
 	}
 
