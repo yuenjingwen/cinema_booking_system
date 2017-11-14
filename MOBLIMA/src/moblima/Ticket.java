@@ -19,7 +19,7 @@ public class Ticket implements Serializable {
 	private String movie; 
 	private String time; 
 	private String seat;
-	private String TID;
+	private String TID = "XXXYYYYMMDDhhmm";
 	
 	private String ticketholderName;
 	private String email;
