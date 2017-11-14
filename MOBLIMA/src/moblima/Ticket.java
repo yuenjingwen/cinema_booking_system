@@ -153,11 +153,12 @@ public class Ticket implements Serializable {
 					
 		}
 		
+	
 		
 		//checks if the movie date lands on a public holiday and adds the appropriate charges accordingly
 		MonthDay tempMD = MonthDay.from(movieDay);
 		
-		for (PublicHoliday ph: PublicHolidaysDatabase.getArrayList()) {
+		for (PublicHoliday ph: PublicHolidayDatabase.getArrayList()) {
 			if (tempMD == ph.getDate()) {
 				try {
 					temp += TicketDatabase.searchDiscountByName("Public Holiday");
@@ -171,6 +172,11 @@ public class Ticket implements Serializable {
 		
 		return BASE_PRICE_TICKET + temp;
 	}
+	
+	public String getTicketholderName() {
+		return ticketholderName;
+	}
+
 	
 	public void setCineplex(String cineplexName){
 		cineplex = cineplexName;

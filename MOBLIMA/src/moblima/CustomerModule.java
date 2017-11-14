@@ -509,25 +509,33 @@ private static void customerPrintAverageRating(Scanner scanner) {
 
 private static void customerShowHistory(Scanner scanner) {
 		
-	
-	
 	System.out.println("Enter your mobile number to search for booking history:");
 	
+	
 	//take in customer's mobile number
+	String name;
+	
 	do {
 		try {
-			int mobNum = scanner.nextInt();
+			name = scanner.nextLine();
 			break;
 		} catch (InputMismatchException e) {
 			
 		}
 	} while (true);
 	
-	
-	
 	if (TicketDatabase.getArrayList().size()== 0) {
 		System.out.println("No booking history found.");
 		return;
+	}
+	
+	ArrayList<Ticket> tempList = new ArrayList<Ticket>();	
+	
+	for (int i=0;i<TicketDatabase.getArrayList().size();i++) {
+		if (TicketDatabase.getArrayList().get(i).getTicketholderName().equals(name)) {
+			tempList.add(TicketDatabase.getArrayList().get(i));
+		}
+		
 	}
 		
 	for(int i=0;i <TicketDatabase.getArrayList().size()  ; i++) {
