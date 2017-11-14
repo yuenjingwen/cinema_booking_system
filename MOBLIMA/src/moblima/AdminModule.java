@@ -141,6 +141,12 @@ public class AdminModule {
 				MovieDatabase.removeMovie(scanner);
 				break;
 			case 4:
+				MovieDatabase.printTop5Sales(scanner);
+				break;
+			case 5:
+				MovieDatabase.printTop5Ratings(scanner);
+				break;
+			case 6:
 				break;
 			default:
 				System.out.println("\n===========");

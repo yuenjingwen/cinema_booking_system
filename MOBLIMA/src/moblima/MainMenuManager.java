@@ -65,7 +65,6 @@ public class MainMenuManager {
 	
 	private static void fetchAllDatabasesFromFile() {
 		TicketDatabase.fetchTickets();
-		TicketDatabase.fetchTicketDiscount();
 		
 		CineplexDatabase.fetchCineplexes();
 		CineplexDatabase cineplexDb = new CineplexDatabase();

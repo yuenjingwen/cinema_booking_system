@@ -3,8 +3,6 @@ package moblima;
 import java.io.Serializable; 
 import java.time.LocalDateTime;
 
-import moblima.CinemaSeat.SeatOccupiedException;
-
 public class CinemaShow implements Serializable, Comparable<CinemaShow>{
 
 	private static final long serialVersionUID = 707618588443761880L;

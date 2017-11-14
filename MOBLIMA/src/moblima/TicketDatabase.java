@@ -70,10 +70,34 @@ public class TicketDatabase{
 			e.printStackTrace();
 		}
 		
+		discountList = new ArrayList<TicketDiscount>();
+		
+		try{
+			FileInputStream fi = new FileInputStream(discountFile);
+			ObjectInputStream input = new ObjectInputStream(fi);
+			
+			try{
+				while(true){
+					TicketDiscount d = (TicketDiscount)input.readObject();
+					discountList.add(d);
+				}
+			} catch (EOFException e){
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			
+			fi.close();
+			input.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 		
 	}
 	
-
 	public static void addDiscount(Scanner scanner) { 
 		
 		String type = null;
@@ -156,35 +180,7 @@ public class TicketDatabase{
 		}
 	}	
 	
-	public static void fetchTicketDiscount(){
-		discountList = new ArrayList<TicketDiscount>();
 		
-		try{
-			FileInputStream fi = new FileInputStream(discountFile);
-			ObjectInputStream input = new ObjectInputStream(fi);
-			
-			try{
-				while(true){
-					TicketDiscount d = (TicketDiscount)input.readObject();
-					discountList.add(d);
-				}
-			} catch (EOFException e){
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			
-			fi.close();
-			input.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
-	}
-	
-	
 	public static void printTicketDiscountMenu(Scanner scanner) {
 		System.out.println("\n========================\n"
 				+ "Ticket Discount Settings\n"

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class MovieDatabase implements Database{
@@ -381,6 +382,70 @@ public class MovieDatabase implements Database{
 		System.out.println("Synopsis: ");
 		System.out.println(breakLinesForReviews(m.getSynopsis(), 50));
 		System.out.println("=======================================================");
+	}
+	
+	public static void printTop5Sales(Scanner scanner)
+	{
+		ArrayList<Movie> tempSalesList = new ArrayList<Movie>();
+
+		//create replica of MovieList
+		if (getArrayList().get(0) == null)
+		{
+			System.out.println("Top 5 list is empty");
+			return;
+		}
+		else if (getArrayList().size() != 0)
+		{
+			for(int i=0; i<getArrayList().size(); i++)
+			{	
+				tempSalesList.add(getArrayList().get(i));
+			}
+
+			Collections.sort(tempSalesList, Movie.salesComparator());
+
+			for (int index=1; index<=5; index++)
+			{
+				System.out.println(	"==================================================================\n"
+						+ "Number " + index + ":\nTitle: " + tempSalesList.get(index-1).getTitle() 
+						+ "\nOverall Sales: " + tempSalesList.get(index-1).getTicketSales()
+						+ "\n==================================================================\n\n");
+			}
+		}
+	}
+		
+	public static void printTop5Ratings (Scanner scanner)
+	{
+		ArrayList<Movie> tempRatingsList = new ArrayList<Movie>();
+
+		//create replica of MovieList
+		if (getArrayList().get(0) == null)
+		{
+			System.out.println("Top 5 list is empty");
+			return;
+		}
+		else if (getArrayList().size() != 0)
+		{
+			for(int i=0; i<getArrayList().size(); i++)
+			{	
+				tempRatingsList.add(getArrayList().get(i));
+			}
+
+			Collections.sort(tempRatingsList, Movie.ratingComparator());
+
+			for (int index=1; index<=5; index++)
+			{
+				System.out.println(	"==================================================================");
+				System.out.println("Number " + index + ":\nTitle: " + tempRatingsList.get(index-1).getTitle());
+
+				if (tempRatingsList.get(index-1).getReviewList().size() < 2) {
+					System.out.println("Average rating: " + "NA. Movie has only 1 review/rating.");
+				} else {
+					System.out.println("Average rating: " + tempRatingsList.get(index-1).getAvgRating());
+				}
+
+			}
+
+		}
 	}
 
 	@Override
