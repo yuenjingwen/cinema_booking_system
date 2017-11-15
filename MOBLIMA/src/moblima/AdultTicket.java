@@ -4,21 +4,17 @@ import java.time.LocalDateTime;
 import java.time.MonthDay;
 
 public class AdultTicket extends Ticket{
-
-<<<<<<< HEAD
-	static {BASE_PRICE_TICKET = 10;}
 	
-=======
-	/**
+	static int BASE_PRICE_TICKET = 10;
+		/**
 	 * 
 	 */
 	private static final long serialVersionUID = -4356253491233642936L;
 
->>>>>>> branch 'master' of https://github.com/jirehcwe/MOBLIMA.git
+
 	public AdultTicket(String seat, int age, int cinemaIndex, int cineplexIndex, int showtimeIndex,
 			String ticketholderName, String email, int mobileNum) {
 		super(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, ticketholderName, email, mobileNum);
-<<<<<<< HEAD
 	}
 
 	@Override
@@ -134,8 +130,6 @@ public class AdultTicket extends Ticket{
 		}
 		
 		return BASE_PRICE_TICKET + temp;
-=======
->>>>>>> branch 'master' of https://github.com/jirehcwe/MOBLIMA.git
 	}
 
 }
