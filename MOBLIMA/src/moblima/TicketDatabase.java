@@ -25,7 +25,7 @@ public class TicketDatabase implements Database{
 		updateTickets();
 	} 
 		
-	public static ArrayList<Ticket> getArrayList() {
+	public static ArrayList<Ticket> getTicketArrayList() {
 		return ticketList;
 	}
 	

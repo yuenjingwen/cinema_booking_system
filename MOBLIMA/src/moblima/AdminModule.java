@@ -240,11 +240,11 @@ public class AdminModule {
 				MainMenuManager.choice = 3;
 				break;
 			case 4:
-				for (Ticket t: TicketDatabase.getArrayList()) {
+				for (Ticket t: TicketDatabase.getTicketArrayList()) {
 					t.printTicket();
 				}
 				
-				if (TicketDatabase.getArrayList().size() == 0) {
+				if (TicketDatabase.getTicketArrayList().size() == 0) {
 					System.out.println("Empty booking history.");
 				}
 				

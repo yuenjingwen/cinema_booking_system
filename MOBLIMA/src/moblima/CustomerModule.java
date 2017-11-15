@@ -430,135 +430,144 @@ private static void customerBuyProcess(Scanner scanner) {
 						
 			System.out.println("Would you like to pay?: Y/N");
 			
-			String confirmBooking;
-			confirmBooking = scanner.next();
 			
 			do {
-				scanner.nextLine();
-				switch(confirmBooking.toUpperCase()) {
-				case "Y":
-					System.out.println("Making payment...");		
-	
-					ticket.printTicket();
-					TicketDatabase.add(ticket);
+				
+				try {
+					String confirmBooking;
+					confirmBooking = scanner.next();
+					scanner.nextLine();
 					
-					Movie tempM = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie();
+					switch(confirmBooking.toUpperCase()) {
 					
-					int index = 0;
-					int movieIndex = 0;
-					for (Movie m: MovieDatabase.getArrayList()) {
-						if (tempM.getTitle().equals(m.getTitle())) {
-							movieIndex = index;
-							break;
-						} else {
-							index++;
+					case "Y":
+						System.out.println("Making payment...");		
+		
+						ticket.printTicket();
+						TicketDatabase.add(ticket);
+						
+						Movie tempM = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie();
+						
+						int index = 0;
+						int movieIndex = 0;
+						for (Movie m: MovieDatabase.getArrayList()) {
+							if (tempM.getTitle().equals(m.getTitle())) {
+								movieIndex = index;
+								break;
+							} else {
+								index++;
+							}
 						}
+						
+						CinemaEnum cEnum = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getClassOfCinema();			
+						MovieType mEnum = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();
+						LocalDateTime movieDay = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime();
+						
+						//adds ticket sale to the movie's total sales
+						MovieDatabase.getArrayList().get(movieIndex).addTicketSale(ticket.calculateTicketPrice(cEnum, mEnum, age, movieDay));
+						//set seat to occupied
+						CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).setSeat(column-1, row-1);
+						
+						System.out.println("You have paid for your ticket!");
+						
+						TicketDatabase.updateTickets();
+						CineplexDatabase.updateCineplexes();
+						MovieDatabase.updateMovies();
+						
+						break;
+					case "N": 
+						System.out.println("Going back to menu...");
+						break;
+					default:
+						throw new InputMismatchException();
 					}
-					
-					CinemaEnum cEnum = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getClassOfCinema();			
-					MovieType mEnum = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();
-					LocalDateTime movieDay = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime();
-					
-					//adds ticket sale to the movie's total sales
-					MovieDatabase.getArrayList().get(movieIndex).addTicketSale(ticket.calculateTicketPrice(cEnum, mEnum, age, movieDay));
-					//set seat to occupied
-					CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).setSeat(column-1, row-1);
-					
-					System.out.println("You have paid for your ticket!");
-					
-					TicketDatabase.updateTickets();
-					CineplexDatabase.updateCineplexes();
-					MovieDatabase.updateMovies();
-					
 					break;
-				case "N": 
-					System.out.println("Going back to menu...");
-					break;
-				default:
-					System.out.println("Invalid input, please enter Y or N.");
+				
+				} catch (InputMismatchException IMe){
+					System.out.println("Invalid input. Please enter again.");
+					scanner.nextLine();
 				}
-				break;
 			} while (true);
 			
 			
 	}
 	
 	//need a way to read review
-private static void customerReadReview(Scanner scanner) {	
-	MovieDatabase.printMovieTitles();
-		
-	do {
-		try {
-		System.out.println("Which movie's reviews do you want to read?");
-		int movieIndex = scanner.nextInt();
-		
-		System.out.println("===Reviews for " + MovieDatabase.getArrayList().get(movieIndex-1).getTitle()+ "=============");
-		MovieDatabase.getArrayList().get(movieIndex-1).printReviews();
-		
-		break;
-		} catch (InputMismatchException IMe) {
-			System.out.println("Invalid input. Try again");
-		}
-	} while (true);
-}
-	
-private static void customerPrintAverageRating(Scanner scanner) {
-		
-	MovieDatabase.printFullMovieList();
-	System.out.print("Which movie's average rating would you like to view?");	//ask which movie user wants to see avg rating of
-	int choice = scanner.nextInt();
-		
-	MovieDatabase.getArrayList().get(choice-1).printAvgRating();
-		
-		
-	}
-
-private static void customerShowHistory(Scanner scanner) {
-		
-		
-	System.out.println("Enter your name to search for booking history:");
-	
-	
-	//take in customer's mobile number
-	String name;
-	
-	do {
-		try {
-			name = scanner.nextLine();
+	private static void customerReadReview(Scanner scanner) {	
+		MovieDatabase.printMovieTitles();
+			
+		do {
+			try {
+			System.out.println("Which movie's reviews do you want to read?");
+			int movieIndex = scanner.nextInt();
+			
+			System.out.println("===Reviews for " + MovieDatabase.getArrayList().get(movieIndex-1).getTitle()+ "=============");
+			MovieDatabase.getArrayList().get(movieIndex-1).printReviews();
+			
 			break;
-		} catch (InputMismatchException e) {
+			} catch (InputMismatchException IMe) {
+				System.out.println("Invalid input. Try again");
+			}
+		} while (true);
+	}
+		
+	private static void customerPrintAverageRating(Scanner scanner) {
+			
+		MovieDatabase.printFullMovieList();
+		System.out.print("Which movie's average rating would you like to view?");	//ask which movie user wants to see avg rating of
+		int choice = scanner.nextInt();
+			
+		MovieDatabase.getArrayList().get(choice-1).printAvgRating();
+			
 			
 		}
-	} while (true);
 	
-	if (TicketDatabase.getArrayList().size()== 0) {
-		System.out.println("No booking history found.");
-		return;
-	}
-	
-	ArrayList<Ticket> tempList = new ArrayList<Ticket>();	
-	
-	
-	
-	
-	for (int i=0;i<TicketDatabase.getArrayList().size();i++) {
-		if (TicketDatabase.getArrayList().get(i).getTicketholderName().equals(name)) {
-			tempList.add(TicketDatabase.getArrayList().get(i));
-		}		
-	}
-	
-	if (tempList.size() > 0) {
-	
-		for(int i=0;i <tempList.size()  ; i++) {
-			if(tempList.get(i) != null){
-			tempList.get(i).printTicket();		
-				}
-	
+	private static void customerShowHistory(Scanner scanner) {
+			
+			
+		System.out.println("Enter your name to search for booking history:");
+		
+		
+		//take in customer's mobile number
+		String name;
+		
+		do {
+			try {
+				name = scanner.nextLine();
+				break;
+			} catch (InputMismatchException e) {
+				
+			}
+		} while (true);
+		
+		if (TicketDatabase.getTicketArrayList().size()== 0) {
+			System.out.println("No booking history found.");
+			return;
 		}
-	} else {
-		System.out.println("No booking history found.");
+		
+		ArrayList<Ticket> tempList = new ArrayList<Ticket>();	
+		
+		
+		
+		
+		for (int i=0;i<TicketDatabase.getTicketArrayList().size();i++) {
+			if (TicketDatabase.getTicketArrayList().get(i).getTicketholderName().equals(name)) {
+				tempList.add(TicketDatabase.getTicketArrayList().get(i));
+			}		
+		}
+		
+		if (tempList.size() > 0) {
+		
+			for(int i=0;i <tempList.size()  ; i++) {
+				if(tempList.get(i) != null){
+				tempList.get(i).printTicket();		
+					}
+		
+			}
+		} else {
+			System.out.println("No booking history found.");
+		}
 	}
-}
 	
 
 
