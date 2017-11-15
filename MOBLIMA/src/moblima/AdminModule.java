@@ -243,6 +243,11 @@ public class AdminModule {
 				for (Ticket t: TicketDatabase.getArrayList()) {
 					t.printTicket();
 				}
+				
+				if (TicketDatabase.getArrayList().size() == 0) {
+					System.out.println("Empty booking history.");
+				}
+				
 				break;
 			case 5:
 				break;
