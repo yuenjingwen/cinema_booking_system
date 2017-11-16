@@ -6,6 +6,8 @@ public class TicketBooth {
 
 	public Ticket buyTicket(String seat, int age, int cinemaIndex, int cineplexIndex, int showtimeIndex,
 			String ticketholderName, String email, int mobileNum, String name, String emailAddress) {
+		
+		
 		if(age < 12){
 			return new ChildTicket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum);
 		}else if(age > 65){

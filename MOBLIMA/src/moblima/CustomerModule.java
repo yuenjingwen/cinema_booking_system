@@ -377,7 +377,7 @@ private static void customerBuyProcess(Scanner scanner) {
 						}
 						break;
 					} catch (Exception e) {
-						e.printStackTrace();
+						//e.printStackTrace();
 						System.out.println("Error input!");
 					}
 				} while (true);
@@ -416,7 +416,6 @@ private static void customerBuyProcess(Scanner scanner) {
 			seat = rowString+ tempColumn  ;
 			
 			Ticket ticket = ticketBooth.buyTicket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum, name, emailAddress);
-			
 			//need Edit this
 			//Ticket ticket= new Ticket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum);
 			System.out.println("Price:" + ticket.getTicketPrice());

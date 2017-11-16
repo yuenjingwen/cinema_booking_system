@@ -181,4 +181,11 @@ public class PublicHolidayDatabase implements Database{
 		} catch (IOException e) {
 		}
 	}
+
+
+	@Override
+	public void updateDatabase() {
+		// TODO Auto-generated method stub
+		
+	}
 }
