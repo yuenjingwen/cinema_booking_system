@@ -66,7 +66,6 @@ public abstract class Ticket implements Serializable {
 	public String getTicketholderName() {
 		return ticketholderName;
 	}
-<<<<<<< HEAD
 
 	public MovieType getMovieType() {
 		return mType;
