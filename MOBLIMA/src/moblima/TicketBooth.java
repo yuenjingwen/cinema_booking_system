@@ -9,11 +9,14 @@ public class TicketBooth {
 		
 		
 		if(age < 12){
-			return new ChildTicket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum);
+			ChildTicket Cticket = new ChildTicket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum);
+			return Cticket;
 		}else if(age > 65){
-			return new ElderlyTicket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum);
+			ElderlyTicket Eticket = new ElderlyTicket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum);
+			return Eticket;
 		}else{
-			return new AdultTicket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum);
+			AdultTicket Aticket = new AdultTicket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum);
+			return Aticket;
 		}
 	}
 	
@@ -29,6 +32,7 @@ public class TicketBooth {
 		System.out.println("	Time: " + ticket.getTime());
 		System.out.println("	Seat: " + ticket.getSeat() + "					");
 		System.out.println("											");
+		System.out.println("	Price: $" + ticket.getTicketPrice()	+ " ");
 		System.out.println("											");
 		System.out.println("	Email: " + ticket.getEmail()	+ "		");
 		System.out.println("	Number: " + ticket.getMobileNumber() + "");	
