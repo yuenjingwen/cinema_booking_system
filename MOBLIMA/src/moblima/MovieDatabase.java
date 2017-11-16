@@ -15,18 +15,18 @@ import java.util.Scanner;
 public class MovieDatabase implements Database{
 
 	/**
-	 * An array list of the Movie class 
+	 * An array list of the Movie class. 
 	 */
 	private static ArrayList<Movie> movieList;
 //	private static ArrayList<MovieReview> RDB;
 	
 	/**
-	 * dat file called movieFile
+	 * Creates a dat file called movieFile.
 	 */
 	private static File movieFile = new File("Movie.dat");
 	
 	/**
-	 * Get an array list of current movies 
+	 * Get an array list of current movies. 
 	 * @return an array list of current movies
 	 */
 	public static ArrayList<Movie> getArrayList() {
@@ -34,8 +34,9 @@ public class MovieDatabase implements Database{
 	}
 	
 	/**
-	 * For admin to edit the details of a selected movie
-	 * @param scanner 
+	 * For admin to edit the details of a selected movie.
+	 * The details of the movie in the existing array list will also be updated accordingly. 
+	 * @param scanner Scanner object
 	 */
 	public static void editMovie(Scanner scanner) {
 		String temp = null;
@@ -155,8 +156,9 @@ public class MovieDatabase implements Database{
 	}
 
 	/**
-	 * For admin to add new movies and add the movie to the existing movie array list
-	 * @param scanner
+	 * For admin to add new movies and its details.
+	 * The new movie will be added to the existing movie array list.
+	 * @param scanner Scanner object
 	 */
 	public static void addMovie(Scanner scanner){
 		String title;
@@ -206,8 +208,9 @@ public class MovieDatabase implements Database{
 	}
 
 	/**
-	 * 
-	 * @param scanner
+	 * For admin to remove a movie.
+	 * The movie will also be removed from the existing movie array list.
+	 * @param scanner Scanner object
 	 */
 	public static void removeMovie(Scanner scanner){
 		int index;
@@ -247,6 +250,9 @@ public class MovieDatabase implements Database{
 //		}
 //	}
 	
+	/**
+	 * Changes database to the most updated version. 
+	 */
 	public static void updateMovies(){
 		try{
 			FileOutputStream fo = new FileOutputStream(movieFile);
@@ -263,6 +269,10 @@ public class MovieDatabase implements Database{
 		}
 	}	
 	
+	/**
+	 * Prints out the list of all movies together with its details. 
+	 * Details include: index, showing status, title, director, cast and synopsis.
+	 */
 	public static void printFullMovieList() {
 		System.out.print("\n=======================================================\n");
 		System.out.print("                     Movies Listed                     ");
@@ -284,6 +294,9 @@ public class MovieDatabase implements Database{
 	
 	}
 
+	/**
+	 * Prints out the list of movie titles and their average ratings and reviews.
+	 */
 	public static void printMovieTitles() {
 		System.out.print("\n=======================================================\n");
 		System.out.print("                     Movies Listed                     ");
@@ -338,6 +351,10 @@ public class MovieDatabase implements Database{
 		}
 	}*/
 	
+	/**
+	 * Prints out the list of all reviews for a selected movie.
+	 * @param scanner Scanner object
+	 */
 	public static void printReviewList(Scanner scanner) {
 		
 		MovieDatabase.printFullMovieList();	//print movie list
@@ -356,6 +373,11 @@ public class MovieDatabase implements Database{
 	}
 
 
+	/**
+	 * For customers to add a review and rating for a selected movie.
+	 * The review and rating will then be added into the existing array list for reviews. 
+	 * @param scanner Scanner object
+	 */
 	public static void addReview(Scanner scanner) {
 	int movieIndex;
 	
@@ -376,6 +398,13 @@ public class MovieDatabase implements Database{
 	updateMovies();
 }
 	
+	/**
+	 * To set the maximum number of characters in one line of review. 
+	 * This is to allow the whole review to fit into the dimension of the console. 
+	 * @param input This is the review that the customer submitted.
+	 * @param maxLineLength This is the maximum number of characters that can fit into one line of review.
+	 * @return It returns the review in a different the selected format. The content of the review is unchanged. 
+	 */
 	private static String breakLinesForReviews(String input, int maxLineLength) {
 	    String[] tokens = input.split("\\s+");
 	    StringBuilder output = new StringBuilder(input.length());
@@ -399,6 +428,11 @@ public class MovieDatabase implements Database{
 	    return output.toString();
 	}
 
+	/**
+	 * Prints the details of a single movie instead of details of the whole lists of movies available. 
+	 * Details include: movie type, showing status, title, director, cast and synopsis.
+	 * @param m The selected movie for its details to be printed. 
+	 */
 	public static void printSingleMovieDetails(Movie m) {
 		System.out.println("=======================================================");
 		System.out.println("Movie Type:		" + m.getMovieType() + "\n");
@@ -412,6 +446,10 @@ public class MovieDatabase implements Database{
 		System.out.println("=======================================================");
 	}
 	
+	/**
+	 * Prints out the top 5 sales of movies if the movie array list is not empty. 
+	 * @param scanner Scanner Object. 
+	 */
 	public static void printTop5Sales(Scanner scanner)
 	{
 		ArrayList<Movie> tempSalesList = new ArrayList<Movie>();
@@ -441,6 +479,10 @@ public class MovieDatabase implements Database{
 		}
 	}
 		
+	/**
+	 * Prints out the top 5 ratings of movies if the movie array list is not empty.
+	 * @param scanner Scanner object
+	 */
 	public static void printTop5Ratings (Scanner scanner)
 	{
 		ArrayList<Movie> tempRatingsList = new ArrayList<Movie>();
@@ -477,12 +519,16 @@ public class MovieDatabase implements Database{
 	}
 
 	@Override
+	/**
+	 * Update the movie database and writes it to the dat file. 
+	 */
 	public void updateDatabase() {
-		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	/**
+	 * Fetches the movie database from the dat file and inputs it into the static array list. 
+	 */
 	public void fetchDatabase() {
 		movieList = new ArrayList<Movie>();
 		try{
