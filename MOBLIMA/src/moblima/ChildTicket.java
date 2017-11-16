@@ -1,6 +1,5 @@
 package moblima;
 
-import java.time.LocalDateTime;
 import java.time.MonthDay;
 
 public class ChildTicket extends Ticket{
@@ -19,11 +18,11 @@ public class ChildTicket extends Ticket{
 	}
 
 	@Override
-	public float calculateTicketPrice(CinemaEnum cEnum, MovieType mEnum, int age, LocalDateTime movieDay) {
+	public float calculateTicketPrice() {
 		
 		float temp = 0;
 		
-		switch(cEnum){
+		switch(super.getCinemaType()){
 		case DIGITAL:
 			try {
 			temp += TicketDatabase.searchDiscountByName("Digital");
@@ -45,7 +44,7 @@ public class ChildTicket extends Ticket{
 			break;
 		}
 		
-		switch(mEnum.toString()){
+		switch(super.getmType().toString()){
 		case "NORMAL":
 			try {
 				temp += TicketDatabase.searchDiscountByName("Normal");
@@ -100,7 +99,7 @@ public class ChildTicket extends Ticket{
 			e2.printStackTrace();
 		}
 		
-		switch (movieDay.getDayOfWeek().toString()){
+		switch (super.getMovieDay().getDayOfWeek().toString()){
 		case "MONDAY":
 		case "TUESDAY":
 		case "WEDNESDAY":
@@ -123,7 +122,7 @@ public class ChildTicket extends Ticket{
 	
 		
 		//checks if the movie date lands on a public holiday and adds the appropriate charges accordingly
-		MonthDay tempMD = MonthDay.from(movieDay);
+		MonthDay tempMD = MonthDay.from(super.getMovieDay());
 		
 		for (PublicHoliday ph: PublicHolidayDatabase.getArrayList()) {
 			if (tempMD == ph.getDate()) {

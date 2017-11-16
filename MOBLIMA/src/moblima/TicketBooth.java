@@ -11,19 +11,19 @@ public class TicketBooth {
 	public void printTicket(Ticket ticket){
 		System.out.println("============================================");
 		System.out.println("~~~~~~~~~~~~~~~~~~~Ticket~~~~~~~~~~~~~~~~~~~");
-		System.out.println("	Customer: " + ticket.getTicketholderName() + "		");
-		System.out.println("	Cineplex: " + cineplex + "				");
-		System.out.println("	Cinema: " + cinema + "					");
+		System.out.println("	Customer: " + ticket.getTicketholderName());
+		System.out.println("	Cineplex: " + ticket.getCineplex());
+		System.out.println("	Cinema: " + ticket.getCinema());
 		System.out.println("											");
-		System.out.println("	Movie: " + this.movie + "				");
-		System.out.println("	Date: " + this.movieDay.format(DateTimeFormatter.ofPattern("dd-MM-YYYY")));
-		System.out.println("	Time: " + this.time + "					");
-		System.out.println("	Seat: " + this.seat + "					");
+		System.out.println("	Movie: " + ticket.getMovie());
+		System.out.println("	Date: " + ticket.getMovieDay().format(DateTimeFormatter.ofPattern("dd-MM-YYYY")));
+		System.out.println("	Time: " + ticket.getTime());
+		System.out.println("	Seat: " + ticket.getSeat() + "					");
 		System.out.println("											");
 		System.out.println("											");
-		System.out.println("	Email: " + email + "					");
-		System.out.println("	Number: " + mobileNumber + "			");	
-		System.out.println("	Transaction ID: " + this.TID + "		");
+		System.out.println("	Email: " + ticket.getEmail()	+ "		");
+		System.out.println("	Number: " + ticket.getMobileNumber() + "");	
+		System.out.println("	Transaction ID: " + ticket.getTID() + "		");
 
 	}
 	

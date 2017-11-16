@@ -1,6 +1,5 @@
 package moblima;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
@@ -211,6 +210,8 @@ private static void customerReviewMenu(Scanner scanner) {
 
 	//Process of buying
 private static void customerBuyProcess(Scanner scanner) {
+	
+		TicketBooth ticketBooth = new TicketBooth();
 		
 		int i = 1; //Choose
 		int showtimeIndex;
@@ -443,7 +444,7 @@ private static void customerBuyProcess(Scanner scanner) {
 					case "Y":
 						System.out.println("Making payment...");		
 		
-						ticket.printTicket();
+						ticketBooth.printTicket(ticket);
 						TicketDatabase.add(ticket);
 						
 						Movie tempM = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie();
@@ -459,12 +460,10 @@ private static void customerBuyProcess(Scanner scanner) {
 							}
 						}
 						
-						CinemaEnum cEnum = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getClassOfCinema();			
-						MovieType mEnum = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();
-						LocalDateTime movieDay = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime();
+					
 						
 						//adds ticket sale to the movie's total sales
-						MovieDatabase.getArrayList().get(movieIndex).addTicketSale(ticket.calculateTicketPrice(cEnum, mEnum, age, movieDay));
+						MovieDatabase.getArrayList().get(movieIndex).addTicketSale(ticket.calculateTicketPrice());
 						//set seat to occupied
 						CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).setSeat(column-1, row-1);
 						
@@ -524,6 +523,7 @@ private static void customerBuyProcess(Scanner scanner) {
 	
 	private static void customerShowHistory(Scanner scanner) {
 			
+		TicketBooth ticketBooth = new TicketBooth();
 			
 		System.out.println("Enter your name to search for booking history:");
 		
@@ -560,7 +560,7 @@ private static void customerBuyProcess(Scanner scanner) {
 		
 			for(int i=0;i <tempList.size()  ; i++) {
 				if(tempList.get(i) != null){
-				tempList.get(i).printTicket();		
+				ticketBooth.printTicket(tempList.get(i));		
 					}
 		
 			}

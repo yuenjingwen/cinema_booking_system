@@ -24,13 +24,37 @@ public abstract class Ticket implements Serializable {
 	private String email;
 	private int mobileNumber;
 	
+	private MovieType mType;	
 	private CinemaEnum classOfCinema;
 	private LocalDateTime movieDay;
-	public float getPrice() {
+	
+	public Ticket(String seat, int age, int cinemaIndex, int cineplexIndex, int showtimeIndex, String ticketholderName, String email, int mobileNum){	//create new constructor. use calculate ticket price to set the price
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+		
+		
+		this.cineplex 			= CineplexDatabase.cineplexList.get(cineplexIndex -1).getName(); //use cineplex index to get
+		this.cinema 			= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaID();; //use cinema index to get
+		this.movie 				= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getTitle();
+		this.time 				= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime().format(formatter);
+		this.seat 				= seat;
+		this.classOfCinema		= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getClassOfCinema();
+	    this.movieDay 			= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime();
+	    this.ticketholderName	= ticketholderName;
+	    this.email 				= email;
+	    this.mobileNumber		= mobileNum;
+	    this.mType				= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();		
+		this.price 				= calculateTicketPrice();
+		this.discount 			= getDiscount();		
+		this.TID 				= this.cinema.concat(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmm")));
+		
+	}
+	
+	public float getTicketPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setTicketPrice(float price) {
 		this.price = price;
 	}
 
@@ -102,49 +126,14 @@ public abstract class Ticket implements Serializable {
 		return seat;
 	}
 
-	public void setDiscount(String discount) {
-		this.discount = discount;
-	}
-
 	public void setTicketholderName(String ticketholderName) {
 		this.ticketholderName = ticketholderName;
 	}
-	private MovieType mType;
-	
-	
-	
-	public Ticket(String seat, int age, int cinemaIndex, int cineplexIndex, int showtimeIndex, String ticketholderName, String email, int mobileNum){	//create new constructor. use calculate ticket price to set the price
-		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-		
-		
-		this.cineplex 			= CineplexDatabase.cineplexList.get(cineplexIndex -1).getName(); //use cineplex index to get
-		this.cinema 			= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaID();; //use cinema index to get
-		this.movie 				= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getTitle();
-		this.time 				= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime().format(formatter);
-		this.seat 				= seat;
-		this.classOfCinema		= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getClassOfCinema();
-	    this.movieDay 			= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime();
-	    this.ticketholderName	= ticketholderName;
-	    this.email 				= email;
-	    this.mobileNumber		= mobileNum;
-	    this.mType				= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();		
-		this.price 				= calculateTicketPrice();
-		this.discount 			= getDiscount();		
-		this.TID 				= this.cinema.concat(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmm")));
-		
-	}
-	
-	public float getTicketPrice() {
-		return price;
-	}
+
 
 	public String getDiscount() {
 		return discount;
 	}
-
-
-
 	public abstract float calculateTicketPrice();
 	
 	public String getTicketholderName() {
@@ -159,9 +148,6 @@ public abstract class Ticket implements Serializable {
 		return classOfCinema;
 	}
 	
-	public void setTicketPrice(float price) {
-		this.price = price;
-	}
 
 	public void setCineplex(String cineplexName){
 		cineplex = cineplexName;
