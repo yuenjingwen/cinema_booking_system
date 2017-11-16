@@ -16,7 +16,6 @@ public abstract class Ticket implements Serializable {
 	private String cineplex; 
 	private String cinema; 
 	private String movie; 
-	private String time; 
 	private String seat;
 	private String TID = "XXXYYYYMMDDhhmm";
 	
@@ -46,7 +45,7 @@ public abstract class Ticket implements Serializable {
 	    this.email 				= email;
 	    this.mobileNumber		= mobileNum;
 	    this.mType				= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();		
-		this.price 				= calculateTicketPrice();
+		this.price 				= calculateTicketPrice(classOfCinema, mType, age, movieDay);
 		this.discount 			= getDiscount();		
 		this.TID 				= this.cinema.concat(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmm")));
 		
@@ -60,23 +59,28 @@ public abstract class Ticket implements Serializable {
 		return discount;
 	}
 
-	public LocalDateTime getMovieDay() {
-		return movieDay;
-	}
 
-	public abstract float calculateTicketPrice();
+
+	public abstract float calculateTicketPrice(CinemaEnum cEnum, MovieType mEnum, int age, LocalDateTime movieDay);
 	
 	public String getTicketholderName() {
 		return ticketholderName;
 	}
+<<<<<<< HEAD
 	
 	public MovieType getMovieType() {
 		return mType;
 	}
 	
+	public CinemaEnum getCinemaType(){
+		return classOfCinema;
+	}
+	
 	public void setTicketPrice(float price) {
 		this.price = price;
 	}
+=======
+>>>>>>> parent of b8da8ee... FIX DA TICKET
 
 	
 	public void setCineplex(String cineplexName){
@@ -85,10 +89,10 @@ public abstract class Ticket implements Serializable {
 	public void setCinema(String cinemaName){
 		cinema = cinemaName;
 	}
+<<<<<<< HEAD
 	
-	public CinemaEnum getCinemaType(){
-		return classOfCinema;
-	}
+=======
+>>>>>>> parent of b8da8ee... FIX DA TICKET
 	public void setMovie(String movie){
 		this.movie = movie;
 	}
@@ -98,22 +102,5 @@ public abstract class Ticket implements Serializable {
 	public void setSeat(String seat){
 		this.seat= seat;
 	}
-	public void printTicket(){
-		System.out.println("============================================");
-		System.out.println("~~~~~~~~~~~~~~~~~~~Ticket~~~~~~~~~~~~~~~~~~~");
-		System.out.println("	Customer: " + ticketholderName + "		");
-		System.out.println("	Cineplex: " + cineplex + "				");
-		System.out.println("	Cinema: " + cinema + "					");
-		System.out.println("											");
-		System.out.println("	Movie: " + this.movie + "				");
-		System.out.println("	Date: " + this.movieDay.format(DateTimeFormatter.ofPattern("dd-MM-YYYY")));
-		System.out.println("	Time: " + this.time + "					");
-		System.out.println("	Seat: " + this.seat + "					");
-		System.out.println("											");
-		System.out.println("											");
-		System.out.println("	Email: " + email + "					");
-		System.out.println("	Number: " + mobileNumber + "			");	
-		System.out.println("	Transaction ID: " + this.TID + "		");
-
-	}
+	
 }
