@@ -71,6 +71,17 @@ public abstract class Ticket implements Serializable {
 	 */
 	private LocalDateTime movieDay;
 	
+	/**
+	 * Creates a new ticket. 
+	 * @param seat The seat this ticket is for. 
+	 * @param age The age of this ticket holder.
+	 * @param cinemaIndex The cinema index this ticket is for.
+	 * @param cineplexIndex The cineplex index this ticket is for.
+	 * @param showtimeIndex The show time index this ticket is for.
+	 * @param ticketholderName The name of this ticket holder.
+	 * @param email The email of this ticket holder. 
+	 * @param mobileNum The mobile number of this ticket holder.
+	 */
 	public Ticket(String seat, int age, int cinemaIndex, int cineplexIndex, int showtimeIndex, String ticketholderName, String email, int mobileNum){	//create new constructor. use calculate ticket price to set the price
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -93,90 +104,178 @@ public abstract class Ticket implements Serializable {
 		
 	}
 	
+	/**
+	 * Gets the price of this ticket.
+	 * @return price The price of this ticket.
+	 */
 	public float getTicketPrice() {
 		return price;
 	}
 
+	/**
+	 * Change the price of this ticket.
+	 * @param price The updated price of this ticket.
+	 */
 	public void setTicketPrice(float price) {
 		this.price = price;
 	}
 
+	/**
+	 * Get the ticket ID of this ticket. 
+	 * @return TID The ticket ID of this ticket. 
+	 */
 	public String getTID() {
 		return TID;
 	}
 
+	/**
+	 * Change the ticket ID of this ticket. 
+	 * @param tID The ticket ID of this ticket. 
+	 */
 	public void setTID(String tID) {
 		TID = tID;
 	}
 
+	/**
+	 * Get the email of this ticket's holder. 
+	 * @return email The email of this ticket's holder.
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * Change the email of this ticket's holder. 
+	 * @param email The updated email of this ticket's holder.
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	/**
+	 * Get the mobile number of this ticket's holder.
+	 * @return mobileNumber The mobile number of this ticket's holder.
+	 */
 	public int getMobileNumber() {
 		return mobileNumber;
 	}
 
+	/**
+	 * Change the mobile number of this ticket's holder.
+	 * @param mobileNumber
+	 */
 	public void setMobileNumber(int mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 
+	/**
+	 * Get the class of cinema stated in this ticket.
+	 * @return classOfCinema The class of cinema stated in this ticket.
+	 */
 	public CinemaEnum getClassOfCinema() {
 		return classOfCinema;
 	}
 
+	/**
+	 * Change the class of cinema stated in this ticket.
+	 * @param classOfCinema The updated class of cinema stated in this ticket.
+	 */
 	public void setClassOfCinema(CinemaEnum classOfCinema) {
 		this.classOfCinema = classOfCinema;
 	}
 
+	/**
+	 * Get the day of the movie stated on this ticket.
+	 * @return movieDay The day of the movie stated on this ticket.
+	 */
 	public LocalDateTime getMovieDay() {
 		return movieDay;
 	}
 
+	/**
+	 * Change the day of the movie stated on this ticket.
+	 * @param movieDay The updated day of the movie stated on this ticket. 
+	 */
 	public void setMovieDay(LocalDateTime movieDay) {
 		this.movieDay = movieDay;
 	}
 
+	/**
+	 * Get the type of movie stated on this ticket. 
+	 * @return mType The type of movie stated on this ticket.
+	 */
 	public MovieType getmType() {
 		return mType;
 	}
 
+	/**
+	 * Change the type of movie stated on this ticket.
+	 * @param mType The updated type of movie stated on this ticket.
+	 */
 	public void setmType(MovieType mType) {
 		this.mType = mType;
 	}
 
+	/**
+	 * Get the cineplex this ticket belongs to.
+	 * @return cineplex The cineplex this ticket belongs to.
+	 */
 	public String getCineplex() {
 		return cineplex;
 	}
 
+	/**
+	 * Get the time stated on this ticket. 
+	 * @return time The time stated on this ticket.
+	 */
 	public String getTime() {
 		return time;
 	}
 
+	/**
+	 * Get the cinema this ticket belongs to.
+	 * @return cinema The cinema this ticket belongs to.
+	 */
 	public String getCinema() {
 		return cinema;
 	}
 
+	/**
+	 * Get the movie stated on this ticket.
+	 * @return movie The movie stated on this ticket.
+	 */
 	public String getMovie() {
 		return movie;
 	}
 
+	/**
+	 * Get the seat stated on this ticket.
+	 * @return seat The seat stated on this ticket.
+	 */
 	public String getSeat() {
 		return seat;
 	}
 
+	/**
+	 * Change the name of this ticket's holder. 
+	 * @param ticketholderName The updated name of this ticket's holder. 
+	 */
 	public void setTicketholderName(String ticketholderName) {
 		this.ticketholderName = ticketholderName;
 	}
 
+	/**
+	 * Get the name of discount for this ticket.
+	 * @return discount The name of discount for this ticket. 
+	 */
 	public String getDiscountName() {
 		return discount;
 	}
 		
+	/**
+	 * Get the type of discount for this ticket. 
+	 * @param cEnum The enum for the type of cinema of this ticket. 
+	 */
 	public int getCinemaTypeDiscount(CinemaEnum cEnum) {
 		switch(cEnum){
 		case DIGITAL:
@@ -201,6 +300,7 @@ public abstract class Ticket implements Serializable {
 		}
 		return 0;
 	}
+	
 	
 	public int getMovieTypeDiscount(String movie) {
 			
