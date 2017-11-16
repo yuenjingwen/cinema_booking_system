@@ -20,7 +20,7 @@ import java.util.Scanner;
 public class PublicHolidayDatabase implements Database{
 	
 	/**
-	 * Creates an ArrayList that stores the public holidays.
+	 * Creates an ArrayList "phList" that stores the public holidays.
 	 */
 	private static ArrayList<PublicHoliday> phList = new ArrayList<PublicHoliday>();
 	/**
@@ -29,8 +29,9 @@ public class PublicHolidayDatabase implements Database{
 	private static File file = new File ("PublicHolidays.dat");
 	
 	/**
-	 * Displays the Public Holiday Menu that allows for user to enter their choice of action.
-	 * 
+	 * Displays the Public Holiday Menu that prompts Admin User to enter his/her choice of action.
+	 * Admin User can add or remove a public holiday.
+	 * @param scanner Scanner object 
 	 */
 	public static void printPublicHolidayMenu(Scanner scanner){
 		System.out.println("\n=====================\n"
@@ -79,6 +80,12 @@ public class PublicHolidayDatabase implements Database{
 		}
 	}
 	
+	
+	/**
+	 * Prompts Admin User to enter the month and date of the public holiday to be added.
+	 * Adds the newly created public holiday to the ArrayList "phList".
+	 * @param scanner Scanner object 
+	 */
 	public static void addPH(Scanner scanner){
 		int month = 0, dayOfMonth = 0;
 		String description;
@@ -100,7 +107,12 @@ public class PublicHolidayDatabase implements Database{
 		Collections.sort(phList);
 		updateHolidays();
 	}
-
+	
+	/**
+	 * Prompts Admin User to enter the ID of the public holiday to be removed.
+	 * Removes the public holiday from the ArrayList "phList". 
+	 * @param scanner Scanner object 
+	 */
 	public static void removePH(Scanner scanner){
 
 		int index;
@@ -115,6 +127,9 @@ public class PublicHolidayDatabase implements Database{
 		updateHolidays();
 	}
 	
+	/**
+	 * Updates the File that saves the data of public holidays.
+	 */
 	public static void updateHolidays(){
 		try{
 			FileOutputStream fo = new FileOutputStream(file);
@@ -131,49 +146,19 @@ public class PublicHolidayDatabase implements Database{
 		}
 	}
 
-	public static void fetchHolidays(){
-		try{
-			FileInputStream fi = new FileInputStream(file);
-			ObjectInputStream input = new ObjectInputStream(fi);
-			
-			try{
-				while(true){
-					PublicHoliday ph = (PublicHoliday)input.readObject();
-					phList.add(ph);
-				}
-			} catch (EOFException e){
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			
-			fi.close();
-			input.close();
-		} catch (FileNotFoundException e) {
-		} catch (IOException e) {
-		}
-	}
 	
+	/**
+	 * Gets the ArrayList of public holidays.
+	 * @return The ArrayList "phList" that contains all the public holidays.
+	 */
 	public static ArrayList<PublicHoliday> getArrayList(){
 		return phList;
 	}
 
-	@Override
-	public void updateDatabase() {
-		try{
-			FileOutputStream fo = new FileOutputStream(file);
-			ObjectOutputStream output = new ObjectOutputStream(fo);
-			for(PublicHoliday ph: phList){
-				output.writeObject(ph);
-			}
-			fo.close();
-			output.close();
-		} catch (FileNotFoundException e){
-			e.printStackTrace();
-		} catch (IOException e){
-			e.printStackTrace();
-		}
-	}
-
+	/**
+	 * Reads the saved data of public holidays from the File.
+	 * Adds all the public holidays into the ArrayList "phList".
+	 */
 	@Override
 	public void fetchDatabase() {
 		try{
