@@ -33,7 +33,7 @@ public class Movie implements Serializable{
 		this.movieType = movieType;
 		this.ticketSales = 0;
 		Random random = new Random();
-		this.movieID = 0;
+		this.movieID = random.nextInt(1000000) + 1;
 		
 		reviews = new ArrayList<MovieReview>();
 	};
