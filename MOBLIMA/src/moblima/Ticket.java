@@ -12,22 +12,63 @@ public abstract class Ticket implements Serializable {
 	
 	static float BASE_PRICE_TICKET = 10;
 	
-	
+	/**
+	 * This is the price of the ticket
+	 */
 	private float price;
+	/**
+	 * This is the discount for this ticket.
+	 */
 	private String discount = "None";
+	/**
+	 * This is the cineplex that this ticket belongs to.
+	 */
 	private String cineplex; 
+	/**
+	 * This is the time stated on this ticket. 
+	 */
 	private String time;
+	/**
+	 * This is the cinema this ticket belongs to.
+	 */
 	private String cinema; 
+	/**
+	 * This is the movie stated on this ticket.
+	 */
 	private String movie; 
+	/**
+	 * This is the seat stated on this ticket.
+	 */
 	private String seat;
+	/**
+	 * This is the ticket ID of this ticket.
+	 */
 	private String TID = "XXXYYYYMMDDhhmm";
 	
+	/**
+	 * This is the name of the ticket holder.
+	 */
 	private String ticketholderName;
+	/**
+	 * This is the email of the ticket holder. 
+	 */
 	private String email;
+	/**
+	 * This is the mobile number of the ticket holder. 
+	 */
 	private int mobileNumber;
 	
+	/**
+	 * This is the movie type stated on this ticket.
+	 */
 	private MovieType mType;	
+	/**
+	 * This is the class of cinema stated on this ticket. 
+	 */
 	private CinemaEnum classOfCinema;
+	/**
+	 * This is the day of the movie stated on this ticket. 
+	 */
 	private LocalDateTime movieDay;
 	
 	public Ticket(String seat, int age, int cinemaIndex, int cineplexIndex, int showtimeIndex, String ticketholderName, String email, int mobileNum){	//create new constructor. use calculate ticket price to set the price
