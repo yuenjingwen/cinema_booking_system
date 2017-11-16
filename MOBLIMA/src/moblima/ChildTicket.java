@@ -13,11 +13,11 @@ public class ChildTicket extends Ticket{
 	 * Takes in parameters and sets price of the Child Ticket. 
 	 * to the appropriate pricing based on the parameters.
 	 * @param seat seat is a String stating the seat of the Ticket. e.g: A1, B7, G2
-	 * @param age Age of the customer.
+	 * @param age Age of the child.
 	 * @param cinemaIndex Which cinema the ticket is assigned to.
 	 * @param cineplexIndex Which cineplex the ticket is assigned to.
 	 * @param showtimeIndex Which showtime the ticket is assigned to.
-	 * @param ticketholderName The customer's name.
+	 * @param ticketholderName The child's name.
 	 * @param email The child's email.
 	 * @param mobileNum The child's contact.
 	 */
