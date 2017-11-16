@@ -450,7 +450,7 @@ private static void customerBuyProcess(Scanner scanner) {
 			String tempColumn = Integer.toString(column);
 			seat = rowString+ tempColumn  ;
 			
-			Ticket ticket = ticketBooth.buyTicket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum, name, emailAddress);
+			Ticket ticket = ticketBooth.buyTicket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, mobileNum, name, emailAddress);
 			//need Edit this
 			//Ticket ticket= new Ticket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum);
 			System.out.println("Price:" + ticket.calculateTicketPrice());

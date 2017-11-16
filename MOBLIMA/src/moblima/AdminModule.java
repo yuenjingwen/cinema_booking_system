@@ -118,7 +118,8 @@ public class AdminModule {
 			scanner.nextLine();
 			switch (MainMenuManager.choice) {
 			case 1:
-				while(MainMenuManager.choice != 6){
+				MovieDatabase.printFullMovieList();
+				while(MainMenuManager.choice != 6){					
 					printAdminMovieMenu(scanner);
 				}
 				MainMenuManager.choice = 1;
@@ -156,7 +157,7 @@ public class AdminModule {
 	 * @param scanner Scanner object
 	 */
 	private static void printAdminMovieMenu(Scanner scanner){
-		MovieDatabase.printFullMovieList();
+		
 		System.out.print("\n=====================\n"
 				+ "Movie Listing Editor\n"
 				+ "=====================\n"

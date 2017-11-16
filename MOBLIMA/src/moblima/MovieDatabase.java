@@ -592,7 +592,8 @@ public class MovieDatabase implements Database{
 				if (tempRatingsList.get(index-1).getReviewList().size() < 2) {
 					System.out.println("Average rating: " + "NA. Movie has only 1 review/rating.");
 				} else {
-					System.out.println("Average rating: " + tempRatingsList.get(index-1).getAvgRating());
+					System.out.print("Average rating: ");
+					System.out.printf("%.1f\n", tempRatingsList.get(index-1).getAvgRating());
 				}
 
 			}
@@ -634,6 +635,15 @@ public class MovieDatabase implements Database{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static Movie searchForMovie(String name) {
+		for (Movie m: getArrayList()) {
+			if (m.getTitle().equals(name)) {
+				return m;
+			}
+		}
+		return null;
 	}
 }
 
