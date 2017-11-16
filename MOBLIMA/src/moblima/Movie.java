@@ -7,23 +7,61 @@ import java.util.Random;
 
 public class Movie implements Serializable{
 
+	
 	private static final long serialVersionUID = 41302788253857504L;
+	/**
+	 * Title of this movie.
+	 */
 	private String title;
+	/**
+	 * Synopsis of this movie.
+	 */
 	private String synopsis;
+	/**
+	 * Director of this movie.
+	 */
 	private String director;
+	/**
+	 * Cast of this movie.
+	 */
 	private String cast;
+	/**
+	 * MovieID of this movie. Uniquely assigned when the movie is created.
+	 */
 	private int movieID;
+	/**
+	 * Array list of reviews for this movie.
+	 */
 	private ArrayList<MovieReview> reviews;
+	/**
+	 * Showing status of this movie. E.g Coming soon.
+	 */
 	private ShowingStatus showingStatus;	
+	/**
+	 * Type of Movie. E.g Blockbuster
+	 */
 	private MovieType movieType;
+	/**
+	 * Movie rating for this movie, averaged from all the reviews.
+	 */
 	private MovieRating movieRating;
 	
+	/**
+	 * Total ticket sales for this movie thus far.
+	 */
 	private float ticketSales;
 	
-	public void setMovieType(MovieType movieType) {
-		this.movieType = movieType;
-	}
-
+	
+	
+	/**
+	 * 
+	 * @param title Title of this new movie.
+	 * @param synopsis Synopsis of this new movie.
+	 * @param director Director of this new movie.
+	 * @param cast Cast of this new movie. Cast members separated by a comma.
+	 * @param movieType This movie's type. E.g Blockbuster
+	 * @param movieRating This movie's rating.
+	 */
 	public Movie(String title, String synopsis, String director, String cast, MovieType movieType, MovieRating movieRating){
 		this.title = title;
 		this.showingStatus = ShowingStatus.COMING_SOON;
@@ -39,23 +77,50 @@ public class Movie implements Serializable{
 		
 		reviews = new ArrayList<MovieReview>();
 	};
-
+	
+	/**
+	 * Setter for this movie's type.
+	 * @param movieType Input for this movie's type as a MovieType enum.
+	 */
+	public void setMovieType(MovieType movieType) {
+		this.movieType = movieType;
+	}
+	
+	/**
+	 * Getter for this movie's title.
+	 * 
+	 */
 	public String getTitle(){
 		return this.title;
 	}	
 
+	/**
+	 * 
+	 * @return Returns the synopsis of this movie as a String.
+	 */
 	public String getSynopsis(){
 		return this.synopsis;
 	}
-	
+	/**
+	 * 
+	 * @return Returns the director of this movie as a String.
+	 */
 	public String getDirector(){
 		return this.director;
 	}
 	
+	/**
+	 * 
+	 * @return Returns the cast of this movie as a String.
+	 */
 	public String getCast(){
 		return this.cast;
 	}
 
+	/**
+	 * 
+	 * @return Returns the average rating across the reviews for this movie.
+	 */
 	public float getAvgRating()
 	{
 		float sum = 0;
@@ -66,6 +131,10 @@ public class Movie implements Serializable{
 		return sum/reviews.size();
 	}
 	
+	/**
+	 * 
+	 * @return Returns the showing status of this movie.
+	 */
 	public ShowingStatus getShowingStatus() {
 		return showingStatus;
 	}
