@@ -223,7 +223,9 @@ public class TicketDatabase implements Database{
 	}
 	
 	
-
+	/**
+	 * Loads all the ticket and discount from external files onto the the 2 arrayLists.
+	 */
 	@Override
 	public void fetchDatabase() {
 
@@ -278,5 +280,11 @@ public class TicketDatabase implements Database{
 
 
 
+	}
+
+	@Override
+	public void updateDatabase() {
+		// TODO Auto-generated method stub
+		
 	}
 }
