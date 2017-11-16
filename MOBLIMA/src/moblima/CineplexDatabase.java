@@ -17,14 +17,23 @@ import java.util.Scanner;
 
 public class CineplexDatabase implements Database{
 	
+	/**
+	 * An array list containing all cineplexes.
+	 */
 	public static ArrayList<Cineplex> cineplexList;
 	private static File cineplexFile = new File("Cineplex.dat");
 	
+	/**
+	 * Gets the array list that contains all cineplexes.
+	 * @return cineplexList The array list containing all cineplexes. 
+	 */
 	public static ArrayList<Cineplex> getArrayList() {
 		return cineplexList;
 	}
 	
-	// Fetching infomation of all cineplexes.
+	/**
+	 * Fetches information of all cineplexes. 
+	 */
 	public static void fetchCineplexes(){
 		cineplexList = new ArrayList<Cineplex>();
 		try{
@@ -48,6 +57,9 @@ public class CineplexDatabase implements Database{
 		}
 	}
 		
+	/**
+	 * Update the cineplexes' information into file. 
+	 */
 	public static void updateCineplexes(){
 		try{
 			FileOutputStream fo = new FileOutputStream(cineplexFile);
@@ -64,6 +76,9 @@ public class CineplexDatabase implements Database{
 		}
 	}	
 	
+	/**
+	 * Prints out the list of all cineplexes. 
+	 */
 	public static void printAllCineplexes() {
 		int i=1;
 			System.out.println("=~=~=~=~=~=~=~=~=~=~=~=~=~=~");
@@ -73,6 +88,10 @@ public class CineplexDatabase implements Database{
 			}
 		}
 
+	/**
+	 * Adds a show time to a particular cinema in a particular cineplex. 
+	 * @param scanner Scanner object
+	 */
 	public static void addShowTime(Scanner scanner){
 		int i = 1;
 		int movieIndex;
@@ -140,8 +159,7 @@ public class CineplexDatabase implements Database{
 	}
 	
 	/**
-	 * This methods does this this
-	 * @see CinemaSeat  <code> haha </code>
+	 * Prints all the movie, date and show times in the cinemas of a cineplex. 
 	 */
 	public static void printAllShowtimes() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
@@ -172,6 +190,10 @@ public class CineplexDatabase implements Database{
 		}
 	}
 		
+	/**
+	 * Remove a show time from a cinema in a cineplex.
+	 * @param scanner Scanner object
+	 */
 	public static void removeShowTime(Scanner scanner){
 		int showtimeIndex = 1;
 		int showtimeChoice = 0;
@@ -198,6 +220,10 @@ public class CineplexDatabase implements Database{
 		updateCineplexes();
 	}
 
+	/**
+	 * Edit a show time of a cinema from a particular cineplex. 
+	 * @param scanner Scanner object
+	 */
 	public static void editShowTime(Scanner scanner){
 		int showtimeIndex = 1;
 		int month, day, hour, minute;
@@ -311,6 +337,10 @@ public class CineplexDatabase implements Database{
 		updateCineplexes();
 		}
 	
+	/**
+	 * Prints out all the show time for this cinema. 
+	 * @param cinemaShowList The list of all the show times in this cinema. 
+	 */
 	public void printShowtimeOfCinema(ArrayList<CinemaShow> cinemaShowList) {
 		for(CinemaShow cs : cinemaShowList){
 			DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
@@ -322,6 +352,10 @@ public class CineplexDatabase implements Database{
 		}
 	}
 
+	/**
+	 * Prints out the number of show times for this cinema.
+	 * @return temp The number of show times for this cinema. 
+	 */
 	public static int showTimeCount() {
 		int temp = 0;
 		
@@ -338,6 +372,9 @@ public class CineplexDatabase implements Database{
 
 	
 	@Override
+	/**
+	 * Updates the cineplex data base and writes it into file. 
+	 */
 	public void updateDatabase() {
 		try{
 			FileOutputStream fo = new FileOutputStream(cineplexFile);
@@ -356,6 +393,9 @@ public class CineplexDatabase implements Database{
 
 	
 	@Override
+	/**
+	 * Fetch the cineplex database from the file. 
+	 */
 	public void fetchDatabase() {
 		cineplexList = new ArrayList<Cineplex>();
 		try{
