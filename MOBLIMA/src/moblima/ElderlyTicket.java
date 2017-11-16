@@ -31,4 +31,8 @@ public class ElderlyTicket extends Ticket{
 		return BASE_PRICE_TICKET + temp;
 	}
 
+	
+
+	
+
 }
