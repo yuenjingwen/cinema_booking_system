@@ -21,7 +21,7 @@ public class MovieDatabase implements Database{
 //	private static ArrayList<MovieReview> RDB;
 	
 	/**
-	 * Assigns movieFile to the dat file Movie.dat
+	 * Creates a dat file called movieFile.
 	 */
 	private static File movieFile = new File("Movie.dat");
 	
@@ -369,7 +369,7 @@ public class MovieDatabase implements Database{
 			System.out.println("Cast:\t\t" + m.getCast());
 			System.out.println("-------------------------------------------------------");
 			System.out.println("Synopsis: ");
-			System.out.println(breakLinesForReviews(m.getSynopsis(), 50));
+			System.out.println(breakLines(m.getSynopsis(), 50));
 			System.out.println("=======================================================");
 			i++;
 		}
@@ -487,7 +487,7 @@ public class MovieDatabase implements Database{
 	 * @param maxLineLength This is the maximum number of characters that can fit into one line of review.
 	 * @return It returns the review in a different the selected format. The content of the review is unchanged. 
 	 */
-	private static String breakLinesForReviews(String input, int maxLineLength) {
+	public static String breakLines(String input, int maxLineLength) {
 	    String[] tokens = input.split("\\s+");
 	    StringBuilder output = new StringBuilder(input.length());
 	    int lineLen = 0;
@@ -524,7 +524,7 @@ public class MovieDatabase implements Database{
 		System.out.println("Cast:\t\t" + m.getCast());
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Synopsis: ");
-		System.out.println(breakLinesForReviews(m.getSynopsis(), 50));
+		System.out.println(breakLines(m.getSynopsis(), 50));
 		System.out.println("=======================================================");
 	}
 	
@@ -634,18 +634,6 @@ public class MovieDatabase implements Database{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public static Movie searchForMovie(String movie) throws Exception{
-		for (Movie m: getArrayList()) {
-			if (m.getTitle().equals(movie)){
-				return m;
-			} else {
-				return m;
-			}
-
-		}
-		return null;
 	}
 }
 

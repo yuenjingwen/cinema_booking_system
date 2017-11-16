@@ -91,7 +91,7 @@ public class Movie implements Serializable{
 		for(MovieReview o : reviews){
 			
 			System.out.println("Review:			"+ "Rating: " + o.getRating());
-			System.out.println(o.getReview());
+			System.out.println(MovieDatabase.breakLines(o.getReview(), 50));
 			System.out.println("- - - - - - - - - - - - - - - - - ");
 		}
 	}
