@@ -26,6 +26,89 @@ public abstract class Ticket implements Serializable {
 	
 	private CinemaEnum classOfCinema;
 	private LocalDateTime movieDay;
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+
+	public String getTID() {
+		return TID;
+	}
+
+	public void setTID(String tID) {
+		TID = tID;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(int mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
+	public CinemaEnum getClassOfCinema() {
+		return classOfCinema;
+	}
+
+	public void setClassOfCinema(CinemaEnum classOfCinema) {
+		this.classOfCinema = classOfCinema;
+	}
+
+	public LocalDateTime getMovieDay() {
+		return movieDay;
+	}
+
+	public void setMovieDay(LocalDateTime movieDay) {
+		this.movieDay = movieDay;
+	}
+
+	public MovieType getmType() {
+		return mType;
+	}
+
+	public void setmType(MovieType mType) {
+		this.mType = mType;
+	}
+
+	public String getCineplex() {
+		return cineplex;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public String getCinema() {
+		return cinema;
+	}
+
+	public String getMovie() {
+		return movie;
+	}
+
+	public String getSeat() {
+		return seat;
+	}
+
+	public void setDiscount(String discount) {
+		this.discount = discount;
+	}
+
+	public void setTicketholderName(String ticketholderName) {
+		this.ticketholderName = ticketholderName;
+	}
 	private MovieType mType;
 	
 	
@@ -46,7 +129,7 @@ public abstract class Ticket implements Serializable {
 	    this.email 				= email;
 	    this.mobileNumber		= mobileNum;
 	    this.mType				= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();		
-		this.price 				= calculateTicketPrice(classOfCinema, mType, age, movieDay);
+		this.price 				= calculateTicketPrice();
 		this.discount 			= getDiscount();		
 		this.TID 				= this.cinema.concat(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmm")));
 		
@@ -62,7 +145,7 @@ public abstract class Ticket implements Serializable {
 
 
 
-	public abstract float calculateTicketPrice(CinemaEnum cEnum, MovieType mEnum, int age, LocalDateTime movieDay);
+	public abstract float calculateTicketPrice();
 	
 	public String getTicketholderName() {
 		return ticketholderName;

@@ -18,11 +18,11 @@ public class AdultTicket extends Ticket{
 	}
 
 	@Override
-	public float calculateTicketPrice(CinemaEnum cEnum, MovieType mEnum, int age, LocalDateTime movieDay) {
+	public float calculateTicketPrice() {
 		
 		float temp = 0;
 		
-		switch(cEnum){
+		switch(super.getCinemaType()){
 		case DIGITAL:
 			try {
 			temp += TicketDatabase.searchDiscountByName("Digital");
@@ -44,7 +44,7 @@ public class AdultTicket extends Ticket{
 			break;
 		}
 		
-		switch(mEnum.toString()){
+		switch(super.getMovieType().toString()){
 		case "NORMAL":
 			try {
 				temp += TicketDatabase.searchDiscountByName("Normal");
@@ -92,7 +92,7 @@ public class AdultTicket extends Ticket{
 //			}
 //		}
 		
-		switch (movieDay.getDayOfWeek().toString()){
+		switch (){
 		case "MONDAY":
 		case "TUESDAY":
 		case "WEDNESDAY":
