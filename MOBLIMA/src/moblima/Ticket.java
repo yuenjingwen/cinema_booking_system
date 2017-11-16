@@ -266,7 +266,8 @@ public abstract class Ticket implements Serializable {
 		MonthDay tempMD = MonthDay.from(getMovieDay());
 		
 		for (PublicHoliday ph: PublicHolidayDatabase.getArrayList()) {
-			if (tempMD == ph.getDate()) {
+			if (tempMD.compareTo(ph.getDate()) == 0) {
+				System.out.println("ph found");
 				try {
 					temp += TicketDatabase.searchDiscountByName("Public Holiday");
 					break;

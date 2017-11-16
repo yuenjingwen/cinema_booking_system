@@ -418,7 +418,7 @@ private static void customerBuyProcess(Scanner scanner) {
 			Ticket ticket = ticketBooth.buyTicket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum, name, emailAddress);
 			//need Edit this
 			//Ticket ticket= new Ticket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum);
-			System.out.println("Price:" + ticket.getTicketPrice());
+			System.out.println("Price:" + ticket.calculateTicketPrice());
 						
 			System.out.println("Would you like to pay?: Y/N");
 			

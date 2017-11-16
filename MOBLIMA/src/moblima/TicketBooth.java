@@ -9,14 +9,14 @@ public class TicketBooth {
 		
 		
 		if(age < 12){
-			ChildTicket Cticket = new ChildTicket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum);
-			return Cticket;
+			ChildTicket cTicket = new ChildTicket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum);
+			return cTicket;
 		}else if(age > 65){
-			ElderlyTicket Eticket = new ElderlyTicket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum);
-			return Eticket;
+			ElderlyTicket eTicket = new ElderlyTicket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum);
+			return eTicket;
 		}else{
-			AdultTicket Aticket = new AdultTicket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum);
-			return Aticket;
+			AdultTicket aTicket = new AdultTicket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum);
+			return aTicket;
 		}
 	}
 	
