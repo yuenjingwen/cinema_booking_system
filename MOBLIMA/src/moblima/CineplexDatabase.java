@@ -175,7 +175,7 @@ public class CineplexDatabase implements Database{
 				System.out.println(c.getCinemaID() + "\t\t" + c.getClassOfCinema());		//Cinema Name		Cinema Type
 				System.out.println(														"-------------------------------------------------------");	
 				for(CinemaShow cs : c.getCinemaShowList()){
-					if(cs.getMovieFromID().getShowingStatus()!= ShowingStatus.END_OF_SHOWING){
+					if(cs.getMovieFromID().getShowingStatus()!= ShowingStatus.END_OF_SHOWING && cs.getMovieFromID().getShowingStatus()!= ShowingStatus.COMING_SOON){
 						System.out.println(                                                 "                                                    [" + showtimeIndex + "]");
 						System.out.println(													"Movie:		" + cs.getMovieFromID().getTitle()+ " (" + cs.getMovieFromID().getMovieRating() + ")");
 						System.out.println(													"Date:		" + cs.getShowtime().format(formatter));
