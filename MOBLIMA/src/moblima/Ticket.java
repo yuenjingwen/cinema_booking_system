@@ -67,6 +67,7 @@ public abstract class Ticket implements Serializable {
 		return ticketholderName;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 	public MovieType getMovieType() {
 		return mType;
@@ -81,6 +82,8 @@ public abstract class Ticket implements Serializable {
 	}
 =======
 >>>>>>> parent of b8da8ee... FIX DA TICKET
+=======
+>>>>>>> parent of b8da8ee... FIX DA TICKET
 
 	
 	public void setCineplex(String cineplexName){
@@ -90,7 +93,10 @@ public abstract class Ticket implements Serializable {
 		cinema = cinemaName;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
+=======
+>>>>>>> parent of b8da8ee... FIX DA TICKET
 =======
 >>>>>>> parent of b8da8ee... FIX DA TICKET
 	public void setMovie(String movie){
