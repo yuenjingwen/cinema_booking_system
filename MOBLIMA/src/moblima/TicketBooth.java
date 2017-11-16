@@ -1,11 +1,17 @@
 package moblima;
 
 import java.time.format.DateTimeFormatter;
-
+/**
+ * Represents a ticket booth that processes the purchase of a movie ticket.
+ */
 public class TicketBooth {
-
+	/**
+	 * Processes purchase of ticket according to given details such as seat, cinema index,
+	 * cineplex index, show time index, name, age, email, mobile number of customer purchasing ticket.
+	 * @param 
+	 */
 	public Ticket buyTicket(String seat, int age, int cinemaIndex, int cineplexIndex, int showtimeIndex,
-			String ticketholderName, String email, int mobileNum, String name, String emailAddress) {
+			 int mobileNum, String name, String emailAddress) {
 		
 		
 		if(age < 12){
