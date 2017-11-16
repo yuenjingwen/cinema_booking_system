@@ -273,7 +273,7 @@ public abstract class Ticket implements Serializable {
 	}
 		
 	/**
-	 * Get the type of discount for this ticket. 
+	 * Get the type of discount for different cinema types for this ticket. 
 	 * @param cEnum The enum for the type of cinema of this ticket. 
 	 */
 	public int getCinemaTypeDiscount(CinemaEnum cEnum) {
@@ -301,7 +301,10 @@ public abstract class Ticket implements Serializable {
 		return 0;
 	}
 	
-	
+	/**
+	 * Get the type of discount for different movie types for this ticket. 
+	 * @param movie The movie stated on this ticket.
+	 */
 	public int getMovieTypeDiscount(String movie) {
 			
 		try {
@@ -312,6 +315,10 @@ public abstract class Ticket implements Serializable {
 		}
 	}
 	
+	/**
+	 * Get the type of discount for different weekend discounts for this ticket.
+	 * @param time The time stated on this ticket. 
+	 */
 	public int getWeekendDiscount(LocalDateTime time) {
 		if (time.getDayOfWeek().equals(DayOfWeek.SATURDAY) || time.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
 			try {
@@ -326,6 +333,10 @@ public abstract class Ticket implements Serializable {
 
 	}
 	
+	/**
+	 * Get the type of discount for different public holiday discounts for this ticket. 
+	 * @param time The time stated on this ticket. 
+	 */
 	public int getPublicHolidayDiscount(LocalDateTime time) {
 		MonthDay tempMD = MonthDay.from(time);
 		
@@ -342,36 +353,75 @@ public abstract class Ticket implements Serializable {
 		return 0;
 	}
 	
+	/**
+	 * Get this ticket holder's name.
+	 * @return ticketholderName This ticket holder's name.
+	 */
 	public String getTicketholderName() {
 		return ticketholderName;
 	}
 
+	/**
+	 * Get the type of movie stated on this ticket. 
+	 * @return mType The type of movie stated on this ticket. 
+	 */
 	public MovieType getMovieType() {
 		return mType;
 	}
 	
+	/**
+	 * Get the type of cinema stated on this ticket. 
+	 * @return classOfCinema The type of cinema stated on this ticket. 
+	 */
 	public CinemaEnum getCinemaType(){
 		return classOfCinema;
 	}
 	
 
+	/**
+	 * Change the name of the cineplex this ticket belongs to.
+	 * @param cineplexName The name of this cineplex this ticket belongs to.
+	 */
 	public void setCineplex(String cineplexName){
 		cineplex = cineplexName;
 	}
+	
+	/**
+	 * Change the name of the cinema this ticket belongs to. 
+	 * @param cinemaName The updated name of the cinema this ticket belongs to.
+	 */
 	public void setCinema(String cinemaName){
 		cinema = cinemaName;
 	}
 
+	/**
+	 * Change the movie name stated on this ticket. 
+	 * @param movie The movie name stated on this ticket. 
+	 */
 	public void setMovie(String movie){
 		this.movie = movie;
 	}
+	
+	/**
+	 * Change the time stated on this ticket.
+	 * @param time The updated time stated on this ticket. 
+	 */
 	public void setTime(String time){
 		this.time = time;
 	}
+	
+	/**
+	 * Change the seat stated on this ticket. 
+	 * @param seat The seat stated on this ticket.
+	 */
 	public void setSeat(String seat){
 		this.seat= seat;
 	}
 	
+	/**
+	 * This calculates the generic ticket discount.
+	 * @return temp The total generic discount. 
+	 */
 	public float calculateGenericTicketDiscount() {
 			float temp = 0;
 		
@@ -478,6 +528,11 @@ public abstract class Ticket implements Serializable {
 		
 	}
 	
+	/**
+	 * An abstract method to calculate the ticket price. 
+	 * This method will be over-ridden in the respective ticket sub classes. 
+	 * @return
+	 */
 	public abstract float calculateTicketPrice();
 	
 }
