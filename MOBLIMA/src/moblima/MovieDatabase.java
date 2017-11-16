@@ -386,7 +386,9 @@ public class MovieDatabase implements Database{
 		int i = 1;
 		for(Movie m : getArrayList()){
 			System.out.println("["+i+"] Title:\t\t" + m.getTitle());
-			System.out.println("Average Rating:\t\t" + m.getAvgRating() + " from " + m.getReviewList().size() + " reviews");
+			System.out.print("Average Rating:\t\t");
+			System.out.printf("%.1f",m.getAvgRating());
+			System.out.print(" from " + m.getReviewList().size() + " reviews\n");
 			System.out.println("=======================================================");
 			i++;
 		}
