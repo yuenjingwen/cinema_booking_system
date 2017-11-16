@@ -1,6 +1,8 @@
 package moblima;
 
-public class MovieBlockbuster extends Movie {
+import java.io.Serializable;
+
+public class MovieBlockbuster extends Movie implements Serializable{
 	
 	/**
 	 * 
