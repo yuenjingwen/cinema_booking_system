@@ -1,6 +1,5 @@
 package moblima;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
@@ -426,7 +425,7 @@ private static void customerBuyProcess(Scanner scanner) {
 			
 			//need Edit this
 			//Ticket ticket= new Ticket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum);
-			System.out.println("Price:" + ticket.getTicketPrice());
+			System.out.println("Price:" + ticket.calculateTicketPrice());
 						
 			System.out.println("Would you like to pay?: Y/N");
 			
@@ -459,12 +458,8 @@ private static void customerBuyProcess(Scanner scanner) {
 							}
 						}
 						
-						CinemaEnum cEnum = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getClassOfCinema();			
-						MovieType mEnum = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();
-						LocalDateTime movieDay = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getShowtime();
-						
 						//adds ticket sale to the movie's total sales
-						MovieDatabase.getArrayList().get(movieIndex).addTicketSale(ticket.calculateTicketPrice(cEnum, mEnum, age, movieDay));
+						MovieDatabase.getArrayList().get(movieIndex).addTicketSale(ticket.calculateTicketPrice());
 						//set seat to occupied
 						CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).setSeat(column-1, row-1);
 						
