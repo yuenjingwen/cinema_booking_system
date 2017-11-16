@@ -8,12 +8,28 @@ import java.util.Scanner;
 
 public class AdminModule {
 	
+	/**
+	 * The username entered by the admin.
+	 */
 	private static String inputUser;
+	/**
+	 * The password entered by the admin.
+	 */
 	private static String inputPass;
+	/**
+	 * The user's status. 
+	 * This is either Customer or Admin.
+	 */
 	private final static String USER = "Admin";
+	/**
+	 * The actual password of the admin. 
+	 */
 	private static String password;
 	
-	
+	/**
+	 * Gets the actual password of the admin.
+	 * @return password The actual password of the admin.
+	 */
 	public static String getPassword() {
 		File file = new File("AdminPassword.txt");
 		try {
@@ -26,6 +42,10 @@ public class AdminModule {
 		return password;
 	}
 
+	/**
+	 * Change the password of the admin.
+	 * @param password The new updated admin password.
+	 */
 	public static void setPassword(String password) {
 		File file = new File("AdminPassword.txt");
 		try{
@@ -43,10 +63,21 @@ public class AdminModule {
 		System.out.println("=============================\n");
 	}
 
+	/**
+	 * To show the status of the person using this application.
+	 * This is either Customer or Admin. 
+	 * @return USER The status of this person.
+	 */
 	public static String getUser() {
 		return USER;
 	}
 
+	/**
+	 * Login page for the admin.
+	 * Checks the entered password with the actual password.
+	 * Access is allowed only if entered password matches exactly with the actual password.
+	 * @param scanner Scanner object
+	 */
 	public static void Adminlogin(Scanner scanner) {
 		System.out.print("Enter Username: ");										// Admin to login
 		inputUser = scanner.nextLine();
@@ -71,6 +102,11 @@ public class AdminModule {
 		}
 	}
 	
+	/**
+	 * Prints out a menu of what an admin can do.
+	 * Allows admin to select what he/she would like to do in this application.
+	 * @param scanner Scanner object
+	 */
 	private static void printAdminMenu(Scanner scanner){
 		System.out.print("1. Create/Update/Remove movie listing\n"
 				+ "2. Create/Update/Remove cinema showtimes and the movies to be shown\n"
@@ -115,6 +151,10 @@ public class AdminModule {
 		}
 	}
 
+	/**
+	 * Prints out the list of things that an admin can do to modify or view and movie related things.
+	 * @param scanner Scanner object
+	 */
 	private static void printAdminMovieMenu(Scanner scanner){
 		MovieDatabase.printFullMovieList();
 		System.out.print("\n=====================\n"
@@ -160,6 +200,11 @@ public class AdminModule {
 		}
 	}
 	
+	/**
+	 * Prints out the show time menu.
+	 * Allows admin to edit movie show time.
+	 * @param scanner Scanner object
+	 */
 	private static void printAdminShowtimeMenu(Scanner scanner){
 		System.out.println("=======================================================");
 		System.out.println("                    Cinema & Showtime                  ");
@@ -202,6 +247,11 @@ public class AdminModule {
 		}
 	}
 	
+	/**
+	 * Prints out the menu for admin system configuration. 
+	 * Allows admin to edit or change password, public holidays, ticket discounts, customers' booking history.
+	 * @param scanner Scanner object
+	 */
 	private static void printAdminSystemConfig(Scanner scanner){
 		System.out.print("\n=====================\n"
 				+ "SYSTEM CONFIG\n"
