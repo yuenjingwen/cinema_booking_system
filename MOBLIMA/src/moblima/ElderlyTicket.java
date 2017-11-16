@@ -28,6 +28,10 @@ public class ElderlyTicket extends Ticket{
 		
 	}
 
+	/**
+	 * Calculates the appropriate ticket price based on the elderly's age. 
+	 * Overrides the Ticket object's calculateTicketPrice() function. 
+	 */
 	@Override
 	public float calculateTicketPrice() {
 		
