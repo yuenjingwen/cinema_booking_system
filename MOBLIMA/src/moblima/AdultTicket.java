@@ -8,7 +8,8 @@ public class AdultTicket extends Ticket{
 	private static final long serialVersionUID = -4356253491233642936L;
 
 	/**
-	 * Constructor for AdultTicket object. Takes in parameters and sets price of the Adult Ticket 
+	 * Creates a new adult ticket. 
+	 * Takes in parameters and sets price of the Adult Ticket 
 	 * to the appropriate pricing based on the parameters.
 	 * @param seat seat is a String stating the seat of the Ticket. e.g: A1, B7, G2
 	 * @param age Age of the customer.
@@ -16,8 +17,8 @@ public class AdultTicket extends Ticket{
 	 * @param cineplexIndex Which cineplex the ticket is assigned to.
 	 * @param showtimeIndex Which showtime the ticket is assigned to.
 	 * @param ticketholderName The customer's name.
-	 * @param email The customer's email.
-	 * @param mobileNum The customer's contact.
+	 * @param email The adult's email.
+	 * @param mobileNum The adult's contact.
 	 */
 
 	public AdultTicket(String seat, int age, int cinemaIndex, int cineplexIndex, int showtimeIndex,
@@ -28,7 +29,8 @@ public class AdultTicket extends Ticket{
 	}
 
 	/**
-	 * Calculates the appropriate ticket price based on the customer's age. Overrides the Ticket object's calculateTicketPrice() function. 
+	 * Calculates the appropriate ticket price based on the adult's age. 
+	 * Overrides the Ticket object's calculateTicketPrice() function. 
 	 */
 	@Override
 	public float calculateTicketPrice() {
