@@ -6,7 +6,9 @@ import java.util.Scanner;
 
 
 public class MainMenuManager {
-	
+	/**
+	 * Initialise the choice of user. 
+	 */
 	public static int choice = 0;
 
 	public static void main(String[] args) {
@@ -32,7 +34,11 @@ public class MainMenuManager {
 		scanner.close();
 	}
 	
-	
+	/**
+	 * Prints out the main menu page. 
+	 * Allows user to select user's status. 
+	 * @param scanner Scanner object
+	 */
 	private static void printMainMenu(Scanner scanner){
 		System.out.print("1. Admin\n"
 				+ "2. Customer\n"
@@ -63,6 +69,9 @@ public class MainMenuManager {
 		}
 	}	
 	
+	/**
+	 * Fetches the information of all databases from file. 
+	 */
 	private static void fetchAllDatabasesFromFile() {
 		//TicketDatabase.fetchTickets();
 		TicketDatabase ticketDb = new TicketDatabase();
