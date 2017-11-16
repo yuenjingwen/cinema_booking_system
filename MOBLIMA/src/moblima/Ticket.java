@@ -45,7 +45,7 @@ public abstract class Ticket implements Serializable {
 	    this.email 				= email;
 	    this.mobileNumber		= mobileNum;
 	    this.mType				= CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie().getMovieType();		
-		this.price 				= calculateTicketPrice();
+		this.price 				= calculateTicketPrice(classOfCinema, mType, age, movieDay);
 		this.discount 			= getDiscount();		
 		this.TID 				= this.cinema.concat(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmm")));
 		
@@ -59,15 +59,14 @@ public abstract class Ticket implements Serializable {
 		return discount;
 	}
 
-	public LocalDateTime getMovieDay() {
-		return movieDay;
-	}
 
-	public abstract float calculateTicketPrice();
+
+	public abstract float calculateTicketPrice(CinemaEnum cEnum, MovieType mEnum, int age, LocalDateTime movieDay);
 	
 	public String getTicketholderName() {
 		return ticketholderName;
 	}
+<<<<<<< HEAD
 	
 	public MovieType getMovieType() {
 		return mType;
@@ -80,6 +79,8 @@ public abstract class Ticket implements Serializable {
 	public void setTicketPrice(float price) {
 		this.price = price;
 	}
+=======
+>>>>>>> parent of b8da8ee... FIX DA TICKET
 
 	
 	public void setCineplex(String cineplexName){
@@ -88,7 +89,10 @@ public abstract class Ticket implements Serializable {
 	public void setCinema(String cinemaName){
 		cinema = cinemaName;
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> parent of b8da8ee... FIX DA TICKET
 	public void setMovie(String movie){
 		this.movie = movie;
 	}

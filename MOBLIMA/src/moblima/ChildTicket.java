@@ -1,5 +1,6 @@
 package moblima;
 
+import java.time.LocalDateTime;
 import java.time.MonthDay;
 
 public class ChildTicket extends Ticket{
@@ -14,15 +15,15 @@ public class ChildTicket extends Ticket{
 	public ChildTicket(String seat, int age, int cinemaIndex, int cineplexIndex, int showtimeIndex,
 			String ticketholderName, String email, int mobileNum) {
 		super(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, ticketholderName, email, mobileNum);
-		super.setTicketPrice(calculateTicketPrice());
+		
 	}
 
 	@Override
-	public float calculateTicketPrice() {
+	public float calculateTicketPrice(CinemaEnum cEnum, MovieType mEnum, int age, LocalDateTime movieDay) {
 		
 		float temp = 0;
 		
-		switch(super.getCinemaType()){
+		switch(cEnum){
 		case DIGITAL:
 			try {
 			temp += TicketDatabase.searchDiscountByName("Digital");
@@ -44,7 +45,7 @@ public class ChildTicket extends Ticket{
 			break;
 		}
 		
-		switch(super.getMovieType().toString()){
+		switch(mEnum.toString()){
 		case "NORMAL":
 			try {
 				temp += TicketDatabase.searchDiscountByName("Normal");
@@ -94,12 +95,12 @@ public class ChildTicket extends Ticket{
 		
 		try {
 			temp += TicketDatabase.searchDiscountByName("Child Discount");
-		} catch (Exception e) {
-			System.out.println("No such discount found.");
-			e.printStackTrace();
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
 		}
 		
-		switch (super.getMovieDay().getDayOfWeek().toString()){
+		switch (movieDay.getDayOfWeek().toString()){
 		case "MONDAY":
 		case "TUESDAY":
 		case "WEDNESDAY":
@@ -122,7 +123,7 @@ public class ChildTicket extends Ticket{
 	
 		
 		//checks if the movie date lands on a public holiday and adds the appropriate charges accordingly
-		MonthDay tempMD = MonthDay.from(super.getMovieDay());
+		MonthDay tempMD = MonthDay.from(movieDay);
 		
 		for (PublicHoliday ph: PublicHolidayDatabase.getArrayList()) {
 			if (tempMD == ph.getDate()) {
