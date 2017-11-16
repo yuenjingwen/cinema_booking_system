@@ -11,8 +11,15 @@ public class Movie3D extends Movie {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
 	public int getMovieDiscount(){
-		int discount = 5;
+		int discount=0;
+		try {
+			discount = TicketDatabase.searchDiscountByName("3D");
+		} catch (Exception e) {
+			System.out.println("No such discount found.");
+			e.printStackTrace();
+		}
 		return discount;
 	}
 }

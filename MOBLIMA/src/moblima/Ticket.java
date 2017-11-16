@@ -1,5 +1,6 @@
 package moblima;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.MonthDay;
 import java.time.format.DateTimeFormatter;
@@ -137,23 +138,72 @@ public abstract class Ticket implements Serializable {
 	}
 	public abstract float calculateTicketPrice();
 	
-	public int getCinemaTypeDiscount(Ticket ticket) {
-		//TODO
+	
+	public int getCinemaTypeDiscount(CinemaEnum cEnum) {
+		switch(cEnum){
+		case DIGITAL:
+			try {
+			return TicketDatabase.searchDiscountByName("Digital");
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
+			break;
+		case PLATINIUM:
+			try {
+				return TicketDatabase.searchDiscountByName("Platinum");
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
+			break;
+		default:
+			System.out.println("Error in ticket pricing.");
+			break;
+		}
 		return 0;
 	}
 	
-	public int getMovieTypeDiscount(Ticket ticket) {
-		//TODO
+	public int getMovieTypeDiscount(String movie) {
+			
+		for (Movie m: MovieDatabase.getArrayList()) {
+			if (m.getTitle().equals(movie)){
+				return m.getMovieDiscount();
+			}
+		}	
 		return 0;
 	}
-	public int getWeekendDiscount(Ticket ticket) {
-		//TODO
+	
+	public int getWeekendDiscount(LocalDateTime time) {
+		if (time.getDayOfWeek().equals(DayOfWeek.SATURDAY) || time.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
+			try {
+				return TicketDatabase.searchDiscountByName("Weekend");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			return 0;
+		}
+		return 0;
+
+	}
+	
+	public int getPublicHolidayDiscount(LocalDateTime time) {
+		MonthDay tempMD = MonthDay.from(time);
+		
+		for (PublicHoliday ph: PublicHolidayDatabase.getArrayList()) {
+			if (tempMD.compareTo(ph.getDate()) == 0) {
+				try {
+					return TicketDatabase.searchDiscountByName("Public Holiday");
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println(e.getMessage());
+				}
+			}
+		}
 		return 0;
 	}
-	public int getPublicHolidayDiscount(Ticket ticket) {
-		//TODO
-		return 0;
-	}
+	
 	public String getTicketholderName() {
 		return ticketholderName;
 	}
@@ -187,29 +237,20 @@ public abstract class Ticket implements Serializable {
 	public float calculateGenericTicketDiscount() {
 			float temp = 0;
 		
-		switch(getCinemaType()){
-		case DIGITAL:
-			try {
-			temp += TicketDatabase.searchDiscountByName("Digital");
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println(e.getMessage());
-			}
-			break;
-		case PLATINIUM:
-			try {
-				temp += TicketDatabase.searchDiscountByName("Platinum");
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println(e.getMessage());
-			}
-			break;
-		default:
-			System.out.println("Error in ticket pricing.");
-			break;
-		}
+		temp = 	getCinemaTypeDiscount(getCinemaType()) + 
+				getMovieTypeDiscount(getMovie()) + 
+				getWeekendDiscount(getMovieDay()) + 
+				getPublicHolidayDiscount(getMovieDay());
 		
-		switch(getMovieType().toString()){
+		
+		return temp;
+		
+		
+		// Legacy code for discounting ticket
+		/*
+		 
+		 switch(getMovieType().toString()){
+		 
 		case "NORMAL":
 			try {
 				temp += TicketDatabase.searchDiscountByName("Normal");
@@ -294,7 +335,9 @@ public abstract class Ticket implements Serializable {
 			}
 		}
 		
-		return temp;
+		*/
+		
+		
 	}
 	
 }

@@ -10,9 +10,18 @@ public class MovieNormal extends Movie {
 		super(title, synopsis, director, cast, movieType);
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	@Override
 	public int getMovieDiscount(){
-		int discount = 2;
+		int discount = 0;
+		try {
+			discount = TicketDatabase.searchDiscountByName("Normal");
+			return discount;
+		} catch (Exception e) {
+			System.out.println("No such discount found.");
+			e.printStackTrace();
+		}
 		return discount;
+		
 	}
 }
