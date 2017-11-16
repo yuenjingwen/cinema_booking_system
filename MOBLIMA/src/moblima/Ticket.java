@@ -137,6 +137,23 @@ public abstract class Ticket implements Serializable {
 	}
 	public abstract float calculateTicketPrice();
 	
+	public int getCinemaTypeDiscount(Ticket ticket) {
+		//TODO
+		return 0;
+	}
+	
+	public int getMovieTypeDiscount(Ticket ticket) {
+		//TODO
+		return 0;
+	}
+	public int getWeekendDiscount(Ticket ticket) {
+		//TODO
+		return 0;
+	}
+	public int getPublicHolidayDiscount(Ticket ticket) {
+		//TODO
+		return 0;
+	}
 	public String getTicketholderName() {
 		return ticketholderName;
 	}
@@ -267,7 +284,6 @@ public abstract class Ticket implements Serializable {
 		
 		for (PublicHoliday ph: PublicHolidayDatabase.getArrayList()) {
 			if (tempMD.compareTo(ph.getDate()) == 0) {
-				System.out.println("ph found");
 				try {
 					temp += TicketDatabase.searchDiscountByName("Public Holiday");
 					break;
