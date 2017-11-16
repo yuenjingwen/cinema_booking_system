@@ -16,7 +16,6 @@ public abstract class Ticket implements Serializable {
 	private String cineplex; 
 	private String cinema; 
 	private String movie; 
-	private String time; 
 	private String seat;
 	private String TID = "XXXYYYYMMDDhhmm";
 	
@@ -74,6 +73,10 @@ public abstract class Ticket implements Serializable {
 		return mType;
 	}
 	
+	public CinemaEnum getCinemaType(){
+		return classOfCinema;
+	}
+	
 	public void setTicketPrice(float price) {
 		this.price = price;
 	}
@@ -86,9 +89,6 @@ public abstract class Ticket implements Serializable {
 		cinema = cinemaName;
 	}
 	
-	public CinemaEnum getCinemaType(){
-		return classOfCinema;
-	}
 	public void setMovie(String movie){
 		this.movie = movie;
 	}
@@ -98,22 +98,5 @@ public abstract class Ticket implements Serializable {
 	public void setSeat(String seat){
 		this.seat= seat;
 	}
-	public void printTicket(){
-		System.out.println("============================================");
-		System.out.println("~~~~~~~~~~~~~~~~~~~Ticket~~~~~~~~~~~~~~~~~~~");
-		System.out.println("	Customer: " + ticketholderName + "		");
-		System.out.println("	Cineplex: " + cineplex + "				");
-		System.out.println("	Cinema: " + cinema + "					");
-		System.out.println("											");
-		System.out.println("	Movie: " + this.movie + "				");
-		System.out.println("	Date: " + this.movieDay.format(DateTimeFormatter.ofPattern("dd-MM-YYYY")));
-		System.out.println("	Time: " + this.time + "					");
-		System.out.println("	Seat: " + this.seat + "					");
-		System.out.println("											");
-		System.out.println("											");
-		System.out.println("	Email: " + email + "					");
-		System.out.println("	Number: " + mobileNumber + "			");	
-		System.out.println("	Transaction ID: " + this.TID + "		");
-
-	}
+	
 }
