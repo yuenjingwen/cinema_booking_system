@@ -25,28 +25,28 @@ public class CineplexDatabase implements Database{
 	}
 	
 	// Fetching infomation of all cineplexes.
-//	public static void fetchCineplexes(){
-//		cineplexList = new ArrayList<Cineplex>();
-//		try{
-//			FileInputStream fi = new FileInputStream(cineplexFile);
-//			ObjectInputStream input = new ObjectInputStream(fi);
-//				
-//			try{
-//				while(true){
-//					Cineplex c = (Cineplex)input.readObject();
-//					cineplexList.add(c);
-//				}
-//			} catch (EOFException e){
-//			} catch (ClassNotFoundException e) {
-//					e.printStackTrace();
-//			}
-//			
-//			fi.close();
-//			input.close();
-//		} catch (FileNotFoundException e) {
-//		} catch (IOException e) {
-//		}
-//	}
+	public static void fetchCineplexes(){
+		cineplexList = new ArrayList<Cineplex>();
+		try{
+			FileInputStream fi = new FileInputStream(cineplexFile);
+			ObjectInputStream input = new ObjectInputStream(fi);
+				
+			try{
+				while(true){
+					Cineplex c = (Cineplex)input.readObject();
+					cineplexList.add(c);
+				}
+			} catch (EOFException e){
+			} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+			}
+			
+			fi.close();
+			input.close();
+		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
+		}
+	}
 		
 	public static void updateCineplexes(){
 		try{
@@ -63,7 +63,7 @@ public class CineplexDatabase implements Database{
 			e.printStackTrace();
 		}
 	}	
-
+	
 	public static void printAllCineplexes() {
 		int i=1;
 			System.out.println("=~=~=~=~=~=~=~=~=~=~=~=~=~=~");
@@ -330,22 +330,22 @@ public class CineplexDatabase implements Database{
 	}
 
 	
-//	@Override
-//	public void updateDatabase() {
-//		try{
-//			FileOutputStream fo = new FileOutputStream(cineplexFile);
-//			ObjectOutputStream output = new ObjectOutputStream(fo);
-//			for(Cineplex c: cineplexList){
-//				output.writeObject(c);
-//			}
-//			fo.close();
-//			output.close();
-//		} catch (FileNotFoundException e){
-//			e.printStackTrace();
-//		} catch (IOException e){
-//			e.printStackTrace();
-//		}
-//	}
+	@Override
+	public void updateDatabase() {
+		try{
+			FileOutputStream fo = new FileOutputStream(cineplexFile);
+			ObjectOutputStream output = new ObjectOutputStream(fo);
+			for(Cineplex c: cineplexList){
+				output.writeObject(c);
+			}
+			fo.close();
+			output.close();
+		} catch (FileNotFoundException e){
+			e.printStackTrace();
+		} catch (IOException e){
+			e.printStackTrace();
+		}
+	}
 
 	
 	@Override

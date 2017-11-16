@@ -119,48 +119,48 @@ public class PublicHolidayDatabase implements Database{
 		}
 	}
 
-//	public static void fetchHolidays(){
-//		try{
-//			FileInputStream fi = new FileInputStream(file);
-//			ObjectInputStream input = new ObjectInputStream(fi);
-//			
-//			try{
-//				while(true){
-//					PublicHoliday ph = (PublicHoliday)input.readObject();
-//					phList.add(ph);
-//				}
-//			} catch (EOFException e){
-//			} catch (ClassNotFoundException e) {
-//				e.printStackTrace();
-//			}
-//			
-//			fi.close();
-//			input.close();
-//		} catch (FileNotFoundException e) {
-//		} catch (IOException e) {
-//		}
-//	}
+	public static void fetchHolidays(){
+		try{
+			FileInputStream fi = new FileInputStream(file);
+			ObjectInputStream input = new ObjectInputStream(fi);
+			
+			try{
+				while(true){
+					PublicHoliday ph = (PublicHoliday)input.readObject();
+					phList.add(ph);
+				}
+			} catch (EOFException e){
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			
+			fi.close();
+			input.close();
+		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
+		}
+	}
 	
 	public static ArrayList<PublicHoliday> getArrayList(){
 		return phList;
 	}
 
-//	@Override
-//	public void updateDatabase() {
-//		try{
-//			FileOutputStream fo = new FileOutputStream(file);
-//			ObjectOutputStream output = new ObjectOutputStream(fo);
-//			for(PublicHoliday ph: phList){
-//				output.writeObject(ph);
-//			}
-//			fo.close();
-//			output.close();
-//		} catch (FileNotFoundException e){
-//			e.printStackTrace();
-//		} catch (IOException e){
-//			e.printStackTrace();
-//		}
-//	}
+	@Override
+	public void updateDatabase() {
+		try{
+			FileOutputStream fo = new FileOutputStream(file);
+			ObjectOutputStream output = new ObjectOutputStream(fo);
+			for(PublicHoliday ph: phList){
+				output.writeObject(ph);
+			}
+			fo.close();
+			output.close();
+		} catch (FileNotFoundException e){
+			e.printStackTrace();
+		} catch (IOException e){
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public void fetchDatabase() {

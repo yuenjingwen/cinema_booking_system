@@ -244,12 +244,12 @@ public class TicketDatabase implements Database{
 	}
 	
 	
-//
-//	@Override
-//	public void updateDatabase() {
-//		// TODO Auto-generated method stub
-//		
-//	}
+
+	@Override
+	public void updateDatabase() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	public void fetchDatabase() {
