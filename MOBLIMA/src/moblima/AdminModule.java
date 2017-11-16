@@ -241,7 +241,8 @@ public class AdminModule {
 				break;
 			case 4:
 				for (Ticket t: TicketDatabase.getTicketArrayList()) {
-					t.printTicket();
+					TicketBooth ticketBooth = new TicketBooth();
+					ticketBooth.printTicket(t);
 				}
 				
 				if (TicketDatabase.getTicketArrayList().size() == 0) {
