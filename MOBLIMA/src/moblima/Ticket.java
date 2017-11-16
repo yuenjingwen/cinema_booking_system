@@ -163,12 +163,12 @@ public abstract class Ticket implements Serializable {
 	
 	public int getMovieTypeDiscount(String movie) {
 			
-		for (Movie m: MovieDatabase.getArrayList()) {
-			if (m.getTitle().equals(movie)){
-				return m.getMovieDiscount();
-			}
-		}	
-		return 0;
+		try {
+			return MovieDatabase.searchForMovie(movie).getMovieDiscount();
+			
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 	
 	public int getWeekendDiscount(LocalDateTime time) {

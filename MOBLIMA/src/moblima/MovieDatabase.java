@@ -21,7 +21,7 @@ public class MovieDatabase implements Database{
 //	private static ArrayList<MovieReview> RDB;
 	
 	/**
-	 * Creates a dat file called movieFile.
+	 * Assigns movieFile to the dat file Movie.dat
 	 */
 	private static File movieFile = new File("Movie.dat");
 	
@@ -634,6 +634,18 @@ public class MovieDatabase implements Database{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static Movie searchForMovie(String movie) throws Exception{
+		for (Movie m: getArrayList()) {
+			if (m.getTitle().equals(movie)){
+				return m;
+			} else {
+				return m;
+			}
+
+		}
+		return null;
 	}
 }
 
