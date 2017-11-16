@@ -14,6 +14,7 @@ public abstract class Ticket implements Serializable {
 	private float price;
 	private String discount = "None";
 	private String cineplex; 
+	private String time;
 	private String cinema; 
 	private String movie; 
 	private String seat;
