@@ -8,8 +8,8 @@ public class Movie3D extends Movie implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Movie3D(String title, String synopsis, String director, String cast, MovieType movieType) {
-		super(title, synopsis, director, cast, movieType);
+	public Movie3D(String title, String synopsis, String director, String cast, MovieType movieType, MovieRating movieRating) {
+		super(title, synopsis, director, cast, movieType, movieRating);
 		// TODO Auto-generated constructor stub
 	}
 

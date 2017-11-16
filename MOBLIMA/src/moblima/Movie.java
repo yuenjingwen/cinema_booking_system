@@ -16,6 +16,7 @@ public class Movie implements Serializable{
 	private ArrayList<MovieReview> reviews;
 	private ShowingStatus showingStatus;	
 	private MovieType movieType;
+	private MovieRating movieRating;
 	
 	private float ticketSales;
 	
@@ -23,13 +24,14 @@ public class Movie implements Serializable{
 		this.movieType = movieType;
 	}
 
-	public Movie(String title, String synopsis, String director, String cast, MovieType movieType){
+	public Movie(String title, String synopsis, String director, String cast, MovieType movieType, MovieRating movieRating){
 		this.title = title;
 		this.showingStatus = ShowingStatus.COMING_SOON;
 		this.synopsis = synopsis;
 		this.director = director;
 		this.cast = cast;
 		
+		this.movieRating = movieRating;
 		this.movieType = movieType;
 		this.ticketSales = 0;
 		Random random = new Random();
@@ -177,6 +179,14 @@ public class Movie implements Serializable{
 	//To be overriden in subclass
 	public int getMovieDiscount(){
 		return 0;
+	}
+
+	public MovieRating getMovieRating() {
+		return movieRating;
+	}
+
+	public void setMovieRating(MovieRating movieRating) {
+		this.movieRating = movieRating;
 	}
 }
 

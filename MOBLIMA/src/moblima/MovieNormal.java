@@ -8,8 +8,8 @@ public class MovieNormal extends Movie implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public MovieNormal(String title, String synopsis, String director, String cast, MovieType movieType) {
-		super(title, synopsis, director, cast, movieType);
+	public MovieNormal(String title, String synopsis, String director, String cast, MovieType movieType, MovieRating movieRating) {
+		super(title, synopsis, director, cast, movieType, movieRating);
 		// TODO Auto-generated constructor stub
 	}
 	

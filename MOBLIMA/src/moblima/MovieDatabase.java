@@ -49,7 +49,8 @@ public class MovieDatabase implements Database{
 				+ "4. Movie Type\n"
 				+ "5. Cast\n"
 				+ "6. Showing Status\n"
-				+ "Enter movie type: ");
+				+ "7. Movie Rating\n"
+				+ "Enter parameter to change: ");
 		try{
 			int select = scanner.nextInt();
 			scanner.nextLine();
@@ -141,6 +142,46 @@ public class MovieDatabase implements Database{
 					e.printStackTrace();
 				}
 				break;
+			case 7:
+				System.out.print("\nMovie ratings:\n"
+						+ "1. General (G)\n"
+						+ "2. Parental Guidance (PG)\n"
+						+ "3. Parental Guidance 13 (PG13)\n"
+						+ "4. No Children under 16 (NC16)\n"
+						+ "5. Mature 18 (M18)\n"
+						+ "6. Restricted 21 (R21)\n"
+						+ "Enter movie rating: ");
+				try{
+					int mRating = scanner.nextInt();
+					scanner.nextLine();
+					switch (mRating) {
+					case 1:
+						movieList.get(index-1).setMovieRating(MovieRating.G);
+						break;
+					case 2:
+						movieList.get(index-1).setMovieRating(MovieRating.PG);
+						break;
+					case 3:
+						movieList.get(index-1).setMovieRating(MovieRating.PG13);
+						break;
+					case 4:
+						movieList.get(index-1).setMovieRating(MovieRating.NC16);
+						break;
+					case 5:
+						movieList.get(index-1).setMovieRating(MovieRating.M18);
+						break;
+					case 6:
+						movieList.get(index-1).setMovieRating(MovieRating.R21);
+						break;
+					default:
+						movieList.get(index-1).setMovieRating(MovieRating.G);
+						break;
+					}
+				}catch(Exception e){
+					System.out.println("Invalid input.");
+					scanner.nextLine();
+					return;
+				}
 			default:
 				System.out.println("\n===========");
 				System.out.println("Invalid Selection");
@@ -166,6 +207,7 @@ public class MovieDatabase implements Database{
 		String director = null;
 		String cast = null;
 		MovieType movietype = null;
+		MovieRating movierating = null;
 		System.out.print("Enter title: ");
 		title = scanner.nextLine();
 		System.out.print("Enter director: ");
@@ -200,10 +242,50 @@ public class MovieDatabase implements Database{
 			return;
 		}
 		
+		System.out.print("\nMovie ratings:\n"
+				+ "1. General (G)\n"
+				+ "2. Parental Guidance (PG)\n"
+				+ "3. Parental Guidance 13 (PG13)\n"
+				+ "4. No Children under 16 (NC16)\n"
+				+ "5. Mature 18 (M18)\n"
+				+ "6. Restricted 21 (R21)\n"
+				+ "Enter movie rating: ");
+		try{
+			int mRating = scanner.nextInt();
+			scanner.nextLine();
+			switch (mRating) {
+			case 1:
+				movierating = MovieRating.G;
+				break;
+			case 2:
+				movierating = MovieRating.PG;
+				break;
+			case 3:
+				movierating = MovieRating.PG13;
+				break;
+			case 4:
+				movierating = MovieRating.NC16;
+				break;
+			case 5:
+				movierating = MovieRating.M18;
+				break;
+			case 6:
+				movierating = MovieRating.R21;
+				break;
+			default:
+				movierating = MovieRating.G;
+				break;
+			}
+		}catch(Exception e){
+			System.out.println("Invalid input.");
+			scanner.nextLine();
+			return;
+		}
+		
 		System.out.print("Enter cast: ");
 		cast = scanner.nextLine();
 
-		movieList.add(new Movie(title, synopsis, director, cast, movietype));
+		movieList.add(new Movie(title, synopsis, director, cast, movietype, movierating));
 		updateMovies();
 	}
 
@@ -282,7 +364,7 @@ public class MovieDatabase implements Database{
 			System.out.println("=======================================================");
 			System.out.println("Index: " + i + "\t" + m.getMovieType() + "\n");
 			System.out.println("Showing Status: " + m.getShowingStatus().toString());
-			System.out.println("Title:\t\t" + m.getTitle());
+			System.out.println("Title:\t\t" + m.getTitle() + " (" +  m.getMovieRating() +")");
 			System.out.println("Director:\t" + m.getDirector());
 			System.out.println("Cast:\t\t" + m.getCast());
 			System.out.println("-------------------------------------------------------");
