@@ -23,7 +23,7 @@ public class Movie implements Serializable{
 
 	public Movie(String title, String synopsis, String director, String cast, MovieType movieType){
 		this.title = title;
-		this.showingStatus = ShowingStatus.COMING_SOON;
+		this.showingStatus = ShowingStatus.NOW_SHOWING;
 		this.synopsis = synopsis;
 		this.director = director;
 		this.cast = cast;

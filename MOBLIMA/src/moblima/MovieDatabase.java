@@ -101,12 +101,9 @@ public class MovieDatabase implements Database{
 				System.out.println("4. End of Showing");
 				System.out.println("Select new showing status:");
 			
-				try{
-					int movieStatus = scanner.nextInt();
-					scanner.nextLine();
-					
-					
-					switch (movieStatus) {
+				do {
+					int choice = scanner.nextInt();
+					switch (choice) {
 					case 1: 
 						movieList.get(index-1).setShowingStatus(ShowingStatus.NOW_SHOWING);
 						break;
@@ -122,10 +119,7 @@ public class MovieDatabase implements Database{
 					default:
 						System.out.println("Invalid Input. Please re-enter choice.");
 					}
-				} catch (Exception e){
-					e.printStackTrace();
-				}
-				break;
+				} while (true);
 			default:
 				System.out.println("\n===========");
 				System.out.println("Invalid Selection");
@@ -200,30 +194,30 @@ public class MovieDatabase implements Database{
 		System.out.println("=============================\n");
 	}
 
-//	public static void fetchMovies(){
-//		movieList = new ArrayList<Movie>();
-//		try{
-//			FileInputStream fi = new FileInputStream(movieFile);
-//			ObjectInputStream input = new ObjectInputStream(fi);
-//			
-//			try{
-//				while(true){
-//					Movie m = (Movie)input.readObject();
-//					movieList.add(m);
-//				}
-//			} catch (EOFException e){
-//			} catch (ClassNotFoundException e) {
-//				e.printStackTrace();
-//			}
-//			
-//			fi.close();
-//			input.close();
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	public static void fetchMovies(){
+		movieList = new ArrayList<Movie>();
+		try{
+			FileInputStream fi = new FileInputStream(movieFile);
+			ObjectInputStream input = new ObjectInputStream(fi);
+			
+			try{
+				while(true){
+					Movie m = (Movie)input.readObject();
+					movieList.add(m);
+				}
+			} catch (EOFException e){
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			
+			fi.close();
+			input.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public static void updateMovies(){
 		try{

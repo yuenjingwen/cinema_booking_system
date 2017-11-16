@@ -11,7 +11,6 @@ public class CinemaShow implements Serializable, Comparable<CinemaShow>{
 	private LocalDateTime showtime;
 
 	
-	
 	public CinemaShow(Movie movie, LocalDateTime showtime){
 		seats = new CinemaSeat [8][8];
 		
