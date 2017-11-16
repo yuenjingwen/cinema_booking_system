@@ -177,7 +177,7 @@ public class CineplexDatabase implements Database{
 				for(CinemaShow cs : c.getCinemaShowList()){
 					if(cs.getMovieFromID().getShowingStatus()!= ShowingStatus.END_OF_SHOWING){
 						System.out.println(                                                 "                                                    [" + showtimeIndex + "]");
-						System.out.println(													"Movie:		" + cs.getMovieFromID().getTitle());
+						System.out.println(													"Movie:		" + cs.getMovieFromID().getTitle()+ " (" + cs.getMovieFromID().getMovieRating() + ")");
 						System.out.println(													"Date:		" + cs.getShowtime().format(formatter));
 						System.out.println(													"Time:		" + cs.getShowtime().toLocalTime());
 						System.out.println(													"- - - - - - - - - - - - - - - - - - - - - - - - - - - -");
@@ -345,7 +345,7 @@ public class CineplexDatabase implements Database{
 		for(CinemaShow cs : cinemaShowList){
 			DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
 			
-			System.out.println("Movie:		" + cs.getMovieFromID().getTitle());
+			System.out.println("Movie:		" + cs.getMovieFromID().getTitle() + " (" + cs.getMovieFromID().getMovieRating() + ")");
 			System.out.println("Date:		" + cs.getShowtime().format(formatter));
 			System.out.println("Time:		" + cs.getShowtime().toLocalTime());
 			System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - -");
