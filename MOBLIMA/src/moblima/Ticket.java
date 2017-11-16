@@ -78,30 +78,14 @@ public abstract class Ticket implements Serializable {
 	public void setTicketPrice(float price) {
 		this.price = price;
 	}
-=======
->>>>>>> parent of b8da8ee... FIX DA TICKET
-=======
->>>>>>> parent of b8da8ee... FIX DA TICKET
-=======
->>>>>>> parent of b8da8ee... FIX DA TICKET
 
-	
 	public void setCineplex(String cineplexName){
 		cineplex = cineplexName;
 	}
 	public void setCinema(String cinemaName){
 		cinema = cinemaName;
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-	
-=======
->>>>>>> parent of b8da8ee... FIX DA TICKET
-=======
->>>>>>> parent of b8da8ee... FIX DA TICKET
-=======
->>>>>>> parent of b8da8ee... FIX DA TICKET
+
 	public void setMovie(String movie){
 		this.movie = movie;
 	}
