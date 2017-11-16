@@ -13,13 +13,25 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-
+/**
+ * Represents a database that accesses the saved data of the public holidays.
+ * A public holiday can be created/edited/removed from the AdminModule.
+ */
 public class PublicHolidayDatabase implements Database{
 	
+	/**
+	 * Creates an ArrayList that stores the public holidays.
+	 */
 	private static ArrayList<PublicHoliday> phList = new ArrayList<PublicHoliday>();
+	/**
+	 * Creates a File that saves the data of public holidays. 
+	 */
 	private static File file = new File ("PublicHolidays.dat");
 	
-
+	/**
+	 * Displays the Public Holiday Menu that allows for user to enter their choice of action.
+	 * 
+	 */
 	public static void printPublicHolidayMenu(Scanner scanner){
 		System.out.println("\n=====================\n"
 				+ "Public Holidays Settings\n"
