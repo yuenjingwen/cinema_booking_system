@@ -82,7 +82,7 @@ public class AdminModule {
 			scanner.nextLine();
 			switch (MainMenuManager.choice) {
 			case 1:
-				while(MainMenuManager.choice != 4){
+				while(MainMenuManager.choice != 6){
 					printAdminMovieMenu(scanner);
 				}
 				MainMenuManager.choice = 1;
