@@ -4,7 +4,8 @@ import java.time.format.DateTimeFormatter;
 
 public class TicketBooth {
 
-	public Ticket buyTicket() {
+	public Ticket buyTicket(String seat, int age, int cinemaIndex, int cineplexIndex, int showtimeIndex,
+			String ticketholderName, String email, int mobileNum) {
 		return 0;
 	}
 	
