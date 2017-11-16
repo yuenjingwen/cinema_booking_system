@@ -148,7 +148,7 @@ private static void customerCheckSeatAvailability(Scanner scanner) {
 						
 						if (choice == showtimeIndex) {
 							System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-							System.out.println("Movie: " + cs.getMovie().getTitle() + " on " + cs.getShowtime().format(DateTimeFormatter.ofPattern("dd-MM, HH:mm")));
+							System.out.println("Movie: " + cs.getMovieFromID().getTitle() + " on " + cs.getShowtime().format(DateTimeFormatter.ofPattern("dd-MM, HH:mm")));
 							System.out.println("- - - - - - - - - - - - - - - - - ");
 							
 							cs.printSeating();
@@ -327,7 +327,7 @@ private static void customerBuyProcess(Scanner scanner) {
 		i = 1;
 		System.out.println("\n========Movie===================Movie Date and Time===");
 		for(CinemaShow cs : CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList()){
-			System.out.println(i + ".\t" + cs.getMovie().getTitle() + "			" + cs.getShowtime().format(formatter));
+			System.out.println(i + ".\t" + cs.getMovieFromID().getTitle() + "			" + cs.getShowtime().format(formatter));
 			System.out.println("======================================================");
 			i++;
 		}
@@ -439,7 +439,7 @@ private static void customerBuyProcess(Scanner scanner) {
 						ticketBooth.printTicket(ticket);
 						TicketDatabase.add(ticket);
 						
-						Movie tempM = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovie();
+						Movie tempM = CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).getMovieFromID();
 						
 						int index = 0;
 						int movieIndex = 0;

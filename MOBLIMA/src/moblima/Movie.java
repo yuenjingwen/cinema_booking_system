@@ -3,6 +3,7 @@ package moblima;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Random;
 
 public class Movie implements Serializable{
 
@@ -11,6 +12,7 @@ public class Movie implements Serializable{
 	private String synopsis;
 	private String director;
 	private String cast;
+	private int movieID;
 	private ArrayList<MovieReview> reviews;
 	private ShowingStatus showingStatus;	
 	private MovieType movieType;
@@ -30,6 +32,8 @@ public class Movie implements Serializable{
 		
 		this.movieType = movieType;
 		this.ticketSales = 0;
+		Random random = new Random();
+		this.movieID = random.nextInt(1000000) + 1;
 		
 		reviews = new ArrayList<MovieReview>();
 	};
@@ -166,5 +170,8 @@ public class Movie implements Serializable{
 		};
 	}
 
+	public int getMovieID() {
+		return movieID;
+	}
 }
 

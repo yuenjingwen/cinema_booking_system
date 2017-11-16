@@ -7,12 +7,13 @@ public class CinemaShow implements Serializable, Comparable<CinemaShow>{
 
 	private static final long serialVersionUID = 707618588443761880L;
 	private CinemaSeat[][] seats;
-	private Movie movie;
+	//private Movie movie;
 	private LocalDateTime showtime;
+	private int movieID;
 
 	
 	
-	public CinemaShow(Movie movie, LocalDateTime showtime){
+	public CinemaShow(int movieID, LocalDateTime showtime){
 		seats = new CinemaSeat [8][8];
 		
 		for(int i = 0; i < 8; i++){
@@ -28,7 +29,7 @@ public class CinemaShow implements Serializable, Comparable<CinemaShow>{
 		}
 		
 		this.showtime = showtime;
-		this.movie = movie;
+		this.movieID = movieID;
 	}
 	
 	
@@ -41,9 +42,9 @@ public class CinemaShow implements Serializable, Comparable<CinemaShow>{
 		showtime = time;
 	}
 
-	public Movie getMovie() {
-		return movie;
-	}
+//	public Movie getMovie() {
+//		return movie;
+//	}
 
 	public void printSeating(){
 		System.out.println();;
@@ -125,8 +126,27 @@ public class CinemaShow implements Serializable, Comparable<CinemaShow>{
 		return getShowtime().compareTo(o.getShowtime());
 	}
 
-	public void setMovie(Movie movie) {
-		this.movie = movie;
+//	public void setMovie(Movie movie) {
+//		this.movie = movie;
+//	}
+
+	public Movie getMovieFromID(){
+		for(Movie m : MovieDatabase.getArrayList()){
+			if(m.getMovieID() == this.movieID){
+				return m;
+			}
+		}
+		return null;
+	}
+
+	public int getMovieID() {
+		return movieID;
+	}
+
+
+
+	public void setMovieID(int movieID) {
+		this.movieID = movieID;
 	}
 	
 	
