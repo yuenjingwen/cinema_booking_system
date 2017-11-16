@@ -14,15 +14,29 @@ import java.util.Scanner;
 
 public class MovieDatabase implements Database{
 
+	/**
+	 * An array list of the Movie class 
+	 */
 	private static ArrayList<Movie> movieList;
 //	private static ArrayList<MovieReview> RDB;
+	
+	/**
+	 * dat file called movieFile
+	 */
 	private static File movieFile = new File("Movie.dat");
 	
-	
+	/**
+	 * Get an array list of current movies 
+	 * @return an array list of current movies
+	 */
 	public static ArrayList<Movie> getArrayList() {
 		return movieList;
 	}
 	
+	/**
+	 * For admin to edit the details of a selected movie
+	 * @param scanner 
+	 */
 	public static void editMovie(Scanner scanner) {
 		String temp = null;
 		System.out.print("Select movie to edit: ");
@@ -140,6 +154,10 @@ public class MovieDatabase implements Database{
 		updateMovies();
 	}
 
+	/**
+	 * For admin to add new movies and add the movie to the existing movie array list
+	 * @param scanner
+	 */
 	public static void addMovie(Scanner scanner){
 		String title;
 		String synopsis = null;
@@ -187,6 +205,10 @@ public class MovieDatabase implements Database{
 		updateMovies();
 	}
 
+	/**
+	 * 
+	 * @param scanner
+	 */
 	public static void removeMovie(Scanner scanner){
 		int index;
 		System.out.println("=============================");
