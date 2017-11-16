@@ -4,7 +4,11 @@ import java.time.LocalDateTime;
 import java.time.MonthDay;
 
 public class AdultTicket extends Ticket{
-
+	
+	static int BASE_PRICE_TICKET = 10;
+		/**
+	 * 
+	 */
 	private static final long serialVersionUID = -4356253491233642936L;
 
 
@@ -69,6 +73,24 @@ public class AdultTicket extends Ticket{
 			System.out.println("Error in ticket pricing.");
 			break;
 		}
+		
+//		if(age < 12){
+//			discount = "Child Discount";
+//			try {
+//				temp += TicketDatabase.searchDiscountByName("Child Discount");
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				System.out.println(e.getMessage());
+//			}
+//		}else if(age > 65){
+//			discount = "Elderly Discount";
+//			try {
+//				temp += TicketDatabase.searchDiscountByName("Elderly Discount");
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				System.out.println(e.getMessage());
+//			}
+//		}
 		
 		switch (movieDay.getDayOfWeek().toString()){
 		case "MONDAY":

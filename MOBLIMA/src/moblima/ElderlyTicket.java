@@ -4,7 +4,10 @@ import java.time.LocalDateTime;
 import java.time.MonthDay;
 
 public class ElderlyTicket extends Ticket{
-	
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 8697050021125495205L;
 
 	public ElderlyTicket(String seat, int age, int cinemaIndex, int cineplexIndex, int showtimeIndex,
@@ -17,13 +20,6 @@ public class ElderlyTicket extends Ticket{
 	public float calculateTicketPrice(CinemaEnum cEnum, MovieType mEnum, int age, LocalDateTime movieDay) {
 		
 		float temp = 0;
-		
-		try {
-			temp += TicketDatabase.searchDiscountByName("Elderly Discount");
-		} catch (Exception e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
 		
 		switch(cEnum){
 		case DIGITAL:
@@ -75,6 +71,31 @@ public class ElderlyTicket extends Ticket{
 		default:
 			System.out.println("Error in ticket pricing.");
 			break;
+		}
+		
+//		if(age < 12){
+//			discount = "Child Discount";
+//			try {
+//				temp += TicketDatabase.searchDiscountByName("Child Discount");
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				System.out.println(e.getMessage());
+//			}
+//		}else if(age > 65){
+//			discount = "Elderly Discount";
+//			try {
+//				temp += TicketDatabase.searchDiscountByName("Elderly Discount");
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				System.out.println(e.getMessage());
+//			}
+//		}
+		
+		try {
+			temp += TicketDatabase.searchDiscountByName("Elderly Discount");
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
 		}
 		
 		switch (movieDay.getDayOfWeek().toString()){

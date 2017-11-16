@@ -5,6 +5,11 @@ import java.time.MonthDay;
 
 public class ChildTicket extends Ticket{
 
+	static {BASE_PRICE_TICKET = 10;}
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -3438706294914093104L;
 
 	public ChildTicket(String seat, int age, int cinemaIndex, int cineplexIndex, int showtimeIndex,
@@ -17,13 +22,6 @@ public class ChildTicket extends Ticket{
 	public float calculateTicketPrice(CinemaEnum cEnum, MovieType mEnum, int age, LocalDateTime movieDay) {
 		
 		float temp = 0;
-
-		try {
-			temp += TicketDatabase.searchDiscountByName("Child Discount");
-		} catch (Exception e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
 		
 		switch(cEnum){
 		case DIGITAL:
@@ -77,6 +75,30 @@ public class ChildTicket extends Ticket{
 			break;
 		}
 		
+//		if(age < 12){
+//			discount = "Child Discount";
+//			try {
+//				temp += TicketDatabase.searchDiscountByName("Child Discount");
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				System.out.println(e.getMessage());
+//			}
+//		}else if(age > 65){
+//			discount = "Elderly Discount";
+//			try {
+//				temp += TicketDatabase.searchDiscountByName("Elderly Discount");
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				System.out.println(e.getMessage());
+//			}
+//		}
+		
+		try {
+			temp += TicketDatabase.searchDiscountByName("Child Discount");
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		
 		switch (movieDay.getDayOfWeek().toString()){
 		case "MONDAY":
