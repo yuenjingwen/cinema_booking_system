@@ -8,11 +8,21 @@ public class TicketBooth {
 	/**
 	 * Processes purchase of ticket according to given details such as seat, cinema index,
 	 * cineplex index, show time index, name, age, email, mobile number of customer purchasing ticket.
-	 * @param 
+	 * @param seat Seat of ticket to be purchased.
+	 * @param age Age of Customer User buying ticket.
+	 * @param cinemaIndex Index of cinema of the ticket to be purchased.
+	 * @param cineplexIndex Index of cineplex of the ticket to be purchased.
+	 * @param showtimeIndex Index of show time of the ticket to be purchased.
+	 * @param mobileNum Mobile number of Customer User buying ticket.
+	 * @param name Name of Customer User buying ticket.
+	 * @param emailAddress Email address of Customer User buying ticket.
+	 * 
+	 * @return Child ticket if age of Customer User buying ticket is below 12.
+	 * 		   Elderly ticket if age of Customer User buying ticket is above 65.
+	 * 		   Adult ticket if age of 
 	 */
 	public Ticket buyTicket(String seat, int age, int cinemaIndex, int cineplexIndex, int showtimeIndex,
 			 int mobileNum, String name, String emailAddress) {
-		
 		
 		if(age < 12){
 			ChildTicket cTicket = new ChildTicket(seat, age, cinemaIndex, cineplexIndex, showtimeIndex, name, emailAddress, mobileNum);
