@@ -7,14 +7,35 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import moblima.CinemaSeat.SeatOccupiedException;
-
+/**
+ * Customer module that displays all the functions a Customer User can access.
+ */
 public class CustomerModule {
+	/**
+	 * DateTimeFormatter "formatter" that formats date according to date style of localized date. 
+	 */
 	DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
+	/**
+	 * Scanner object
+	 */
 	Scanner scanner;
-	
+	/**
+	 * Integer row of seat.
+	 * Integer column of seat.
+	 */
 	static int row, column;
 
-	//Menu
+/**
+* Main menu that displays all the functions accessible by Customer User.
+* Customer User can 1. Search/List Movie
+* 					2. View movie details - view/write review for movies
+* 					3. Check seat availability of shows
+* 					4. Book and purchase tickets
+* 					5. View own booking history
+* 					6. View top 5 movies by sales
+* 					7. View top 5 movies by their average rating
+* @param scanner Scanner object
+*/
 public static void customerMain(Scanner scanner){
 		
 		int custChoice =0;
@@ -77,7 +98,10 @@ public static void customerMain(Scanner scanner){
 		}
 		
 	}
-	
+/**
+ * Displays Movie Menu for Customer User to view movie list or search for movie.
+ * @param scanner Scanner object
+ */
 private static void customerSearchAndListMovies(Scanner scanner) {
 	
 		int choice = 0;
@@ -124,7 +148,10 @@ private static void customerSearchAndListMovies(Scanner scanner) {
 		}
 		
 	}
-
+/**
+ * Checks for the availability of seat for a show time.
+ * @param scanner Scanner object
+ */
 private static void customerCheckSeatAvailability(Scanner scanner) {
 	
 	CineplexDatabase.printAllShowtimes();
@@ -172,7 +199,10 @@ private static void customerCheckSeatAvailability(Scanner scanner) {
 	} while(!found);
 	
 }
-
+/**
+ * Displays Review Menu for Customer User to read reviews, view overall reviewers' rating and add review of movies.
+ * @param scanner Scanner object
+ */
 private static void customerReviewMenu(Scanner scanner) {
 		//Have to list description of movie- function yet to implement
 		while (MainMenuManager.choice != 4){
@@ -208,7 +238,12 @@ private static void customerReviewMenu(Scanner scanner) {
 		}
 }
 
-	//Process of buying
+/**
+ * Process that Customer User goes through to buy a ticket for a cinema show.
+ * Prompts Customer User for particulars and details for ticket of cinema show to be bought.
+ * Confirms ticket price and Customer User's payment for the ticket.
+ * @param scanner Scanner object
+ */
 private static void customerBuyProcess(Scanner scanner) {
 	
 		TicketBooth ticketBooth = new TicketBooth();
@@ -482,7 +517,10 @@ private static void customerBuyProcess(Scanner scanner) {
 			
 	}
 	
-	//need a way to read review
+	/**
+	 * Prompts Customer User for the movie whose reviews he/she would like to read.
+	 * @param scanner Scanner object
+	 */
 	private static void customerReadReview(Scanner scanner) {	
 		MovieDatabase.printMovieTitles();
 			
@@ -500,7 +538,11 @@ private static void customerBuyProcess(Scanner scanner) {
 			}
 		} while (true);
 	}
-		
+	/**
+	 * Prompts Customer User for the movie whose average rating he/she would like to view.
+	 * Shows the average rating of movie.
+	 * @param scanner Scanner object
+	 */	
 	private static void customerPrintAverageRating(Scanner scanner) {
 			
 		MovieDatabase.printFullMovieList();
@@ -511,7 +553,10 @@ private static void customerBuyProcess(Scanner scanner) {
 			
 			
 		}
-	
+	/**
+	 * Shows booking history of Customer User when Customer User's name is entered.
+	 * @param scanner Scanner object
+	 */
 	private static void customerShowHistory(Scanner scanner) {
 			
 		TicketBooth ticketBooth = new TicketBooth();
