@@ -195,6 +195,7 @@ public class CineplexDatabase implements Database{
 		} catch (Exception e){
 			e.printStackTrace();
 		}
+		updateCineplexes();
 	}
 
 	public static void editShowTime(Scanner scanner){
