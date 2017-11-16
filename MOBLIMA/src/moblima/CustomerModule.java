@@ -395,13 +395,13 @@ private static void customerBuyProcess(Scanner scanner) {
 						
 				//if seat not taken
 				if (CineplexDatabase.cineplexList.get(cineplexIndex -1).getCinemaList().get(cinemaIndex-1).getCinemaShowList().get(showtimeIndex-1).isSeatOccupied(column-1, row-1)){
-					System.out.println("Seat is taken, please book another seat.");
+					
 					throw new SeatOccupiedException();
 					//exit loop if seat is not taken
 				}
 				
 				} catch (SeatOccupiedException e) {
-					System.out.println("Seat is taken"); //prints seat is taken.
+					System.out.println("Seat is taken, please book another seat."); //prints seat is taken.
 				} catch(Exception e){
 					e.printStackTrace();
 					System.out.println("Invalid input. Please re-enter choice.");
