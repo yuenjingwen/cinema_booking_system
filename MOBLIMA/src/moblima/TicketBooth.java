@@ -19,7 +19,7 @@ public class TicketBooth {
 	 * 
 	 * @return Child ticket if age of Customer User buying ticket is below 12.
 	 * 		   Elderly ticket if age of Customer User buying ticket is above 65.
-	 * 		   Adult ticket if age of 
+	 * 		   Adult ticket if age of Customer User buying ticket is between 12 and 65 (both inclusive).
 	 */
 	public Ticket buyTicket(String seat, int age, int cinemaIndex, int cineplexIndex, int showtimeIndex,
 			 int mobileNum, String name, String emailAddress) {
@@ -35,7 +35,10 @@ public class TicketBooth {
 			return aTicket;
 		}
 	}
-	
+	/**
+	 * Displays printed ticket of given ticket bought by Customer User.
+	 * @param ticket Ticket to be printed, bought by Customer User
+	 */
 	public void printTicket(Ticket ticket){
 		System.out.println("============================================");
 		System.out.println("~~~~~~~~~~~~~~~~~~~Ticket~~~~~~~~~~~~~~~~~~~");
