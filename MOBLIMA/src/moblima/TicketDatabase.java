@@ -19,16 +19,26 @@ public class TicketDatabase implements Database{
 	private static ArrayList<TicketDiscount> discountList;
 	private static File discountFile = new File("TicketDiscount.dat"); 
 
-	
+	/**
+	 * This adds a ticket into the ticket list and updates the file afterwards.
+	 * @param temp is just a placeholder to temporarily store a ticket object then places it into the arrayList.
+	 */
 	public static void add(Ticket temp) { 
 		ticketList.add(temp);	
 		updateTickets();
 	} 
-		
+	
+	/**
+	 * Gets the arrayList
+	 * @return ticketList to anyone whos calls the function.
+	 */
 	public static ArrayList<Ticket> getTicketArrayList() {
 		return ticketList;
 	}
 	
+	/**
+	 * Update the latest ticket arrayList to the Ticket.dat file
+	 */
 	public static void updateTickets(){
 		try{
 			FileOutputStream fo = new FileOutputStream(ticketFile);
@@ -45,65 +55,10 @@ public class TicketDatabase implements Database{
 		}
 	}	
 	
-	public static void fetchTickets(){
-		
-		//legacy version, implemented as fetchDatabase()
-	/*	ticketList = new ArrayList<Ticket>();
-		
-		try{
-			FileInputStream fi = new FileInputStream(ticketFile);
-			ObjectInputStream input = new ObjectInputStream(fi);
-			
-			try{
-				while(true){
-					Ticket t = (Ticket)input.readObject();
-					ticketList.add(t);
-				}
-			} catch (EOFException e){
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			
-			fi.close();
-			input.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		discountList = new ArrayList<TicketDiscount>();
-		
-		try{
-			FileInputStream fi = new FileInputStream(discountFile);
-			ObjectInputStream input = new ObjectInputStream(fi);
-			
-			try{
-				while(true){
-					TicketDiscount d = (TicketDiscount)input.readObject();
-					discountList.add(d);
-				}
-			} catch (EOFException e){
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			
-			fi.close();
-			input.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
-		*/ 
-		
-		
-		
-		
-	}
-	
+	/**
+	 * Adds a discount to the list of discounts available when purchasing a ticket.
+	 * @param scanner Scanner object
+	 */
 	public static void addDiscount(Scanner scanner) { 
 		
 		String type = null;
@@ -124,6 +79,10 @@ public class TicketDatabase implements Database{
 		updateTicketDiscount();
 	} 
 	
+	/**
+	 * Removes a discount from the list of discounts available when purchasing a ticket.
+	 * @param scanner Scanner object
+	 */
 	public static void removeDiscount(Scanner scanner) { 
 		
 		int index;
@@ -137,7 +96,11 @@ public class TicketDatabase implements Database{
 		}
 		updateTicketDiscount();
 	} 
-		
+	
+	/**
+	 * Edit the value of individual discount within the list of discounts
+	 * @param scanner Scanner Object
+	 */
 	public static void editDiscount(Scanner scanner) {
 		
 		int index, newValue;
@@ -157,10 +120,20 @@ public class TicketDatabase implements Database{
 		updateTicketDiscount();
 	}
 	
+	/**
+	 * Gets a discountList
+	 * @return discountList
+	 */
 	public static ArrayList<TicketDiscount> getDiscountArrayList() {
 		return discountList;
 	}
 	
+	/**
+	 * Search for a discount by the name
+	 * @param discountName takes in discount name
+	 * @return an Integer which reflects the value of the discount. 
+	 * @throws Exception
+	 */
 	public static int searchDiscountByName (String discountName) throws Exception{
 		for (TicketDiscount td: getDiscountArrayList()) {
 			if (discountName.equals(td.getDiscountName())) {
@@ -170,6 +143,9 @@ public class TicketDatabase implements Database{
 		throw new Exception("No discount found.");
 	}
 	
+	/**
+	 * Updates the latest TicketDIscount arrayList to file
+	 */
 	public static void updateTicketDiscount(){
 		try{
 			FileOutputStream fo = new FileOutputStream(discountFile);
@@ -186,7 +162,10 @@ public class TicketDatabase implements Database{
 		}
 	}	
 	
-		
+	/**
+	 * Prints out the ticket discount menu. Following that, prints the name of the discount and the value
+	 * @param scanner Scanner Object
+	 */
 	public static void printTicketDiscountMenu(Scanner scanner) {
 		System.out.println("\n========================\n"
 				+ "Ticket Discount Settings\n"
@@ -244,12 +223,6 @@ public class TicketDatabase implements Database{
 	}
 	
 	
-
-	@Override
-	public void updateDatabase() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void fetchDatabase() {
