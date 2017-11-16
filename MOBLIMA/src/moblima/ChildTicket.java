@@ -32,6 +32,9 @@ public class ChildTicket extends Ticket{
 		
 		return BASE_PRICE_TICKET + temp;
 	}
+
+
+
 	
 	
 

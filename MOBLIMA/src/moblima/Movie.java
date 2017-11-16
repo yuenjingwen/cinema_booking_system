@@ -173,5 +173,10 @@ public class Movie implements Serializable{
 	public int getMovieID() {
 		return movieID;
 	}
+	
+	//To be overriden in subclass
+	public int getMovieDiscount(){
+		return 0;
+	}
 }
 
